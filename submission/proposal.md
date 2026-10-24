@@ -2,7 +2,7 @@
 title: Proof of Loss
 subtitle: The claim file your NAS already holds
 entrant: Marc Donovici (individual entrant)
-track: Open Innovation
+track: Automate your workflow
 ---
 
 ## 1. What does the Skill do?
@@ -65,5 +65,6 @@ Hashes fix exhibits at copy time; capture times are EXIF as recorded. Search qua
 
 - **In the Skill package:** none. Markdown only.
 - **Test data, not shipped:** photos generated with Qwen-Image 2.1 (Qwen Research License Agreement, research and evaluation use); documents rendered with ReportLab (BSD) and Pillow (MIT-CMU).
-- **Local rehearsal, not shipped:** llama.cpp (MIT); Gemma 4 26B-A4B for the assistant, experts and visual checks, and Gemma 4 E4B for the photo index, both Apache 2.0, as community GGUF builds.
+- **Local rehearsal, not shipped:** llama.cpp (MIT); Gemma 4 26B-A4B (Apache 2.0, community GGUF build) for the assistant, the experts, the photo index and the visual checks.
+- **AI tools used:** Claude Code with Claude Opus 5.5 to write the Skill text, the rehearsal harness, the tests and the documents; Qwen-Image 2.1 to generate the synthetic test photos; Gemma 4 26B-A4B, run locally, to rehearse the Skill.
 - **External services and data flows:** none. All data stays on the NAS.

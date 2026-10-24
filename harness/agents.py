@@ -131,7 +131,7 @@ class Expert:
         failures = {}
         for step in range(self.max_steps):
             try:
-                act = self.llm.chat_json(msgs, max_tokens=3000)
+                act = self.llm.chat_json(msgs, max_tokens=8192)
             except ValueError as e:
                 return {"status": "failed", "result": {}, "message": f"expert produced no valid action: {e}"}
             self.trace({"who": self.agent, "step": step, "act": act})
@@ -186,7 +186,7 @@ class Main:
         msgs = [{"role": "system", "content": MAIN_RULES + self.skill}, {"role": "user", "content": request}]
         for step in range(self.max_steps):
             try:
-                act = self.llm.chat_json(msgs, max_tokens=4000)
+                act = self.llm.chat_json(msgs, max_tokens=8192)
             except ValueError as e:
                 self._event(kind="error", message=str(e))
                 return {"final": None, "error": str(e)}

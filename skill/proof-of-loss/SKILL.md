@@ -100,7 +100,26 @@ delegate --target security-monitor-agent --instruction 'List events between {win
 
 ## Step 5. Draft and confirm
 
-Read [Dossier template](references/dossier-template.md) and build the draft in its layout, from real results only: a Summary table, an Incident section, then one `## Item {n}: {item}` section per item with its Photos, Purchase and Gaps tables. The draft holds:
+Read [Dossier template](references/dossier-template.md) and build the draft in its layout, from real results only. The sections, in this order:
+
+```markdown
+# Claim dossier: {incident type}, {incident date}
+## Summary
+| Item | Confirmed photos | First seen | Last seen | Receipt | Price | Serial number |
+## Incident
+| Time | Camera | Event | Person | Event ID | Snapshot |
+## Item {n}: {item}
+### Photos
+| File | Captured | Device | Place | What is visible |
+### Purchase
+| File | Merchant | Date | Line item | Price | Serial number | Warranty end |
+### Gaps
+## Exhibits
+| # | Exhibit | Original path | Copy path | Size (bytes) | SHA-256 of copy | Copy check |
+## Notes
+```
+
+The draft holds:
 
 - per item: confirmed photos with first seen and last seen, device photos, matched receipts with merchant, date, price and serial number, and the gaps;
 - the incident section with camera events and snapshot references;

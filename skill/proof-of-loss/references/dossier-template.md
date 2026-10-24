@@ -24,7 +24,7 @@ Date and window: {incident date}, {window start} to {window end} ({timezone})
 |---|---|---|---|---|---|
 | {time} | {camera} | {topic} | {known name or stranger} | {event ID} | {snapshot reference} |
 
-Licence plates on stranger vehicles: {plates} or none found.
+Licence plates of stranger vehicle events in the window: {plates} or none found.
 
 ## Item {n}: {item}
 

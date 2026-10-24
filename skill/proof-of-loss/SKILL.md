@@ -94,7 +94,7 @@ A file is a **matched receipt** only when one of its line items names the item's
 
 Run this step in `claim` and `parcel` modes when step 1 returned at least one camera. When step 1 returned an empty list, write "No camera is registered on this NAS" in the camera section and go to step 5.
 
-delegate --target security-monitor-agent --instruction 'List events between {window start} and {window end} (ISO 8601 with the NAS local offset) on all cameras, with topics Human, HumanFace, Vehicle and Package and identity type all. For each event return the event ID, time, camera name, topic, known or stranger, and the person name for known people. For each stranger event fetch one snapshot with purpose export_request and return its reference. List the licence plates seen on stranger vehicles. Return an empty list when no events match. Read only.'
+delegate --target security-monitor-agent --instruction 'List events between {window start} and {window end} (ISO 8601 with the NAS local offset) on all cameras, with topics Human, HumanFace, Vehicle and Package and identity type all. For each event return the event ID, time, camera name, topic, known or stranger, and the person name for known people. For each stranger event fetch one snapshot with purpose export_request and return its reference. For each stranger Vehicle event in the window, return the licence plate of that event. Return an empty list when no events match. Read only.'
 
 `{window start}` and `{window end}` come from input 2. When the user gave only a date, the window is 00:00 to 23:59 of that date.
 
@@ -117,6 +117,9 @@ Read [Dossier template](references/dossier-template.md) and build the draft in i
 ## Exhibits
 | # | Exhibit | Original path | Copy path | Size (bytes) | SHA-256 of copy | Copy check |
 ## Notes
+- Every exhibit is a copy of a file stored on this NAS. Its SHA-256 hash was recorded on {today} for the copy and for the original.
+- Capture times are the EXIF values written by the device that took each photo.
+- Prices come from the receipts listed. Items without a receipt are marked no price found.
 ```
 
 The draft holds:

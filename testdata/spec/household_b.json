@@ -1,0 +1,547 @@
+{
+ "name": "Household B (held-out)",
+ "timezone": "Europe/Paris",
+ "home_gps": [
+  50.6292,
+  3.0573
+ ],
+ "items": {
+  "espresso": {
+   "label": "Brava Duo chrome espresso machine",
+   "brand": "Brava",
+   "model": "Duo",
+   "serial": "BD-55102"
+  },
+  "guitar": {
+   "label": "Halden OM-2 acoustic guitar, natural top",
+   "brand": "Halden",
+   "model": "OM-2",
+   "serial": null
+  },
+  "laptop": {
+   "label": "Nimbus 14 silver laptop",
+   "brand": "Nimbus",
+   "model": "14",
+   "serial": "NB14-9F3K-2207"
+  },
+  "rug": {
+   "label": "blue and cream geometric wool rug",
+   "brand": null,
+   "model": null,
+   "serial": null
+  },
+  "printer": {
+   "label": "white inkjet printer",
+   "brand": null,
+   "model": null,
+   "serial": null
+  }
+ },
+ "photos": [
+  {
+   "id": "B-E1",
+   "taken": "2023-03-18T09:12:00",
+   "prompt": "a chrome espresso machine with two portafilters on a kitchen counter, morning light. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [
+    "espresso"
+   ],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-E2",
+   "taken": "2025-11-30T10:40:00",
+   "prompt": "a latte with latte art next to a chrome espresso machine with two portafilters on a kitchen counter. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [
+    "espresso"
+   ],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-G1",
+   "taken": "2021-07-04T20:05:00",
+   "prompt": "an acoustic guitar with a natural spruce top and a dark rosewood back on a stand in a living room corner. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [
+    "guitar"
+   ],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-G2",
+   "taken": "2024-08-17T18:30:00",
+   "prompt": "someone playing an acoustic guitar with a natural spruce top and a dark rosewood back on a canal-side bench. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [
+    "guitar"
+   ],
+   "gps": [
+    51.2093,
+    3.2247
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-G3",
+   "taken": "2026-09-20T21:15:00",
+   "prompt": "an acoustic guitar with a natural spruce top and a dark rosewood back lying on a sofa next to sheet music. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [
+    "guitar"
+   ],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-L1",
+   "taken": "2024-02-02T14:00:00",
+   "prompt": "close-up of a white sticker on the underside of a silver laptop reading 'NIMBUS 14' and 'S/N NB14-9F3K-2207'. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [
+    "laptop"
+   ],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": true,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-L2",
+   "taken": "2025-05-09T11:20:00",
+   "prompt": "a silver 14-inch laptop open on a desk next to a plant and a notebook. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [
+    "laptop"
+   ],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-R1",
+   "taken": "2022-10-08T16:45:00",
+   "prompt": "a blue and cream wool rug with a geometric pattern on a wooden floor in a living room. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [
+    "rug"
+   ],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-R2",
+   "taken": "2026-02-14T19:00:00",
+   "prompt": "a dog lying on a blue and cream wool rug with a geometric pattern. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [
+    "rug"
+   ],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-D1",
+   "taken": "2025-04-12T15:00:00",
+   "prompt": "a guitar shop wall with many acoustic guitars. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    51.2093,
+    3.2247
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-D2",
+   "taken": "2024-12-01T09:00:00",
+   "prompt": "an espresso machine behind the counter of a busy cafe. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    50.637,
+    3.063
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X01",
+   "taken": "2021-04-10T12:00:00",
+   "prompt": "a canal with old brick houses. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    51.2093,
+    3.2247
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X02",
+   "taken": "2022-01-15T09:30:00",
+   "prompt": "a dog in the snow. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X03",
+   "taken": "2022-06-05T18:00:00",
+   "prompt": "a plate of mussels and fries. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    50.6365,
+    3.0635
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X04",
+   "taken": "2023-05-20T14:20:00",
+   "prompt": "a flea market with old books. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    50.633,
+    3.06
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X05",
+   "taken": "2023-12-24T20:00:00",
+   "prompt": "a Christmas dinner table. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X06",
+   "taken": "2024-04-07T10:10:00",
+   "prompt": "tulip fields. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    52.26,
+    4.55
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X07",
+   "taken": "2025-01-26T16:40:00",
+   "prompt": "a rainy street with umbrellas. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    50.637,
+    3.063
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X08",
+   "taken": "2025-08-02T19:30:00",
+   "prompt": "a sunset over the North Sea. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    51.23,
+    2.92
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X09",
+   "taken": "2026-03-08T11:00:00",
+   "prompt": "a dog chewing a toy on a wooden floor. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  },
+  {
+   "id": "B-X10",
+   "taken": "2026-07-11T13:15:00",
+   "prompt": "a bowl of salad on a balcony table. amateur smartphone photo, realistic, natural light, slight sensor noise, casual framing, everyday European flat, no watermark",
+   "items": [],
+   "gps": [
+    50.6292,
+    3.0573
+   ],
+   "device": {
+    "make": "Corvid",
+    "model": "C12",
+    "lens": "Corvid C12 main camera 5.4mm f/1.7"
+   },
+   "folder": "Photos",
+   "text_shot": false,
+   "aspect": "4:3"
+  }
+ ],
+ "documents": [
+  {
+   "id": "B-R-espresso",
+   "path": "Documents/Achats/2023-03-15_Cafe-Atelier_invoice.pdf",
+   "kind": "invoice",
+   "merchant": "Cafe Atelier",
+   "date": "2023-03-15",
+   "currency": "EUR",
+   "number": "CA-23-0318",
+   "lines": [
+    [
+     "Brava Duo espresso machine, chrome",
+     1,
+     "689.00"
+    ],
+    [
+     "Coffee beans 1 kg",
+     2,
+     "18.50"
+    ]
+   ],
+   "total": "726.00",
+   "serials": {
+    "Brava Duo espresso machine, chrome": "BD-55102"
+   },
+   "matches": [
+    "espresso"
+   ]
+  },
+  {
+   "id": "B-R-laptop",
+   "path": "Documents/Achats/2024-01-29_Nordtech_invoice.pdf",
+   "kind": "invoice",
+   "merchant": "Nordtech",
+   "date": "2024-01-29",
+   "currency": "EUR",
+   "number": "NT-240129-77",
+   "lines": [
+    [
+     "Nimbus 14 laptop, silver, 16 GB, 512 GB",
+     1,
+     "1249.00"
+    ]
+   ],
+   "total": "1249.00",
+   "serials": {
+    "Nimbus 14 laptop, silver, 16 GB, 512 GB": "NB14-9F3K-2207"
+   },
+   "warranty_end": "2026-01-29",
+   "matches": [
+    "laptop"
+   ]
+  },
+  {
+   "id": "B-R-guitar",
+   "path": "Documents/Achats/2021-06-26_Muziekhuis_receipt.jpg",
+   "kind": "till_receipt_photo",
+   "merchant": "Muziekhuis Arend",
+   "date": "2021-06-26",
+   "currency": "EUR",
+   "number": "MA-6621",
+   "lines": [
+    [
+     "Halden OM-2 acoustic guitar",
+     1,
+     "1450.00"
+    ],
+    [
+     "Gig bag",
+     1,
+     "59.00"
+    ]
+   ],
+   "total": "1509.00",
+   "matches": [
+    "guitar"
+   ],
+   "taken": "2021-06-26T15:10:00"
+  },
+  {
+   "id": "B-R-printer-ink",
+   "path": "Documents/Achats/2025-09-03_Bureau-Plus_receipt.pdf",
+   "kind": "till_receipt",
+   "merchant": "Bureau Plus",
+   "date": "2025-09-03",
+   "currency": "EUR",
+   "number": "BP-0903",
+   "lines": [
+    [
+     "Ink cartridge pack, black and colour",
+     1,
+     "42.90"
+    ]
+   ],
+   "total": "42.90",
+   "matches": []
+  },
+  {
+   "id": "B-P-policy",
+   "path": "Documents/Assurance/Mutuelle-Nord_contrat-habitation_2026.pdf",
+   "kind": "policy",
+   "merchant": "Mutuelle du Nord",
+   "date": "2026-01-01",
+   "number": "MN-HAB-2026-55120",
+   "matches": []
+  }
+ ],
+ "cameras": [],
+ "events": []
+}

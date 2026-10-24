@@ -45,6 +45,8 @@ A receipt, invoice or order confirmation is **matched** to an item when one of t
 
 Any other returned file is a **possible receipt** and needs the user's confirmation in step 5.
 
+Serial numbers are compared ignoring case, spaces and hyphens, and allowing the confusions OCR makes between O and 0 and between I and 1. The dossier writes the serial as printed on the receipt.
+
 ## Values
 
 - The value of an item is the price of its own line item on a matched receipt, in the currency printed on the receipt.

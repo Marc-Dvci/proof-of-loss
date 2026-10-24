@@ -16,6 +16,1141 @@
     45.7578,
     4.832
    ]
+  },
+  "Photos/2019/IMG_20190803_121000.jpg": {
+   "objects": [
+    "pasta",
+    "basil",
+    "plate",
+    "bowl",
+    "countertop",
+    "utensil"
+   ],
+   "scene": "A plate of pasta garnished with basil sits on a kitchen countertop next to a white bowl.",
+   "colors": "Yellow, green, white, gray",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2019-08-03T12:10:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2019/IMG_20191019_164500.jpg": {
+   "objects": [
+    "river",
+    "trees",
+    "buildings",
+    "street",
+    "cars",
+    "foliage",
+    "water"
+   ],
+   "scene": "A row of old buildings lines a street alongside a river, with trees displaying autumn foliage.",
+   "colors": "Brown, yellow, gray, green",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2019-10-19T16:45:00",
+   "gps": [
+    45.76,
+    4.827
+   ]
+  },
+  "Photos/2020/IMG_20200208_093000.jpg": {
+   "objects": [
+    "cat",
+    "window",
+    "sill",
+    "building"
+   ],
+   "scene": "A tabby cat is sleeping soundly on a white windowsill with a view of buildings in the background.",
+   "colors": "Gray, brown, black, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2020-02-08T09:30:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2020/IMG_20200613_174519.jpg": {
+   "objects": [
+    "watch",
+    "hand",
+    "wine glass",
+    "arm",
+    "grass",
+    "table",
+    "chair"
+   ],
+   "scene": "A person's arm, wearing a wristwatch, is visible outdoors with wine glasses in the foreground against a backdrop of greenery and buildings.",
+   "colors": "Brown, Gold, White, Green",
+   "text": "",
+   "make": "Pellam",
+   "model": "P7",
+   "taken": "2020-06-13T17:45:19",
+   "gps": [
+    46.153,
+    4.665
+   ]
+  },
+  "Photos/2020/IMG_20200721_192000.jpg": {
+   "objects": [
+    "vineyard",
+    "sunset",
+    "houses",
+    "trees",
+    "sky"
+   ],
+   "scene": "A vineyard stretches into the foreground under a vibrant orange and yellow sunset, with houses visible on the distant hills.",
+   "colors": "Orange, yellow, green, gray",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2020-07-21T19:20:00",
+   "gps": [
+    46.153,
+    4.665
+   ]
+  },
+  "Photos/2020/IMG_20201231_235800.jpg": {
+   "objects": [
+    "champagne glasses",
+    "champagne",
+    "table",
+    "glasses"
+   ],
+   "scene": "Five champagne glasses filled with sparkling wine are lined up on a draped table.",
+   "colors": "Gold, yellow, clear",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2020-12-31T23:58:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2021/IMG_20210117_140000.jpg": {
+   "objects": [
+    "roof",
+    "building",
+    "window",
+    "snow",
+    "chimney",
+    "balcony",
+    "sky",
+    "gutter",
+    "eaves",
+    "wall"
+   ],
+   "scene": "A view of an older, snow-covered building roof and facade seen through a window on a cloudy day.",
+   "colors": "White, gray, beige, brown",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2021-01-17T14:00:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2021/IMG_20210306_110218.jpg": {
+   "objects": [
+    "bicycle",
+    "bike",
+    "wheel",
+    "frame",
+    "saddle",
+    "handlebars",
+    "pedals",
+    "chain",
+    "tire",
+    "bike",
+    "bike",
+    "bike"
+   ],
+   "scene": "A vintage, grey bicycle is leaning against a plain white wall on a wooden floor.",
+   "colors": "Grey, black, white, brown",
+   "text": "",
+   "make": "Pellam",
+   "model": "P7",
+   "taken": "2021-03-06T11:02:18",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2021/IMG_20210502_111500.jpg": {
+   "objects": [
+    "strawberries",
+    "market stall",
+    "produce",
+    "crates",
+    "table",
+    "fruit",
+    "vendor",
+    "display",
+    "boxes",
+    "vegetables",
+    "shop",
+    "counter"
+   ],
+   "scene": "A vibrant market stall overflowing with fresh strawberries is displayed on a rustic wooden table.",
+   "colors": "Red, green, brown",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2021-05-02T11:15:00",
+   "gps": [
+    45.764,
+    4.8357
+   ]
+  },
+  "Photos/2021/IMG_20210912_183000.jpg": {
+   "objects": [
+    "pizza",
+    "oven",
+    "baking tray"
+   ],
+   "scene": "A freshly baked pizza rests inside a dark oven.",
+   "colors": "Brown, orange, white, black",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2021-09-12T18:30:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2021/IMG_20211120_181204.jpg": {
+   "objects": [
+    "cardboard box",
+    "label",
+    "wall",
+    "floor"
+   ],
+   "scene": "A large, plain cardboard box with a white label is placed against a white wall on a wooden floor.",
+   "colors": "brown, white, beige, wood",
+   "text": "VELTRA 55Q8\nSN VT55Q8-2111-4471",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2021-11-20T18:12:04",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2021/IMG_20211121_204031.jpg": {
+   "objects": [
+    "television",
+    "couch",
+    "stand",
+    "room",
+    "door"
+   ],
+   "scene": "A television is displayed on a wooden stand in a living room setting, with a green couch in the foreground.",
+   "colors": "Green, brown, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2021-11-21T20:40:31",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2022/IMG_20220123_151000.jpg": {
+   "objects": [
+    "lamp",
+    "bed",
+    "book",
+    "nightstand",
+    "blanket"
+   ],
+   "scene": "A cozy indoor scene featuring a bedside lamp next to a bed covered with a thick blanket.",
+   "colors": "Beige, brown, white, gray",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2022-01-23T15:10:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2022/IMG_20220312_150210.jpg": {
+   "objects": [
+    "sofa",
+    "couch",
+    "furniture",
+    "room",
+    "floor"
+   ],
+   "scene": "A dark green velvet sofa is placed in a room with white walls and a wooden floor covered in protective plastic sheeting.",
+   "colors": "dark green, white, brown",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2022-03-12T15:02:10",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2022/IMG_20220409_100500.jpg": {
+   "objects": [
+    "cherry blossom tree",
+    "apartment building",
+    "tree",
+    "flowers",
+    "balcony",
+    "windows"
+   ],
+   "scene": "A large, blooming cherry blossom tree dominates the foreground against the backdrop of a classic apartment building.",
+   "colors": "White, pink, beige, brown",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2022-04-09T10:05:00",
+   "gps": [
+    45.7772,
+    4.853
+   ]
+  },
+  "Photos/2022/IMG_20220515_154740.jpg": {
+   "objects": [
+    "bicycle",
+    "lake",
+    "mountains",
+    "bike",
+    "waterscape",
+    "mountain range",
+    "handlebars",
+    "wheels",
+    "railing",
+    "landscape"
+   ],
+   "scene": "A bicycle is parked on a railing overlooking a large, turquoise lake surrounded by lush, mountainous terrain under a cloudy sky.",
+   "colors": "Grey, turquoise, green, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2022-05-15T15:47:40",
+   "gps": [
+    45.8992,
+    6.1294
+   ]
+  },
+  "Photos/2022/IMG_20220621_214500.jpg": {
+   "objects": [
+    "musicians",
+    "band",
+    "stage",
+    "lights",
+    "tree",
+    "building",
+    "drums",
+    "instruments",
+    "people",
+    "outdoor performance"
+   ],
+   "scene": "A band is performing outdoors at night in front of a large, historic building, illuminated by string lights.",
+   "colors": "Brown, white, yellow, black",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2022-06-21T21:45:00",
+   "gps": [
+    45.766,
+    4.834
+   ]
+  },
+  "Photos/2022/IMG_20220702_162044.jpg": {
+   "objects": [
+    "camera",
+    "box",
+    "cardboard box",
+    "lens",
+    "remote control",
+    "table",
+    "packaging"
+   ],
+   "scene": "A digital camera and its packaging are displayed on a wooden table next to an open cardboard box.",
+   "colors": "Brown, Black, White",
+   "text": "ORVANE X-50\nS/N: 0X50-77812",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2022-07-02T16:20:44",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2022/IMG_20220814_101237.jpg": {
+   "objects": [
+    "camera",
+    "coffee cup",
+    "table",
+    "fence",
+    "saucer"
+   ],
+   "scene": "A vintage camera rests on a marble table next to a cup of coffee, with a wrought iron fence visible in the background.",
+   "colors": "Black, silver, white, brown",
+   "text": "1:13 85",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2022-08-14T10:12:37",
+   "gps": [
+    43.2951,
+    5.374
+   ]
+  },
+  "Photos/2022/IMG_20221030_132500.jpg": {
+   "objects": [
+    "soup",
+    "bowl",
+    "spoon"
+   ],
+   "scene": "A bowl of thick, orange-yellow soup with a spoon resting in it, set on a gray surface.",
+   "colors": "Orange, yellow, white, gray",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2022-10-30T13:25:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2022/IMG_20221224_190512.jpg": {
+   "objects": [
+    "Christmas tree",
+    "Television",
+    "TV stand",
+    "Star",
+    "Lights",
+    "Ornaments"
+   ],
+   "scene": "A decorated Christmas tree stands next to a large television set resting on a wooden stand in a bright room.",
+   "colors": "Green, Gold, Black, Brown",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2022-12-24T19:05:12",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2022/OXV_8616.JPG": {
+   "objects": [
+    "boats",
+    "buildings",
+    "harbor",
+    "water",
+    "docks"
+   ],
+   "scene": "A collection of boats is moored in a harbor against a backdrop of old, densely packed buildings.",
+   "colors": "White, beige, grey, blue",
+   "text": "",
+   "make": "Orvane",
+   "model": "X-50",
+   "taken": "2022-08-14T10:31:02",
+   "gps": [
+    43.2951,
+    5.374
+   ]
+  },
+  "Photos/2023/IMG_20230101_103051.jpg": {
+   "objects": [
+    "watch",
+    "wooden table",
+    "lamp",
+    "drawer",
+    "watch strap"
+   ],
+   "scene": "A wristwatch with a brown leather strap is displayed on a wooden surface next to a lamp.",
+   "colors": "brown, beige, gold",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2023-01-01T10:30:51",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2023/IMG_20230218_085000.jpg": {
+   "objects": [
+    "croissants",
+    "coffee cup",
+    "tray",
+    "plate"
+   ],
+   "scene": "A warm breakfast scene featuring croissants and coffee served on a wooden tray.",
+   "colors": "Brown, white, golden-yellow",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2023-02-18T08:50:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2023/IMG_20230415_120000.jpg": {
+   "objects": [
+    "person",
+    "forest",
+    "path",
+    "trees",
+    "dirt",
+    "brush",
+    "woods"
+   ],
+   "scene": "A person walks down a dirt path through a dense, wooded forest.",
+   "colors": "Brown, green, gray",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2023-04-15T12:00:00",
+   "gps": [
+    45.071,
+    5.549
+   ]
+  },
+  "Photos/2023/IMG_20230610_213047.jpg": {
+   "objects": [
+    "television",
+    "coffee popcorn",
+    "cabinet",
+    "remote",
+    "screen"
+   ],
+   "scene": "A television is displayed on a wooden cabinet with a bowl of popcorn in the foreground.",
+   "colors": "brown, black, white, beige",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2023-06-10T21:30:47",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2023/IMG_20230714_223000.jpg": {
+   "objects": [
+    "fireworks",
+    "cityscape",
+    "river",
+    "buildings",
+    "trees"
+   ],
+   "scene": "Fireworks illuminate the sky above a row of buildings situated along a riverbank at dusk.",
+   "colors": "Orange, white, gray, brown, green",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2023-07-14T22:30:00",
+   "gps": [
+    45.759,
+    4.83
+   ]
+  },
+  "Photos/2023/IMG_20230820_091502.jpg": {
+   "objects": [
+    "bicycle",
+    "bike",
+    "frame",
+    "wheels",
+    "seat",
+    "handlebars",
+    "potted plants",
+    "planters",
+    "building",
+    "fence"
+   ],
+   "scene": "A vintage-style bicycle is parked outdoors in front of a building with overgrown potted plants.",
+   "colors": "Grey, black, brown, green",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2023-08-20T09:15:02",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2023/IMG_20230923_174000.jpg": {
+   "objects": [
+    "cat",
+    "toy mouse",
+    "rug",
+    "sofa",
+    "floor"
+   ],
+   "scene": "A tabby cat is focused on a small toy mouse resting on a fluffy gray rug indoors.",
+   "colors": "Gray, brown, black, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2023-09-23T17:40:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2023/IMG_20231111_154029.jpg": {
+   "objects": [
+    "cameras",
+    "lenses",
+    "window",
+    "buildings",
+    "reflection"
+   ],
+   "scene": "A collection of professional cameras and lenses is displayed in a shop window, reflecting the surrounding urban architecture.",
+   "colors": "Brown, beige, black, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2023-11-11T15:40:29",
+   "gps": [
+    43.2951,
+    5.374
+   ]
+  },
+  "Photos/2024/IMG_20240106_160000.jpg": {
+   "objects": [
+    "pie",
+    "baking pan",
+    "tablecloth"
+   ],
+   "scene": "A golden-brown pie baked in a decorative pan sits on a textured tablecloth.",
+   "colors": "Brown, Gold, Beige",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2024-01-06T16:00:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2024/IMG_20240302_221107.jpg": {
+   "objects": [
+    "television",
+    "shelf",
+    "bed",
+    "bag",
+    "remote",
+    "paper"
+   ],
+   "scene": "A flat-screen television is mounted on a light-colored wall above a wooden shelf and bed.",
+   "colors": "Black, beige, brown, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2024-03-02T22:11:07",
+   "gps": [
+    41.3874,
+    2.1686
+   ]
+  },
+  "Photos/2024/IMG_20240303_102000.jpg": {
+   "objects": [
+    "street",
+    "buildings",
+    "bicycle",
+    "people",
+    "walls",
+    "windows",
+    "road",
+    "alley",
+    "sidewalk",
+    "lamppost"
+   ],
+   "scene": "A narrow, somewhat aged street lined with tall, old buildings stretches into the distance under a bright sky.",
+   "colors": "Beige, grey, brown, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2024-03-03T10:20:00",
+   "gps": [
+    41.3874,
+    2.1686
+   ]
+  },
+  "Photos/2024/IMG_20240525_143500.jpg": {
+   "objects": [
+    "picnic blanket",
+    "basket",
+    "grapes",
+    "fruit",
+    "bottle",
+    "cutting board"
+   ],
+   "scene": "A picnic setup featuring a basket of fruit and a bottle resting on a checkered blanket spread out on green grass.",
+   "colors": "Red, white, blue, green, yellow",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2024-05-25T14:35:00",
+   "gps": [
+    45.7772,
+    4.853
+   ]
+  },
+  "Photos/2024/IMG_20240608_162245.jpg": {
+   "objects": [
+    "bicycle",
+    "tree",
+    "bike",
+    "wheel",
+    "seat",
+    "basket",
+    "road",
+    "building"
+   ],
+   "scene": "A red bicycle is parked on a dirt path next to a large tree, with buildings and greenery visible in the background.",
+   "colors": "Red, black, silver, brown, green",
+   "text": "COFFEETE",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2024-06-08T16:22:45",
+   "gps": [
+    45.7772,
+    4.853
+   ]
+  },
+  "Photos/2024/IMG_20240810_191000.jpg": {
+   "objects": [
+    "apartment buildings",
+    "beach",
+    "sky",
+    "people",
+    "sea",
+    "coastline"
+   ],
+   "scene": "A row of apartment buildings lines a sandy beach under a clear, pale sky during what appears to be late afternoon or early morning.",
+   "colors": "Beige, brown, pale blue, tan",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2024-08-10T19:10:00",
+   "gps": [
+    43.27,
+    5.36
+   ]
+  },
+  "Photos/2024/IMG_20240901_124021.jpg": {
+   "objects": [
+    "camera",
+    "lens",
+    "hand",
+    "cliff",
+    "landscape"
+   ],
+   "scene": "A person is holding a DSLR camera with a lens while standing in a rugged, outdoor landscape with a large cliff face in the background.",
+   "colors": "Black, gray, white, brown",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2024-09-01T12:40:21",
+   "gps": [
+    45.071,
+    5.549
+   ]
+  },
+  "Photos/2024/IMG_20241102_154500.jpg": {
+   "objects": [
+    "dough",
+    "mixing bowl",
+    "countertop",
+    "rolling pin",
+    "flour",
+    "kitchen",
+    "measuring cup",
+    "bottles",
+    "toaster",
+    "kitchen appliances"
+   ],
+   "scene": "A kitchen countertop is set up with ingredients and tools for baking, including dough being prepared.",
+   "colors": "Grey, white, brown, beige",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2024-11-02T15:45:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2024/OXV_7394.JPG": {
+   "objects": [
+    "mountain",
+    "hill",
+    "village",
+    "buildings",
+    "forest",
+    "cliff",
+    "sky"
+   ],
+   "scene": "A small village is nestled at the base of a large, forested mountain with a prominent rocky cliff face under a cloudy sky.",
+   "colors": "Green, gray, brown, white",
+   "text": "",
+   "make": "Orvane",
+   "model": "X-50",
+   "taken": "2024-09-01T13:05:44",
+   "gps": [
+    45.071,
+    5.549
+   ]
+  },
+  "Photos/2025/IMG_20250119_094000.jpg": {
+   "objects": [
+    "car",
+    "ice",
+    "building",
+    "roof"
+   ],
+   "scene": "A close-up view of a car's windshield covered in a thick layer of ice, with apartment buildings visible in the background.",
+   "colors": "Gray, white, brown, blue",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2025-01-19T09:40:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2025/IMG_20250214_132009.jpg": {
+   "objects": [
+    "sofa",
+    "television",
+    "plant",
+    "cabinet",
+    "window",
+    "curtain",
+    "floor",
+    "couch"
+   ],
+   "scene": "A bright, modern living room featuring a green sofa set, a large television on a wooden cabinet, and several indoor plants.",
+   "colors": "Green, brown, white, wood tones",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2025-02-14T13:20:09",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2025/IMG_20250329_130000.jpg": {
+   "objects": [
+    "tulips",
+    "vase",
+    "window",
+    "flowers"
+   ],
+   "scene": "A vibrant bouquet of colorful tulips is displayed in a glass vase on a windowsill, with a view of buildings outside.",
+   "colors": "Orange, yellow, red, purple, pink, green, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2025-03-29T13:00:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2025/IMG_20250412_173026.jpg": {
+   "objects": [
+    "bicycle frame",
+    "fork",
+    "axle",
+    "metal",
+    "component"
+   ],
+   "scene": "A close-up view of a grey bicycle frame component, showing a bearing mount and stamped text.",
+   "colors": "Grey",
+   "text": "WTU8841K",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2025-04-12T17:30:26",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2025/IMG_20250614_201500.jpg": {
+   "objects": [
+    "grill",
+    "meat",
+    "barbecue",
+    "food",
+    "balcony",
+    "condiment",
+    "buildings"
+   ],
+   "scene": "A barbecue grill is set up on a balcony overlooking a residential area, with various meats cooking on the grate.",
+   "colors": "Grey, black, brown, green",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2025-06-14T20:15:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2025/IMG_20250719_180312.jpg": {
+   "objects": [
+    "smartwatch",
+    "arm",
+    "wrist",
+    "watch strap"
+   ],
+   "scene": "A person is wearing a black smartwatch on their wrist outdoors against a backdrop of buildings and trees.",
+   "colors": "Black, skin tone, gray, green",
+   "text": "28/11/2019",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2025-07-19T18:03:12",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2025/IMG_20250906_113000.jpg": {
+   "objects": [
+    "building",
+    "facade",
+    "architecture",
+    "stone",
+    "window",
+    "balcony",
+    "sky",
+    "church",
+    "building",
+    "arch"
+   ],
+   "scene": "A view of an old, weathered stone building with classical architectural elements set against a bright blue sky.",
+   "colors": "Beige, brown, blue",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2025-09-06T11:30:00",
+   "gps": [
+    45.762,
+    4.827
+   ]
+  },
+  "Photos/2025/IMG_20251025_182000.jpg": {
+   "objects": [
+    "soup",
+    "bowl",
+    "noodles",
+    "chopsticks",
+    "spoon"
+   ],
+   "scene": "A bowl of noodle soup is presented on a dark surface, with chopsticks resting on the side.",
+   "colors": "Brown, orange, beige, white, green",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2025-10-25T18:20:00",
+   "gps": [
+    45.765,
+    4.84
+   ]
+  },
+  "Photos/2025/OXV_0116.JPG": {
+   "objects": [
+    "table",
+    "wine glasses",
+    "candles",
+    "food",
+    "plates",
+    "couch",
+    "room",
+    "glassware",
+    "napkin",
+    "artwork"
+   ],
+   "scene": "A cozy indoor dining scene featuring a spread of food on a table, illuminated by candlelight.",
+   "colors": "Brown, white, red, gold",
+   "text": "",
+   "make": "Orvane",
+   "model": "X-50",
+   "taken": "2025-12-25T13:15:30",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2026/IMG_20260111_141000.jpg": {
+   "objects": [
+    "mountains",
+    "snow",
+    "sky",
+    "peaks",
+    "landscape"
+   ],
+   "scene": "A vast panorama of rugged, snow-capped mountains under a bright, pale blue sky.",
+   "colors": "White, gray, blue",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2026-01-11T14:10:00",
+   "gps": [
+    45.09,
+    6.07
+   ]
+  },
+  "Photos/2026/IMG_20260404_104500.jpg": {
+   "objects": [
+    "plant",
+    "window",
+    "tree",
+    "building",
+    "leaves"
+   ],
+   "scene": "A vibrant green plant is visible in the foreground against the backdrop of an old, light-colored apartment building seen through a window.",
+   "colors": "Green, white, beige, gray",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2026-04-04T10:45:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2026/IMG_20260620_210000.jpg": {
+   "objects": [
+    "campfire",
+    "fire",
+    "house",
+    "trees",
+    "grass",
+    "fence",
+    "logs"
+   ],
+   "scene": "A large bonfire burns in a grassy yard in front of a residential apartment building, surrounded by trees.",
+   "colors": "Orange, yellow, brown, green, beige",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2026-06-20T21:00:00",
+   "gps": [
+    46.153,
+    4.665
+   ]
+  },
+  "Photos/2026/IMG_20260815_140033.jpg": {
+   "objects": [
+    "watch",
+    "watch case",
+    "watch movement",
+    "watch strap",
+    "crown"
+   ],
+   "scene": "A close-up view of the gold-toned watch case, showing the engraved movement on the back.",
+   "colors": "Gold, brown, silver",
+   "text": "Pour Lucien 1972",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2026-08-15T14:00:33",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2026/IMG_20260913_123000.jpg": {
+   "objects": [
+    "cat",
+    "chair",
+    "stove",
+    "kitchen",
+    "cat",
+    "table"
+   ],
+   "scene": "A tabby cat sits on a wooden chair in a kitchen setting.",
+   "colors": "brown, grey, black, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2026-09-13T12:30:00",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2026/IMG_20260927_190008.jpg": {
+   "objects": [
+    "camera",
+    "books",
+    "bookshelf"
+   ],
+   "scene": "A vintage camera is placed on a wooden shelf next to a stack of old books.",
+   "colors": "brown, black, silver",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2026-09-27T19:00:08",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2026/IMG_20261018_211055.jpg": {
+   "objects": [
+    "television",
+    "couch",
+    "people",
+    "room",
+    "cabinet"
+   ],
+   "scene": "Two people are sitting on a couch watching a soccer match on a large television screen in a living room.",
+   "colors": "Green, brown, grey",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2026-10-18T21:10:55",
+   "gps": [
+    45.7578,
+    4.832
+   ]
+  },
+  "Photos/2026/IMG_20261024_080513.jpg": {
+   "objects": [
+    "bicycle",
+    "helmet",
+    "bike",
+    "frame",
+    "wheels",
+    "handlebars",
+    "pedals",
+    "spokes",
+    "saddle",
+    "bike rack"
+   ],
+   "scene": "A bicycle with a helmet resting on the handlebars is leaning against a plain white wall in an indoor setting.",
+   "colors": "Grey, black, white",
+   "text": "",
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "taken": "2026-10-24T08:05:13",
+   "gps": [
+    45.7578,
+    4.832
+   ]
   }
  },
  "docs": {

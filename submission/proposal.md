@@ -29,7 +29,7 @@ Inventory and parcel modes reuse the flow.
 
 ## 5. Difference from existing tools
 
-Inventory apps ask people to photograph belongings before a loss. Proof of Loss starts after it, from photos taken for other reasons. ProofList, Encircle and the NAIC inventory app need new uploads; doorbell apps export clips one by one. Only a NAS holds photos, receipts and camera events together, under the owner's control. Old photos taken by a stolen camera carry its body serial in EXIF.
+Inventory apps (ProofList, Encircle, NAIC) need photos taken for the purpose before a loss. Proof of Loss starts after it, from photos taken for other reasons, and joins receipts and camera events that only a NAS holds together, under the owner's control. Photos taken by a stolen camera carry its body serial in EXIF.
 
 ## 6. NAS capabilities by step
 
@@ -65,5 +65,5 @@ Hashes fix exhibits at copy time; capture times are EXIF as recorded. Search qua
 
 - **In the Skill package:** none. Markdown only.
 - **Test data, not shipped:** photos generated with Qwen-Image 2.1 (Qwen Research License Agreement, research and evaluation use); documents rendered with ReportLab (BSD) and Pillow (MIT-CMU).
-- **Local rehearsal, not shipped:** llama.cpp (MIT); a community Q4_K_M build of Qwen3.5-9B and Gemma 4 E4B, under their published licences.
+- **Local rehearsal, not shipped:** llama.cpp (MIT); Gemma 4 26B-A4B for the assistant, experts and visual checks, and Gemma 4 E4B for the photo index, both Apache 2.0, as community GGUF builds.
 - **External services and data flows:** none. All data stays on the NAS.

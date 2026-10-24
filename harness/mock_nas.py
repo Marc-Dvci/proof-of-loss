@@ -46,7 +46,8 @@ def load_catalog():
     for c in cat["clis"]:
         for a in c["actions"]:
             actions[(c["name"], a["name"])] = {"agent": c["agent"], "effect": a.get("effect"),
-                                               "approval": a.get("approval")}
+                                               "approval": a.get("approval"),
+                                               "params": {p["name"]: p for p in a.get("parameters", [])}}
     return actions
 
 
@@ -124,7 +125,10 @@ class MockNAS:
             result = {"ok": False, "error": {"code": "UNKNOWN_ACTION", "message": f"{cli} has no action {action}"}}
         elif meta["agent"] != agent:
             result = {"ok": False, "error": {"code": "FORBIDDEN", "message": f"{cli} is owned by {meta['agent']}"}}
+        elif self._bad_args(meta, args):
+            result = {"ok": False, "error": {"code": "INVALID_ARGUMENT", "message": self._bad_args(meta, args)}}
         else:
+            args = entry["args"] = self._normalise_args(meta, args)
             entry["effect"], entry["approval"] = meta["effect"], meta["approval"]
             if meta["effect"] == "state-change" or (meta["effect"] == "mixed" and meta["approval"] != "none"
                                                      and action in ("translate", "writing")):
@@ -148,6 +152,35 @@ class MockNAS:
                 except (PermissionError, ValueError, KeyError, TypeError) as e:
                     result = {"ok": False, "error": {"code": "BAD_REQUEST", "message": f"{type(e).__name__}: {e}"}}
         return self._done(entry, result)
+
+    @staticmethod
+    def _bad_args(meta, args):
+        """Reject what the CLI parser would reject: unknown parameters, missing required ones, values outside an enum."""
+        spec = meta.get("params") or {}
+        if not spec:
+            return None
+        valid = ", ".join(f"--{n}{'*' if p.get('required') else ''}" for n, p in spec.items())
+        unknown = [k for k in args if k not in spec]
+        if unknown:
+            return f"unknown parameter {', '.join('--' + k for k in unknown)}; this action takes {valid} (* = required)"
+        missing = [n for n, p in spec.items() if p.get("required") and args.get(n) in (None, "", [])]
+        if missing:
+            return f"missing required parameter {', '.join('--' + n for n in missing)}; this action takes {valid}"
+        for n, v in args.items():
+            enum = spec[n].get("enum")
+            vals = v if isinstance(v, list) else [v]
+            if enum and any(str(x) not in enum for x in vals):
+                return f"--{n} must be one of {', '.join(enum)}"
+            if isinstance(v, list) and len(v) > 1 and not spec[n].get("repeatable"):
+                return f"--{n} takes one value"
+        return None
+
+    @staticmethod
+    def _normalise_args(meta, args):
+        """A one-element list given to a flag that is not repeatable is that single value."""
+        spec = meta.get("params") or {}
+        return {k: (v[0] if isinstance(v, list) and len(v) == 1 and k in spec and not spec[k].get("repeatable") else v)
+                for k, v in args.items()}
 
     def _done(self, entry, result):
         entry["ok"] = result["ok"]

@@ -54,7 +54,7 @@ Rules for every step:
 
 The Skill assembles evidence that already exists. When the user asks to create, edit, complete or re-date a receipt, invoice, valuation, photo or timestamp, or to estimate a price, decline in one sentence and offer what the Skill does, for example: "I can't write a receipt, but I can gather the photos that show the watch and mark it as having no receipt." Ask, as `waiting_user`, whether to build the claim file from existing evidence. Continue only when the user agrees. Otherwise reply with exactly this and stop: "Understood. I have not created or changed any file."
 
-Then open [Evidence rules](references/evidence-rules.md). They define a confirmed photo, a device photo, a matched receipt, an at-home sighting and the dossier wording.
+Before step 1, read [Evidence rules](references/evidence-rules.md). They define a confirmed photo, a device photo, a matched receipt, an at-home sighting and the dossier wording, and steps 2 to 5 apply them.
 
 ## Step 1. Resolve scope
 
@@ -68,7 +68,9 @@ Keep the home folder path and the camera list. `{photo folders}` and `{document 
 
 ## Step 2. Photo evidence, one delegation per item
 
-delegate --target photo-agent --instruction 'Find photos and videos that show this household item: {item description}. Search three ways: scene or keyword search, recognised object search, and text visible in the image such as brand, model or serial number. Search all of {photo folders}, only content captured before {incident end}. Keep at most 12 candidates: the 6 oldest and the 6 newest, so the earliest and latest sightings stay in. Check each candidate visually with this prompt: "Is {item description} clearly visible in this image? Answer YES or NO first, then describe its colour, brand marks and any label or serial number you can read." Keep only YES answers. For each kept image return the file path, capture time and camera model from EXIF, GPS coordinates when present, and the visual description. When a kept image shows a label, box or sticker, read its text with OCR and return the text. Return an empty list when no image passes the check. Read only.'
+`{item description}` is everything the user said about the item. `{visual description}` is what a photo can show: the item type with its colour, size and shape, without brand or model, for example "a black 55-inch flat-screen TV" or "a grey road bike with drop handlebars". A photo rarely shows a brand clearly, so the visual check looks for the object and the label or serial search finds the brand.
+
+delegate --target photo-agent --instruction 'Find photos and videos that show this household item: {item description}. Search three ways: scene or keyword search, recognised object search, and text visible in the image such as brand, model or serial number. Search all of {photo folders}, only content captured before {incident end}. Keep at most 12 candidates: the 6 oldest and the 6 newest, so the earliest and latest sightings stay in. Check each candidate visually with this prompt: "Does this image clearly show {visual description}? Judge by object type, colour and shape. A brand or model that is not readable is no reason to answer NO. Answer YES or NO first. Then describe its colour, any brand mark printed and readable in the image, any label or serial number you can read, and the setting: a home, a shop display, a hotel or other public place, or outdoors." Keep only YES answers. For each kept image return the file path, capture time and camera model from EXIF, GPS coordinates when present, and the visual description. When a kept image shows a label, box or sticker, read its text with OCR and return the text. Return an empty list when no image passes the check. Read only.'
 
 When the item takes photos itself (a camera, phone, drone or action camera), run one more delegation for it:
 
@@ -76,7 +78,7 @@ delegate --target photo-agent --instruction 'Find photos whose EXIF camera model
 
 These are device photos: they prove the household used the device, and the body serial ties them to one unit.
 
-From the results, per item: count the confirmed photos, take first seen and last seen from their capture times, and mark each sighting at home or away as defined in the evidence rules. A YES whose description contradicts a detail the user gave, such as a different colour, is a **possible sighting**, not a confirmed one.
+From the results, per item: count the confirmed photos, take first seen and last seen from their capture times, and mark each sighting at home or away as defined in the evidence rules. A YES whose description contradicts a detail the user gave, such as a different colour, or that shows the object in a shop display or a hotel or other public place, is a **possible sighting**, not a confirmed one.
 
 ## Step 3. Purchase evidence, two delegations per item
 
@@ -98,7 +100,7 @@ delegate --target security-monitor-agent --instruction 'List events between {win
 
 ## Step 5. Draft and confirm
 
-Open [Dossier template](references/dossier-template.md) and build the draft in its layout, from real results only:
+Read [Dossier template](references/dossier-template.md) and build the draft in its layout, from real results only: a Summary table, an Incident section, then one `## Item {n}: {item}` section per item with its Photos, Purchase and Gaps tables. The draft holds:
 
 - per item: confirmed photos with first seen and last seen, device photos, matched receipts with merchant, date, price and serial number, and the gaps;
 - the incident section with camera events and snapshot references;

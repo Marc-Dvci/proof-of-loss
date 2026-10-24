@@ -4,12 +4,13 @@ These rules decide what enters the dossier. Apply them to the real results retur
 
 ## Confirmed photo
 
-A photo or video is a confirmed sighting of an item when both hold:
+A photo or video is a confirmed sighting of an item when all three hold:
 
 1. The visual check answered YES.
-2. The visual description does not contradict a detail the user gave. A user who said "grey road bike" does not get a red bike.
+2. The visual description does not contradict a detail the user gave. A user who said "grey road bike" does not get a red bike. A brand contradicts only when a different brand is printed and readable in the image; a brand guessed from the design is not a reading.
+3. The setting is a home, outdoors or a place the user went with the item. An object in a shop display, or fitted in a hotel room or another public place, belongs to someone else.
 
-A YES answer that contradicts a user detail goes into the draft as a **possible sighting**, with the contradiction written next to it. It enters the dossier only when the user keeps it in step 5.
+A YES answer that fails 2 or 3 goes into the draft as a **possible sighting**, with the reason written next to it. It enters the dossier only when the user keeps it in step 5.
 
 ## Device photos
 

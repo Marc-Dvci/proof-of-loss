@@ -161,8 +161,9 @@ class Expert:
 
 
 class Main:
-    def __init__(self, skill_dir, llm, nas, user, trace, max_steps=60):
+    def __init__(self, skill_dir, llm, nas, user, trace, max_steps=60, expert_llm=None):
         self.skill_dir, self.llm, self.nas, self.user, self.trace, self.max_steps = skill_dir, llm, nas, user, trace, max_steps
+        self.expert_llm = expert_llm or llm
         with open(os.path.join(skill_dir, "SKILL.md"), encoding="utf-8") as f:
             self.skill = f.read()
         self.events = []
@@ -202,7 +203,7 @@ class Main:
                     obs = {"status": "failed", "message": "instruction still contains an unresolved {field}"}
                 else:
                     self._event(kind="delegate", target=target, instruction=instr)
-                    obs = Expert(target, self.llm, self.nas, self.trace).run(instr)
+                    obs = Expert(target, self.expert_llm, self.nas, self.trace).run(instr)
                     self._event(kind="delegate_result", target=target, status=obs["status"])
             elif kind == "read_reference":
                 obs = self._ref(act.get("path", ""))

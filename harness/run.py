@@ -38,10 +38,15 @@ def policy_for(mode):
     return policy
 
 
-def user_for(case):
+def user_for(case, events):
+    """A question asked before any search ran is a clarification: the user confirms the request (or gives the case's
+    clarify_answer). The scripted answers go to the questions asked after the search, starting with the draft."""
     answers = list(case.get("answers", []))
 
     def user(message):
+        searched = any(e["kind"] == "delegate" and e["target"] in ("photo-agent", "knowledge-agent") for e in events)
+        if not searched:
+            return case.get("clarify_answer", "Yes, that is right. Please go ahead.")
         if answers:
             return answers.pop(0)
         if "approv" in message.lower():
@@ -50,7 +55,7 @@ def user_for(case):
     return user
 
 
-def run_case(case, out_dir, llm_url, vlm_url, skill_dir):
+def run_case(case, out_dir, llm_url, vlm_url, skill_dir, slots=False):
     os.makedirs(out_dir, exist_ok=True)
     spec = json.load(open(os.path.join(ROOT, "testdata", "spec", f"{case['household']}.json"), encoding="utf-8"))
     index = json.load(open(os.path.join(ROOT, "testdata", "index", f"{case['household']}.json"), encoding="utf-8"))
@@ -65,12 +70,17 @@ def run_case(case, out_dir, llm_url, vlm_url, skill_dir):
     def log_action(entry):
         actions.append(entry)
 
-    llm = LLM(llm_url, log=trace)
-    vlm = LLM(vlm_url, max_tokens=400, log=trace)
+    # With --slots (one server, three slots), the main assistant, the experts and the NAS-side model calls each keep
+    # their own prompt cache.
+    llm = LLM(llm_url, log=trace, slot=0 if slots else None)
+    expert_llm = LLM(llm_url, log=trace, slot=1) if slots else llm
+    tool_llm = LLM(llm_url, log=trace, slot=2) if slots else llm
+    vlm = LLM(vlm_url, max_tokens=400, log=trace, slot=2 if slots else None)
     gate = Gate(policy_for(case["approval"]))
-    nas = MockNAS(spec, os.path.join(ROOT, "testdata", "archive", case["household"]), out_dir, index, llm, gate,
+    nas = MockNAS(spec, os.path.join(ROOT, "testdata", "archive", case["household"]), out_dir, index, tool_llm, gate,
                   log_action, vlm=vlm)
-    main = Main(skill_dir, llm, nas, user_for(case), trace)
+    main = Main(skill_dir, llm, nas, None, trace, expert_llm=expert_llm)
+    main.user = user_for(case, main.events)
     t0 = time.time()
     outcome = main.run(case["request"])
     elapsed = time.time() - t0
@@ -81,7 +91,8 @@ def run_case(case, out_dir, llm_url, vlm_url, skill_dir):
     with open(os.path.join(out_dir, "events.json"), "w", encoding="utf-8") as f:
         json.dump(main.events, f, indent=1, ensure_ascii=False)
     res = scoring.score(case, out_dir, main.events, actions)
-    res.update({"seconds": round(elapsed), "llm_calls": llm.calls + vlm.calls, "cli_calls": len(actions),
+    clients = {id(c): c for c in (llm, expert_llm, tool_llm, vlm)}.values()
+    res.update({"seconds": round(elapsed), "llm_calls": sum(c.calls for c in clients), "cli_calls": len(actions),
                 "approval_requests": len(gate.requests), "delegations": sum(1 for e in main.events if e["kind"] == "delegate"),
                 "error": outcome.get("error")})
     with open(os.path.join(out_dir, "score.json"), "w", encoding="utf-8") as f:
@@ -98,6 +109,7 @@ def main():
     ap.add_argument("--skill", default=os.path.join(ROOT, "skill", "proof-of-loss"))
     ap.add_argument("--tag", default="")
     ap.add_argument("--out", default="", help="run folder to add cases to (cases with a score.json are kept)")
+    ap.add_argument("--slots", action="store_true", help="one server with three slots: main 0, experts 1, NAS calls 2")
     args = ap.parse_args()
     wanted = {c.strip() for c in args.cases.split(",") if c.strip()}
     cases = [c for c in CASES if (c["id"] in wanted) if wanted] or \
@@ -108,7 +120,7 @@ def main():
         if os.path.exists(os.path.join(out, c["id"], "score.json")):
             continue
         print(f"== {c['id']}", flush=True)
-        r = run_case(c, os.path.join(out, c["id"]), args.llm_url, args.vlm_url, args.skill)
+        r = run_case(c, os.path.join(out, c["id"]), args.llm_url, args.vlm_url, args.skill, args.slots)
         print(json.dumps({k: v for k, v in r.items() if k not in ("items", "final_reply")}, ensure_ascii=False), flush=True)
     results = []
     for c in CASES:

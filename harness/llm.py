@@ -13,8 +13,9 @@ DEFAULT_URL = os.environ.get("POL_LLM_URL", "http://127.0.0.1:8099")
 
 
 class LLM:
-    def __init__(self, url=DEFAULT_URL, model="local", temperature=0.0, seed=7, max_tokens=2048, log=None):
+    def __init__(self, url=DEFAULT_URL, model="local", temperature=0.0, seed=7, max_tokens=2048, log=None, slot=None):
         self.url = url.rstrip("/")
+        self.slot = slot          # llama-server slot to pin this client to, so each role keeps its prompt cache
         self.model = model
         self.temperature = temperature
         self.seed = seed
@@ -44,6 +45,8 @@ class LLM:
                    "chat_template_kwargs": {"enable_thinking": False}}
         if json_mode:
             payload["response_format"] = {"type": "json_object"}
+        if self.slot is not None:
+            payload["id_slot"] = self.slot
         return self._post(payload)
 
     def chat_json(self, messages, max_tokens=None, retries=2):

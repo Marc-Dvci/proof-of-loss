@@ -11,7 +11,7 @@ After a burglary, fire, flood or stolen parcel, Proof of Loss builds an insurer-
 
 ## 2. Target user and problem
 
-A household on the evening of a loss. The insurer wants proof of ownership and value per item, and French law gives two working days to declare a theft (Code des assurances, art. L113-2). Few people keep an inventory, yet the proof exists: years of photos, an order confirmation, a receipt photographed once.
+A household on the evening of a loss. The insurer wants proof of ownership and value per item, and a French policy can require a theft to be declared within two working days (Code des assurances, art. L113-2). Few people keep an inventory, yet the proof exists: years of photos, an order confirmation, a receipt photographed once.
 
 ## 3. Solution
 

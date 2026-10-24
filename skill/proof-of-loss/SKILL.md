@@ -124,7 +124,7 @@ Read [Dossier template](references/dossier-template.md) and build the draft in i
 
 The draft holds:
 
-- per item: confirmed photos with first seen and last seen, device photos, matched receipts with merchant, date, price and serial number, and the gaps;
+- per item: confirmed photos with first seen and last seen, device photos, matched receipts with merchant, date, price and serial number, and the gaps. The price is the item's own line on a matched receipt; a possible receipt gives no price, so the item reads "no price found" until the user keeps that receipt;
 - the incident section with camera events and snapshot references;
 - the exhibit list, one line per file in the form `source path -> photos` or `source path -> receipts`. Confirmed photos and device photos go to `photos`, matched receipts to `receipts`. Each file appears once.
 

@@ -349,7 +349,8 @@ class MockNAS:
         return out
 
     def _match_score(self, row, query_words):
-        hay = " ".join([" ".join(row.get("objects", [])), row.get("scene", ""), row.get("colors", "")]).lower()
+        flat = lambda v: " ".join(map(str, v)) if isinstance(v, list) else str(v or "")
+        hay = " ".join(flat(row.get(k)) for k in ("objects", "scene", "colors")).lower()
         hay_tokens = set(tokens(hay))
         score = 0.0
         for w in query_words:
@@ -390,7 +391,8 @@ class MockNAS:
                     continue
                 score += s
             if ocr:
-                text = (row.get("text") or "").lower().replace(" ", "")
+                text = " ".join(map(str, row["text"])) if isinstance(row.get("text"), list) else (row.get("text") or "")
+                text = text.lower().replace(" ", "")
                 if not any(o.replace(" ", "") in text for o in ocr):
                     continue
                 score += 2
@@ -416,7 +418,7 @@ class MockNAS:
             if not self._dir_ok(rel, a):
                 continue
             if cat == "ocr":
-                text = (row.get("text") or "").lower()
+                text = (" ".join(map(str, row["text"])) if isinstance(row.get("text"), list) else (row.get("text") or "")).lower()
                 s = sum(1 for w in q if w in text)
             else:
                 s = self._match_score(row, q)

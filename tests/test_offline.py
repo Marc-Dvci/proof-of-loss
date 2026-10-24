@@ -124,6 +124,21 @@ def test_event_timeline_respects_the_window(tmp_path):
 
 
 @needs_archive
+def test_object_and_scene_search_find_the_item_photos(tmp_path):
+    nas, _ = make_nas(tmp_path)
+    truth = json.load(open(os.path.join(ROOT, "testdata", "spec", "household_a_photo_index.json"), encoding="utf-8"))
+    for item, objects, keyword in (("bike", ["bicycle"], "road bike"), ("camera", ["camera"], "camera")):
+        want = {r["path"].split("/")[-1] for r in truth if item in r["items"]}
+        by_object = nas.invoke("photo-agent", "ug-photo", "search-picture",
+                               {"ai-object-name": objects, "dir": ["/home/claire"], "page-size": "50"})
+        by_scene = nas.invoke("photo-agent", "ug-photo", "search-screen",
+                              {"category": "scene", "keyword": keyword, "path": "/home/claire", "page-size": "50"})
+        for r in (by_object, by_scene):
+            assert r["ok"], r.get("error")
+            assert want <= {x["file_name"] for x in r["data"]["items"]}
+
+
+@needs_archive
 def test_one_value_lists_and_enums_follow_the_catalog(tmp_path):
     nas, _ = make_nas(tmp_path)
     window = {"start-time": "2026-11-03T14:00:00+01:00", "end-time": "2026-11-03T16:00:00+01:00"}

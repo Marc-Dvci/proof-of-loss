@@ -1,0 +1,51 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>inventory strip</title>
+<style>
+  html, body { margin: 0; background: #ffffff; }
+  body { width: 1200px; height: 800px; font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: #17211c;
+         display: flex; flex-direction: column; justify-content: center; }
+  .row { display: flex; align-items: center; gap: 14px; padding: 0 56px; margin: 9px 0; }
+  .label { width: 150px; flex: none; }
+  .label b { display: block; font-size: 17px; font-weight: 650; }
+  .label span { font-size: 12.5px; color: #66736c; }
+  figure { margin: 0; width: 176px; flex: none; }
+  img { width: 176px; height: 132px; object-fit: cover; border-radius: 6px; display: block; }
+  figcaption { font-size: 11.5px; color: #66736c; margin-top: 5px; }
+  figcaption em { font-style: normal; color: #0f8a55; }
+  .gap { width: 176px; height: 132px; flex: none; display: flex; align-items: center; justify-content: center;
+         color: #a7b2ac; font-size: 12.5px; text-align: center; background: radial-gradient(#f3f6f4, #ffffff 72%); }
+</style></head>
+<body>
+<!-- Paths point at the generated test archive; render after testdata/gen_photos.py -->
+<div class="row">
+  <div class="label"><b>TV</b><span>6 photos, receipt, serial</span></div>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2021/IMG_20211120_181204.jpg"><figcaption>20 Nov 2021 · <em>serial on box</em></figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2021/IMG_20211121_204031.jpg"><figcaption>21 Nov 2021</figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2022/IMG_20221224_190512.jpg"><figcaption>24 Dec 2022</figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2025/IMG_20250214_132009.jpg"><figcaption>14 Feb 2025</figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2026/IMG_20261018_211055.jpg"><figcaption>18 Oct 2026 · <em>last seen</em></figcaption></figure>
+</div>
+<div class="row">
+  <div class="label"><b>Road bike</b><span>5 photos, receipt photo</span></div>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2021/IMG_20210306_110218.jpg"><figcaption>6 Mar 2021 · <em>first seen</em></figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2022/IMG_20220515_154740.jpg"><figcaption>15 May 2022 · away</figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2023/IMG_20230820_091502.jpg"><figcaption>20 Aug 2023</figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2025/IMG_20250412_173026.jpg"><figcaption>12 Apr 2025 · <em>frame serial</em></figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2026/IMG_20261024_080513.jpg"><figcaption>24 Oct 2026 · <em>last seen</em></figcaption></figure>
+</div>
+<div class="row">
+  <div class="label"><b>Camera</b><span>4 photos, 3 taken by it</span></div>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2022/IMG_20220702_162044.jpg"><figcaption>2 Jul 2022 · <em>serial on box</em></figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2022/IMG_20220814_101237.jpg"><figcaption>14 Aug 2022 · away</figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2024/IMG_20240901_124021.jpg"><figcaption>1 Sep 2024 · away</figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2026/IMG_20260927_190008.jpg"><figcaption>27 Sep 2026 · <em>last seen</em></figcaption></figure>
+  <div class="gap">+ 3 photos whose EXIF<br>names this camera<br>and its body serial</div>
+</div>
+<div class="row">
+  <div class="label"><b>Watch</b><span>3 photos, no receipt</span></div>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2020/IMG_20200613_174519.jpg"><figcaption>13 Jun 2020 · <em>first seen</em></figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2023/IMG_20230101_103051.jpg"><figcaption>1 Jan 2023</figcaption></figure>
+  <figure><img src="../../../testdata/archive/household_a/Photos/2026/IMG_20260815_140033.jpg"><figcaption>15 Aug 2026 · <em>engraving</em></figcaption></figure>
+  <div class="gap">no receipt found<br>marked in the dossier</div>
+</div>
+</body></html>

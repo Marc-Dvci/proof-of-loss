@@ -1,0 +1,886 @@
+[
+ {
+  "id": "A-T1",
+  "path": "Photos/2021/IMG_20211120_181204.jpg",
+  "items": [
+   "tv"
+  ],
+  "taken": "2021-11-20T18:12:04",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-T2",
+  "path": "Photos/2021/IMG_20211121_204031.jpg",
+  "items": [
+   "tv",
+   "sofa"
+  ],
+  "taken": "2021-11-21T20:40:31",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-T3",
+  "path": "Photos/2022/IMG_20221224_190512.jpg",
+  "items": [
+   "tv"
+  ],
+  "taken": "2022-12-24T19:05:12",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-T4",
+  "path": "Photos/2023/IMG_20230610_213047.jpg",
+  "items": [
+   "tv"
+  ],
+  "taken": "2023-06-10T21:30:47",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-T5",
+  "path": "Photos/2025/IMG_20250214_132009.jpg",
+  "items": [
+   "tv",
+   "sofa"
+  ],
+  "taken": "2025-02-14T13:20:09",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-T6",
+  "path": "Photos/2026/IMG_20261018_211055.jpg",
+  "items": [
+   "tv",
+   "sofa"
+  ],
+  "taken": "2026-10-18T21:10:55",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-B1",
+  "path": "Photos/2021/IMG_20210306_110218.jpg",
+  "items": [
+   "bike"
+  ],
+  "taken": "2021-03-06T11:02:18",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P7",
+   "lens": "Pellam P7 back camera 4.7mm f/1.9"
+  }
+ },
+ {
+  "id": "A-B2",
+  "path": "Photos/2022/IMG_20220515_154740.jpg",
+  "items": [
+   "bike"
+  ],
+  "taken": "2022-05-15T15:47:40",
+  "gps": [
+   45.8992,
+   6.1294
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-B3",
+  "path": "Photos/2023/IMG_20230820_091502.jpg",
+  "items": [
+   "bike"
+  ],
+  "taken": "2023-08-20T09:15:02",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-B4",
+  "path": "Photos/2025/IMG_20250412_173026.jpg",
+  "items": [
+   "bike"
+  ],
+  "taken": "2025-04-12T17:30:26",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-B5",
+  "path": "Photos/2026/IMG_20261024_080513.jpg",
+  "items": [
+   "bike"
+  ],
+  "taken": "2026-10-24T08:05:13",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-C1",
+  "path": "Photos/2022/IMG_20220702_162044.jpg",
+  "items": [
+   "camera"
+  ],
+  "taken": "2022-07-02T16:20:44",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-C2",
+  "path": "Photos/2022/IMG_20220814_101237.jpg",
+  "items": [
+   "camera"
+  ],
+  "taken": "2022-08-14T10:12:37",
+  "gps": [
+   43.2951,
+   5.374
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-C3",
+  "path": "Photos/2024/IMG_20240901_124021.jpg",
+  "items": [
+   "camera"
+  ],
+  "taken": "2024-09-01T12:40:21",
+  "gps": [
+   45.071,
+   5.549
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-C4",
+  "path": "Photos/2026/IMG_20260927_190008.jpg",
+  "items": [
+   "camera"
+  ],
+  "taken": "2026-09-27T19:00:08",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-CX1",
+  "path": "Photos/2022/OXV_8616.JPG",
+  "items": [],
+  "taken": "2022-08-14T10:31:02",
+  "gps": [
+   43.2951,
+   5.374
+  ],
+  "device": {
+   "make": "Orvane",
+   "model": "X-50",
+   "lens": "Orvane 18-55mm f/3.5-5.6",
+   "body_serial": "OX50-77812"
+  }
+ },
+ {
+  "id": "A-CX2",
+  "path": "Photos/2024/OXV_7394.JPG",
+  "items": [],
+  "taken": "2024-09-01T13:05:44",
+  "gps": [
+   45.071,
+   5.549
+  ],
+  "device": {
+   "make": "Orvane",
+   "model": "X-50",
+   "lens": "Orvane 18-55mm f/3.5-5.6",
+   "body_serial": "OX50-77812"
+  }
+ },
+ {
+  "id": "A-CX3",
+  "path": "Photos/2025/OXV_0116.JPG",
+  "items": [],
+  "taken": "2025-12-25T13:15:30",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Orvane",
+   "model": "X-50",
+   "lens": "Orvane 18-55mm f/3.5-5.6",
+   "body_serial": "OX50-77812"
+  }
+ },
+ {
+  "id": "A-W1",
+  "path": "Photos/2020/IMG_20200613_174519.jpg",
+  "items": [
+   "watch"
+  ],
+  "taken": "2020-06-13T17:45:19",
+  "gps": [
+   46.153,
+   4.665
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P7",
+   "lens": "Pellam P7 back camera 4.7mm f/1.9"
+  }
+ },
+ {
+  "id": "A-W2",
+  "path": "Photos/2023/IMG_20230101_103051.jpg",
+  "items": [
+   "watch"
+  ],
+  "taken": "2023-01-01T10:30:51",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-W3",
+  "path": "Photos/2026/IMG_20260815_140033.jpg",
+  "items": [
+   "watch"
+  ],
+  "taken": "2026-08-15T14:00:33",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-S1",
+  "path": "Photos/2022/IMG_20220312_150210.jpg",
+  "items": [
+   "sofa"
+  ],
+  "taken": "2022-03-12T15:02:10",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-D1",
+  "path": "Photos/2024/IMG_20240608_162245.jpg",
+  "items": [],
+  "taken": "2024-06-08T16:22:45",
+  "gps": [
+   45.7772,
+   4.853
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-D2",
+  "path": "Photos/2024/IMG_20240302_221107.jpg",
+  "items": [],
+  "taken": "2024-03-02T22:11:07",
+  "gps": [
+   41.3874,
+   2.1686
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-D3",
+  "path": "Photos/2023/IMG_20231111_154029.jpg",
+  "items": [],
+  "taken": "2023-11-11T15:40:29",
+  "gps": [
+   43.2951,
+   5.374
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-D4",
+  "path": "Photos/2025/IMG_20250719_180312.jpg",
+  "items": [],
+  "taken": "2025-07-19T18:03:12",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X01",
+  "path": "Photos/2019/IMG_20190803_121000.jpg",
+  "items": [],
+  "taken": "2019-08-03T12:10:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X02",
+  "path": "Photos/2019/IMG_20191019_164500.jpg",
+  "items": [],
+  "taken": "2019-10-19T16:45:00",
+  "gps": [
+   45.76,
+   4.827
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X03",
+  "path": "Photos/2020/IMG_20200208_093000.jpg",
+  "items": [],
+  "taken": "2020-02-08T09:30:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X04",
+  "path": "Photos/2020/IMG_20200721_192000.jpg",
+  "items": [],
+  "taken": "2020-07-21T19:20:00",
+  "gps": [
+   46.153,
+   4.665
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X05",
+  "path": "Photos/2020/IMG_20201231_235800.jpg",
+  "items": [],
+  "taken": "2020-12-31T23:58:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X06",
+  "path": "Photos/2021/IMG_20210117_140000.jpg",
+  "items": [],
+  "taken": "2021-01-17T14:00:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X07",
+  "path": "Photos/2021/IMG_20210502_111500.jpg",
+  "items": [],
+  "taken": "2021-05-02T11:15:00",
+  "gps": [
+   45.764,
+   4.8357
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X08",
+  "path": "Photos/2021/IMG_20210912_183000.jpg",
+  "items": [],
+  "taken": "2021-09-12T18:30:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X09",
+  "path": "Photos/2022/IMG_20220123_151000.jpg",
+  "items": [],
+  "taken": "2022-01-23T15:10:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X10",
+  "path": "Photos/2022/IMG_20220409_100500.jpg",
+  "items": [],
+  "taken": "2022-04-09T10:05:00",
+  "gps": [
+   45.7772,
+   4.853
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X11",
+  "path": "Photos/2022/IMG_20220621_214500.jpg",
+  "items": [],
+  "taken": "2022-06-21T21:45:00",
+  "gps": [
+   45.766,
+   4.834
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X12",
+  "path": "Photos/2022/IMG_20221030_132500.jpg",
+  "items": [],
+  "taken": "2022-10-30T13:25:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X13",
+  "path": "Photos/2023/IMG_20230218_085000.jpg",
+  "items": [],
+  "taken": "2023-02-18T08:50:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X14",
+  "path": "Photos/2023/IMG_20230415_120000.jpg",
+  "items": [],
+  "taken": "2023-04-15T12:00:00",
+  "gps": [
+   45.071,
+   5.549
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X15",
+  "path": "Photos/2023/IMG_20230714_223000.jpg",
+  "items": [],
+  "taken": "2023-07-14T22:30:00",
+  "gps": [
+   45.759,
+   4.83
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X16",
+  "path": "Photos/2023/IMG_20230923_174000.jpg",
+  "items": [],
+  "taken": "2023-09-23T17:40:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X17",
+  "path": "Photos/2024/IMG_20240106_160000.jpg",
+  "items": [],
+  "taken": "2024-01-06T16:00:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X18",
+  "path": "Photos/2024/IMG_20240303_102000.jpg",
+  "items": [],
+  "taken": "2024-03-03T10:20:00",
+  "gps": [
+   41.3874,
+   2.1686
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X19",
+  "path": "Photos/2024/IMG_20240525_143500.jpg",
+  "items": [],
+  "taken": "2024-05-25T14:35:00",
+  "gps": [
+   45.7772,
+   4.853
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X20",
+  "path": "Photos/2024/IMG_20240810_191000.jpg",
+  "items": [],
+  "taken": "2024-08-10T19:10:00",
+  "gps": [
+   43.27,
+   5.36
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X21",
+  "path": "Photos/2024/IMG_20241102_154500.jpg",
+  "items": [],
+  "taken": "2024-11-02T15:45:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X22",
+  "path": "Photos/2025/IMG_20250119_094000.jpg",
+  "items": [],
+  "taken": "2025-01-19T09:40:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X23",
+  "path": "Photos/2025/IMG_20250329_130000.jpg",
+  "items": [],
+  "taken": "2025-03-29T13:00:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X24",
+  "path": "Photos/2025/IMG_20250614_201500.jpg",
+  "items": [],
+  "taken": "2025-06-14T20:15:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X25",
+  "path": "Photos/2025/IMG_20250906_113000.jpg",
+  "items": [],
+  "taken": "2025-09-06T11:30:00",
+  "gps": [
+   45.762,
+   4.827
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X26",
+  "path": "Photos/2025/IMG_20251025_182000.jpg",
+  "items": [],
+  "taken": "2025-10-25T18:20:00",
+  "gps": [
+   45.765,
+   4.84
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X27",
+  "path": "Photos/2026/IMG_20260111_141000.jpg",
+  "items": [],
+  "taken": "2026-01-11T14:10:00",
+  "gps": [
+   45.09,
+   6.07
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X28",
+  "path": "Photos/2026/IMG_20260404_104500.jpg",
+  "items": [],
+  "taken": "2026-04-04T10:45:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X29",
+  "path": "Photos/2026/IMG_20260620_210000.jpg",
+  "items": [],
+  "taken": "2026-06-20T21:00:00",
+  "gps": [
+   46.153,
+   4.665
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ },
+ {
+  "id": "A-X30",
+  "path": "Photos/2026/IMG_20260913_123000.jpg",
+  "items": [],
+  "taken": "2026-09-13T12:30:00",
+  "gps": [
+   45.7578,
+   4.832
+  ],
+  "device": {
+   "make": "Pellam",
+   "model": "P9 Pro",
+   "lens": "Pellam P9 Pro back camera 6.1mm f/1.8"
+  }
+ }
+]

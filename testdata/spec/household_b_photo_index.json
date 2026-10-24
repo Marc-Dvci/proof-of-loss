@@ -1,0 +1,335 @@
+[
+ {
+  "id": "B-E1",
+  "path": "Photos/2023/IMG_20230318_091200.jpg",
+  "items": [
+   "espresso"
+  ],
+  "taken": "2023-03-18T09:12:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-E2",
+  "path": "Photos/2025/IMG_20251130_104000.jpg",
+  "items": [
+   "espresso"
+  ],
+  "taken": "2025-11-30T10:40:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-G1",
+  "path": "Photos/2021/IMG_20210704_200500.jpg",
+  "items": [
+   "guitar"
+  ],
+  "taken": "2021-07-04T20:05:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-G2",
+  "path": "Photos/2024/IMG_20240817_183000.jpg",
+  "items": [
+   "guitar"
+  ],
+  "taken": "2024-08-17T18:30:00",
+  "gps": [
+   51.2093,
+   3.2247
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-G3",
+  "path": "Photos/2026/IMG_20260920_211500.jpg",
+  "items": [
+   "guitar"
+  ],
+  "taken": "2026-09-20T21:15:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-L1",
+  "path": "Photos/2024/IMG_20240202_140000.jpg",
+  "items": [
+   "laptop"
+  ],
+  "taken": "2024-02-02T14:00:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-L2",
+  "path": "Photos/2025/IMG_20250509_112000.jpg",
+  "items": [
+   "laptop"
+  ],
+  "taken": "2025-05-09T11:20:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-R1",
+  "path": "Photos/2022/IMG_20221008_164500.jpg",
+  "items": [
+   "rug"
+  ],
+  "taken": "2022-10-08T16:45:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-R2",
+  "path": "Photos/2026/IMG_20260214_190000.jpg",
+  "items": [
+   "rug"
+  ],
+  "taken": "2026-02-14T19:00:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-D1",
+  "path": "Photos/2025/IMG_20250412_150000.jpg",
+  "items": [],
+  "taken": "2025-04-12T15:00:00",
+  "gps": [
+   51.2093,
+   3.2247
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-D2",
+  "path": "Photos/2024/IMG_20241201_090000.jpg",
+  "items": [],
+  "taken": "2024-12-01T09:00:00",
+  "gps": [
+   50.637,
+   3.063
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X01",
+  "path": "Photos/2021/IMG_20210410_120000.jpg",
+  "items": [],
+  "taken": "2021-04-10T12:00:00",
+  "gps": [
+   51.2093,
+   3.2247
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X02",
+  "path": "Photos/2022/IMG_20220115_093000.jpg",
+  "items": [],
+  "taken": "2022-01-15T09:30:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X03",
+  "path": "Photos/2022/IMG_20220605_180000.jpg",
+  "items": [],
+  "taken": "2022-06-05T18:00:00",
+  "gps": [
+   50.6365,
+   3.0635
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X04",
+  "path": "Photos/2023/IMG_20230520_142000.jpg",
+  "items": [],
+  "taken": "2023-05-20T14:20:00",
+  "gps": [
+   50.633,
+   3.06
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X05",
+  "path": "Photos/2023/IMG_20231224_200000.jpg",
+  "items": [],
+  "taken": "2023-12-24T20:00:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X06",
+  "path": "Photos/2024/IMG_20240407_101000.jpg",
+  "items": [],
+  "taken": "2024-04-07T10:10:00",
+  "gps": [
+   52.26,
+   4.55
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X07",
+  "path": "Photos/2025/IMG_20250126_164000.jpg",
+  "items": [],
+  "taken": "2025-01-26T16:40:00",
+  "gps": [
+   50.637,
+   3.063
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X08",
+  "path": "Photos/2025/IMG_20250802_193000.jpg",
+  "items": [],
+  "taken": "2025-08-02T19:30:00",
+  "gps": [
+   51.23,
+   2.92
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X09",
+  "path": "Photos/2026/IMG_20260308_110000.jpg",
+  "items": [],
+  "taken": "2026-03-08T11:00:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ },
+ {
+  "id": "B-X10",
+  "path": "Photos/2026/IMG_20260711_131500.jpg",
+  "items": [],
+  "taken": "2026-07-11T13:15:00",
+  "gps": [
+   50.6292,
+   3.0573
+  ],
+  "device": {
+   "make": "Corvid",
+   "model": "C12",
+   "lens": "Corvid C12 main camera 5.4mm f/1.7"
+  }
+ }
+]

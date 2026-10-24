@@ -188,8 +188,7 @@ class Main:
             return f.read()
 
     def run(self, request):
-        clock = f"Today is {self.today}, NAS local time.
-" if self.today else ""
+        clock = f"Today is {self.today}, NAS local time. " if self.today else ""
         msgs = [{"role": "system", "content": clock + MAIN_RULES + self.skill}, {"role": "user", "content": request}]
         for step in range(self.max_steps):
             try:

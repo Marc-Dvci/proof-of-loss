@@ -196,3 +196,9 @@ def test_package_builds_and_passes_the_official_checker():
     report = json.loads(out.stdout)
     assert report["checker"] == "static-pass" and report["checker_summary"]["warnings"] == 0
     assert all(f.endswith(".md") for f in report["files"])
+
+
+def test_harness_entry_points_import():
+    import agents  # noqa: F401
+    import run  # noqa: F401
+    assert run.user_for(by_id("A1-burglary"), [])("Is this right?").startswith("Yes")

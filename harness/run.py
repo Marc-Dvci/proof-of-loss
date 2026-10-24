@@ -22,6 +22,7 @@ from mock_nas import Gate, MockNAS  # noqa: E402
 import score as scoring  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+REHEARSAL_DAY = "Wednesday 4 November 2026"  # the NAS clock during the rehearsal: after every incident in the cases
 ROOT = os.path.normpath(os.path.join(HERE, ".."))
 
 
@@ -79,7 +80,7 @@ def run_case(case, out_dir, llm_url, vlm_url, skill_dir, slots=False):
     gate = Gate(policy_for(case["approval"]))
     nas = MockNAS(spec, os.path.join(ROOT, "testdata", "archive", case["household"]), out_dir, index, tool_llm, gate,
                   log_action, vlm=vlm)
-    main = Main(skill_dir, llm, nas, None, trace, expert_llm=expert_llm)
+    main = Main(skill_dir, llm, nas, None, trace, expert_llm=expert_llm, today=case.get("today", REHEARSAL_DAY))
     main.user = user_for(case, main.events)
     t0 = time.time()
     outcome = main.run(case["request"])

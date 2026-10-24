@@ -165,9 +165,10 @@ class Expert:
 
 
 class Main:
-    def __init__(self, skill_dir, llm, nas, user, trace, max_steps=60, expert_llm=None):
+    def __init__(self, skill_dir, llm, nas, user, trace, max_steps=60, expert_llm=None, today=None):
         self.skill_dir, self.llm, self.nas, self.user, self.trace, self.max_steps = skill_dir, llm, nas, user, trace, max_steps
         self.expert_llm = expert_llm or llm
+        self.today = today
         with open(os.path.join(skill_dir, "SKILL.md"), encoding="utf-8") as f:
             self.skill = f.read()
         self.events = []
@@ -187,7 +188,9 @@ class Main:
             return f.read()
 
     def run(self, request):
-        msgs = [{"role": "system", "content": MAIN_RULES + self.skill}, {"role": "user", "content": request}]
+        clock = f"Today is {self.today}, NAS local time.
+" if self.today else ""
+        msgs = [{"role": "system", "content": clock + MAIN_RULES + self.skill}, {"role": "user", "content": request}]
         for step in range(self.max_steps):
             try:
                 act = self.llm.chat_json(msgs, max_tokens=8192)

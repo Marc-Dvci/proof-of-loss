@@ -97,19 +97,28 @@ def main():
     ap.add_argument("--vlm-url", default="http://127.0.0.1:8098")
     ap.add_argument("--skill", default=os.path.join(ROOT, "skill", "proof-of-loss"))
     ap.add_argument("--tag", default="")
+    ap.add_argument("--out", default="", help="run folder to add cases to (cases with a score.json are kept)")
     args = ap.parse_args()
     wanted = {c.strip() for c in args.cases.split(",") if c.strip()}
     cases = [c for c in CASES if (c["id"] in wanted) if wanted] or \
             [c for c in CASES if args.split == "all" or c["split"] == args.split]
     stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S") + (f"-{args.tag}" if args.tag else "")
-    out = os.path.join(ROOT, "runs", stamp)
-    results = []
+    out = args.out or os.path.join(ROOT, "runs", stamp)
     for c in cases:
+        if os.path.exists(os.path.join(out, c["id"], "score.json")):
+            continue
         print(f"== {c['id']}", flush=True)
         r = run_case(c, os.path.join(out, c["id"]), args.llm_url, args.vlm_url, args.skill)
-        results.append(r)
         print(json.dumps({k: v for k, v in r.items() if k not in ("items", "final_reply")}, ensure_ascii=False), flush=True)
-    summary = {"stamp": stamp, "cases": [c["id"] for c in cases], "totals": scoring.summarize(results)}
+    results = []
+    for c in CASES:
+        path = os.path.join(out, c["id"], "score.json")
+        if os.path.exists(path):
+            results.append(json.load(open(path, encoding="utf-8")))
+    summary = {"stamp": os.path.basename(out), "cases": [r["case"] for r in results],
+               "totals": scoring.summarize(results),
+               "dev": scoring.summarize([r for r in results if r["split"] == "dev"]),
+               "held_out": scoring.summarize([r for r in results if r["split"] == "held-out"])}
     with open(os.path.join(out, "summary.json"), "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=1)
     print(json.dumps(summary["totals"], indent=1))

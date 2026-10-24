@@ -8,6 +8,7 @@ five public delegation states.
 import json
 import os
 import re
+import time
 
 from mock_nas import load_catalog
 
@@ -56,7 +57,7 @@ DESCR = {
 EXPERT_RULES = """You are {agent}, a registered expert on a UGREEN NAS. The main assistant sent you one instruction.
 Do exactly what it asks with your CLI actions, then finish.
 
-Your actions (cli / action: parameters - purpose; effect; approval):
+Your actions (the cli and name values to use, purpose, effect, approval):
 {actions}
 
 Reply with ONE JSON object per turn, one of:
@@ -95,7 +96,8 @@ def action_docs(agent, catalog_path=None):
     for (cli, action), meta in sorted(cat.items()):
         if meta["agent"] != agent or (cli, action) not in DESCR:
             continue
-        lines.append(f"- {cli} / {action}: {DESCR[(cli, action)]}; effect {meta['effect']}; approval {meta['approval']}")
+        lines.append(f'- "cli": "{cli}", "name": "{action}" - {DESCR[(cli, action)]}; effect {meta["effect"]}; '
+                     f'approval {meta["approval"]}')
     return "\n".join(lines)
 
 
@@ -108,9 +110,25 @@ class Expert:
     def __init__(self, agent, llm, nas, trace, max_steps=30):
         self.agent, self.llm, self.nas, self.trace, self.max_steps = agent, llm, nas, trace, max_steps
         self.system = EXPERT_RULES.format(agent=agent, actions=action_docs(agent) or "- (no actions served)")
+        owned = [(cli, a) for (cli, a), m in load_catalog().items() if m["agent"] == agent]
+        self.owned = set(owned)
+        self.by_action = {}
+        for cli, a in owned:
+            self.by_action.setdefault(a, []).append(cli)
+
+    def _resolve(self, call):
+        """A registered expert knows which of its CLIs serves an action: fix a call that names the action only."""
+        cli, name = call.get("cli"), call.get("name") or call.get("action")
+        if (cli, name) not in self.owned:
+            if name in self.by_action and len(self.by_action[name]) == 1:
+                cli = self.by_action[name][0]
+            elif cli in self.by_action and len(self.by_action[cli]) == 1:
+                cli, name = self.by_action[cli][0], cli
+        return cli, name, call.get("args")
 
     def run(self, instruction):
         msgs = [{"role": "system", "content": self.system}, {"role": "user", "content": instruction}]
+        failures = {}
         for step in range(self.max_steps):
             try:
                 act = self.llm.chat_json(msgs, max_tokens=3000)
@@ -127,8 +145,15 @@ class Expert:
             else:
                 obs = []
                 for c in calls[:15]:
-                    res = self.nas.invoke(self.agent, c.get("cli"), c.get("name"), c.get("args"))
-                    obs.append({"call": f"{c.get('cli')} {c.get('name')}", "result": res})
+                    cli, name, cargs = self._resolve(c)
+                    res = self.nas.invoke(self.agent, cli, name, cargs)
+                    obs.append({"call": f"{cli} {name}", "result": res})
+                    if not res["ok"]:
+                        sig = json.dumps([cli, name, cargs], sort_keys=True)
+                        failures[sig] = failures.get(sig, 0) + 1
+                        if failures[sig] >= 3:
+                            return {"status": "failed", "result": {},
+                                    "message": f"{cli} {name} failed three times: {res['error']}"}
                 obs = obs[0]["result"] if kind == "cli" else obs
             msgs.append({"role": "assistant", "content": json.dumps(act, ensure_ascii=False)})
             msgs.append({"role": "user", "content": "Result: " + clip(obs, 7000)})
@@ -141,6 +166,10 @@ class Main:
         with open(os.path.join(skill_dir, "SKILL.md"), encoding="utf-8") as f:
             self.skill = f.read()
         self.events = []
+
+    def _event(self, **kw):
+        kw["t"] = time.time()
+        self.events.append(kw)
 
     def _ref(self, path):
         norm = os.path.normpath(path).replace("\\", "/").lstrip("./")
@@ -158,12 +187,12 @@ class Main:
             try:
                 act = self.llm.chat_json(msgs, max_tokens=4000)
             except ValueError as e:
-                self.events.append({"kind": "error", "message": str(e)})
+                self._event(kind="error", message=str(e))
                 return {"final": None, "error": str(e)}
             self.trace({"who": "main", "step": step, "act": act})
             kind = act.get("action")
             if kind == "reply":
-                self.events.append({"kind": "reply", "message": act.get("message", "")})
+                self._event(kind="reply", message=act.get("message", ""))
                 return {"final": act.get("message", "")}
             if kind == "delegate":
                 target, instr = act.get("target"), act.get("instruction") or ""
@@ -172,19 +201,19 @@ class Main:
                 elif re.search(r"\{[a-z][a-z _-]*\}", instr):
                     obs = {"status": "failed", "message": "instruction still contains an unresolved {field}"}
                 else:
-                    self.events.append({"kind": "delegate", "target": target, "instruction": instr})
+                    self._event(kind="delegate", target=target, instruction=instr)
                     obs = Expert(target, self.llm, self.nas, self.trace).run(instr)
-                    self.events.append({"kind": "delegate_result", "target": target, "status": obs["status"]})
+                    self._event(kind="delegate_result", target=target, status=obs["status"])
             elif kind == "read_reference":
                 obs = self._ref(act.get("path", ""))
             elif kind == "ask_user":
-                self.events.append({"kind": "ask_user", "message": act.get("message", "")})
+                self._event(kind="ask_user", message=act.get("message", ""))
                 answer = self.user(act.get("message", ""))
-                self.events.append({"kind": "user_answer", "message": answer})
+                self._event(kind="user_answer", message=answer)
                 obs = {"user": answer}
             else:
                 obs = {"error": "unknown action; use delegate, read_reference, ask_user or reply"}
             msgs.append({"role": "assistant", "content": json.dumps(act, ensure_ascii=False)})
             msgs.append({"role": "user", "content": "Observation: " + clip(obs, 9000)})
-        self.events.append({"kind": "error", "message": "main step limit reached"})
+        self._event(kind="error", message="main step limit reached")
         return {"final": None, "error": "step limit"}

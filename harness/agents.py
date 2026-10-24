@@ -196,6 +196,9 @@ class Main:
                 return {"final": None, "error": str(e)}
             self.trace({"who": "main", "step": step, "act": act})
             kind = act.get("action")
+            if kind in AGENTS and act.get("instruction"):
+                # an expert named as the action: the delegate this JSON protocol expects
+                kind, act = "delegate", {"action": "delegate", "target": kind, "instruction": act["instruction"]}
             if kind == "reply":
                 self._event(kind="reply", message=act.get("message", ""))
                 return {"final": act.get("message", "")}

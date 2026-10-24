@@ -1,0 +1,108 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>architecture</title>
+<style>
+  html, body { margin: 0; background: #ffffff; }
+  body { width: 1200px; height: 800px; font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: #17211c; }
+  svg { display: block; }
+  .h { font-size: 19px; font-weight: 650; fill: #17211c; }
+  .t { font-size: 15px; fill: #17211c; }
+  .s { font-size: 12.5px; fill: #66736c; }
+  .g { font-size: 12.5px; fill: #0f8a55; font-weight: 600; letter-spacing: 0.04em; }
+  .zone { font-size: 12px; fill: #8a958f; letter-spacing: 0.08em; }
+  .line { stroke: #c9d4ce; stroke-width: 1.6; fill: none; }
+  .wline { stroke: #12a160; stroke-width: 1.8; fill: none; }
+</style></head>
+<body>
+<svg width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e6f6ed"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f1f4f2"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c9d4ce"/></marker>
+    <marker id="arrw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#12a160"/></marker>
+  </defs>
+
+  <!-- soft pools of light instead of boxes -->
+  <ellipse cx="180" cy="400" rx="210" ry="260" fill="url(#glow)"/>
+  <ellipse cx="610" cy="400" rx="230" ry="330" fill="url(#glow2)"/>
+  <ellipse cx="1020" cy="250" rx="200" ry="190" fill="url(#glow2)"/>
+  <ellipse cx="1020" cy="600" rx="200" ry="170" fill="url(#glow)"/>
+
+  <!-- user and orchestrator -->
+  <text x="70" y="250" class="g">THE USER</text>
+  <text x="70" y="276" class="t">"Burgled on 3 Nov, 14:00 to 16:00:</text>
+  <text x="70" y="296" class="t">TV, road bike, camera, watch."</text>
+  <path d="M150 316 L150 352" class="line" marker-end="url(#arr)"/>
+
+  <text x="70" y="384" class="g">ULIYA</text>
+  <text x="70" y="410" class="h">proof-of-loss</text>
+  <text x="70" y="432" class="s">SKILL.md + 5 references</text>
+  <text x="70" y="452" class="s">delegate only · 0 cli.invoke</text>
+
+  <text x="70" y="520" class="s">Step 0  check the request</text>
+  <text x="70" y="540" class="s">Steps 1-4  read</text>
+  <text x="70" y="560" class="s">Step 5  draft, user confirms</text>
+  <text x="70" y="580" class="s" style="fill:#0f8a55">Step 6  write, each op approved</text>
+  <text x="70" y="600" class="s">Step 7  report</text>
+
+  <!-- experts -->
+  <g>
+    <circle cx="470" cy="150" r="7" fill="#17211c"/>
+    <text x="490" y="146" class="t">photo-agent</text>
+    <text x="490" y="166" class="s">ug-photo: search, vision-vlm, meta, vision-ocr, create-album</text>
+
+    <circle cx="470" cy="270" r="7" fill="#17211c"/>
+    <text x="490" y="266" class="t">knowledge-agent</text>
+    <text x="490" y="286" class="s">ug-knowledge: collect-evidence, save-text</text>
+
+    <circle cx="470" cy="390" r="7" fill="#17211c"/>
+    <text x="490" y="386" class="t">document-agent</text>
+    <text x="490" y="406" class="s">ug-document: extract, writing</text>
+
+    <circle cx="470" cy="510" r="7" fill="#17211c"/>
+    <text x="490" y="506" class="t">security-monitor-agent</text>
+    <text x="490" y="526" class="s">ug-surveillance: cameras, event-timeline, event-evidence</text>
+
+    <circle cx="470" cy="630" r="7" fill="#12a160"/>
+    <text x="490" y="626" class="t">file-agent</text>
+    <text x="490" y="646" class="s">ug-filesystem: mkdir, cpmv copy, sha256sum</text>
+  </g>
+  <path d="M300 420 C 380 420, 380 150, 462 150" class="line" marker-end="url(#arr)"/>
+  <path d="M300 420 C 380 420, 380 270, 462 270" class="line" marker-end="url(#arr)"/>
+  <path d="M300 420 C 380 420, 400 390, 462 390" class="line" marker-end="url(#arr)"/>
+  <path d="M300 420 C 380 420, 380 510, 462 510" class="line" marker-end="url(#arr)"/>
+  <path d="M300 420 C 380 420, 380 630, 462 630" class="wline" marker-end="url(#arrw)"/>
+
+  <!-- data on the NAS -->
+  <text x="900" y="120" class="zone">ALREADY ON THE NAS</text>
+  <text x="900" y="160" class="t">Photos, 2019 to 2026</text>
+  <text x="900" y="180" class="s">AI Album index, EXIF time, GPS, device serial</text>
+  <text x="900" y="225" class="t">Documents</text>
+  <text x="900" y="245" class="s">order confirmations, invoices, receipt photos</text>
+  <text x="900" y="290" class="t">Cameras</text>
+  <text x="900" y="310" class="s">events, known or stranger, snapshots, plates</text>
+  <path d="M872 142 L866 142 L866 318 L872 318" class="line"/>
+  <path d="M866 230 L846 230" class="line"/>
+
+  <!-- outputs -->
+  <text x="900" y="500" class="zone" style="fill:#0f8a55">WRITTEN AFTER THE USER CONFIRMS</text>
+  <text x="900" y="540" class="t">Claim folder</text>
+  <text x="900" y="560" class="s">photos/ receipts/ camera/  copies, never moves</text>
+  <text x="900" y="605" class="t">CLAIM-DOSSIER.md</text>
+  <text x="900" y="625" class="s">per item: photos, first and last seen, price, serial</text>
+  <text x="900" y="645" class="s">exhibit table with SHA-256 of copy and original</text>
+  <text x="900" y="690" class="t">Album</text>
+  <text x="900" y="710" class="s">claim photos for the adjuster</text>
+  <path d="M872 528 L866 528 L866 716 L872 716" class="wline"/>
+  <path d="M866 632 L846 632" class="wline"/>
+
+  <!-- model boundary -->
+  <line x1="40" y1="752" x2="1160" y2="752" stroke="#e1e8e4" stroke-width="1"/>
+  <text x="70" y="780" class="s">The model judges what a photo shows. Dates, prices, serial numbers and hashes are copied from expert results, never written by the model.</text>
+</svg>
+</body></html>

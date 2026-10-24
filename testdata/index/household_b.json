@@ -1,0 +1,28 @@
+{
+ "photos": {
+  "Documents/Achats/2021-06-26_Muziekhuis_receipt.jpg": {
+   "objects": [
+    "receipt",
+    "paper",
+    "wood background"
+   ],
+   "scene": "A white receipt is placed on a brown wooden surface.",
+   "colors": "White, brown",
+   "text": "Muziekhuis Arend\n6 Lange Ster\n9000 Gent\nNo. MA-6621\n26/06/2021 15:10\n\nHalden OM-2 acoustic guitar 1450.00\nGig bag 59.00\n\nTOTAL\n1509.00 EUR\n\nThank you",
+   "make": "Corvid",
+   "model": "C12",
+   "taken": "2021-06-26T15:10:00",
+   "gps": [
+    50.6292,
+    3.0573
+   ]
+  }
+ },
+ "docs": {
+  "Documents/Achats/2021-06-26_Muziekhuis_receipt.jpg": "Muziekhuis Arend\n6 Lange Ster\n9000 Gent\nNo. MA-6621\n26/06/2021 15:10\n\nHalden OM-2 acoustic guitar 1450.00\nGig bag 59.00\n\nTOTAL\n1509.00 EUR\n\nThank you",
+  "Documents/Achats/2023-03-15_Cafe-Atelier_invoice.pdf": "Cafe Atelier\n14 Rue des Meuniers\n59000 Lille\nInvoice\nNo. CA-23-0318\nDate: 15/03/2023\nDescription\n Qty\n Unit price\n Amount\nBrava Duo espresso machine, chrome\nSerial number: BD-55102\n 1\n 689.00\n 689.00\nCoffee beans 1 kg\n 2\n 18.50\n 37.00\nTotal: 726.00 EUR\n",
+  "Documents/Achats/2024-01-29_Nordtech_invoice.pdf": "Nordtech\n30 Rue du Haut Pre\n59000 Lille\nInvoice\nNo. NT-240129-77\nDate: 29/01/2024\nDescription\n Qty\n Unit price\n Amount\nNimbus 14 laptop, silver, 16 GB, 512 GB\nSerial number: NB14-9F3K-2207\n 1\n 1249.00\n 1249.00\nTotal: 1249.00 EUR\nWarranty until: 29/01/2026\n",
+  "Documents/Achats/2025-09-03_Bureau-Plus_receipt.pdf": "Bureau Plus\n 8 Rue des Imprimeurs\n 59000 Lille\n Receipt\n No. BP-0903\n Date: 03/09/2025\nDescription\n Qty\n Unit price\n Amount\nInk cartridge pack,\nblack and colour\n 1\n 42.90\n 42.90\n Total: 42.90 EUR\n",
+  "Documents/Assurance/Mutuelle-Nord_contrat-habitation_2026.pdf": "Mutuelle du Nord\n25 Rue de la Vieille Halle, 59800 Lille\nHome insurance policy\nPolicy number\nMN-HAB-2026-55120\nStart date\n01/01/2026\nPolicyholder\nJonas Peeters\nInsured address\n9 Allee des Lupins, 59000 Lille\n1. Contents cover\nYour household contents are insured up to 40,000 EUR in total at the insured address.\n2. Valuables\nValuables (jewellery, watches) are covered up to 3,000 EUR per item without a valuation certificate.\n\n3. Theft and burglary\nTheft and burglary are covered when there is forced entry.\n4. Making a claim\n(a) Declare a theft to us within two working days of discovering it.\n(b) File a police report and send us a copy.\n(c) Provide proof of ownership and value for each item claimed: invoices, receipts, photos, warranty cards or\nbank statements.\n5. Water damage\nWater damage is covered. Declare it to us within five working days of discovering it.\n"
+ }
+}

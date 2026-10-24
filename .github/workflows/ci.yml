@@ -1,0 +1,24 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install
+        run: pip install piexif pypdf reportlab pillow markdown pytest
+      - name: Fetch the UGREEN Skill Developer Package
+        run: |
+          curl -sL -o kit.zip "https://cdn.shopify.com/s/files/1/0630/9416/1602/files/uliya-skill-kit-0.7.3-en.zip"
+          unzip -q kit.zip -d ..
+          mv ../uliya-skill-kit ../uliya-skill-kit-0.7.3
+      - name: Official static check and package limits
+        run: python tools/build_package.py
+      - name: Tests
+        run: python -m pytest -q tests

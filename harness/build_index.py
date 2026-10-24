@@ -68,8 +68,8 @@ def main():
                 if low.endswith(".pdf"):
                     text = "\n".join(p.extract_text() or "" for p in PdfReader(full).pages)
                 elif low.endswith((".jpg", ".jpeg", ".png")):
-                    text = index["photos"][rel].get("text") or vlm.vision(
-                        full, "Transcribe all text in this image exactly, line by line.", max_tokens=800)
+                    text = vlm.vision(full, "Transcribe all text in this image exactly, line by line, keeping each "
+                                            "amount on the line it belongs to.", max_tokens=800)
                 else:
                     continue
                 index["docs"][rel] = text

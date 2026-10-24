@@ -3,12 +3,15 @@
   "Documents/Achats/2021-06-26_Muziekhuis_receipt.jpg": {
    "objects": [
     "receipt",
-    "paper",
-    "wood background"
+    "wooden background",
+    "paper"
    ],
-   "scene": "A white receipt is placed on a brown wooden surface.",
-   "colors": "White, brown",
-   "text": "Muziekhuis Arend\n6 Lange Ster\n9000 Gent\nNo. MA-6621\n26/06/2021 15:10\n\nHalden OM-2 acoustic guitar 1450.00\nGig bag 59.00\n\nTOTAL\n1509.00 EUR\n\nThank you",
+   "scene": "A white receipt lies on a brown wooden slatted surface.",
+   "colors": [
+    "white",
+    "brown"
+   ],
+   "text": "Muziekhuis Arend\n6 Lange Ster\n9000 Gent\nNo. MA-6621\n26/06/2021 15:10\n---------------------------\nHalden OM-2 acoustic guitar 1450.00\nGig bag 59.00\n---------------------------\nTOTAL 1509.00 EUR\nThank you",
    "make": "Corvid",
    "model": "C12",
    "taken": "2021-06-26T15:10:00",
@@ -19,19 +22,27 @@
   },
   "Photos/2021/IMG_20210410_120000.jpg": {
    "objects": [
-    "houses",
-    "canal",
     "buildings",
-    "sky",
-    "trees",
-    "walls",
+    "canal",
     "windows",
-    "roofs",
-    "brick",
-    "water"
+    "river",
+    "houses",
+    "sky",
+    "grass",
+    "bushes",
+    "chimneys",
+    "reflections",
+    "brick walls",
+    "doors"
    ],
-   "scene": "A row of older brick houses lines the bank of a calm canal under an overcast sky.",
-   "colors": "Brown, grey, white, green",
+   "scene": "A row of old brick houses stands along a narrow canal under a cloudy sky.",
+   "colors": [
+    "brown",
+    "grey",
+    "green",
+    "blue",
+    "white"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -44,12 +55,19 @@
   "Photos/2021/IMG_20210704_200500.jpg": {
    "objects": [
     "acoustic guitar",
-    "guitar",
-    "chair",
-    "stand"
+    "guitar stand",
+    "wall",
+    "floor",
+    "doorway",
+    "wood paneling"
    ],
-   "scene": "An acoustic guitar with a dark red pickguard is displayed on a stand indoors against a white paneled wall.",
-   "colors": "Yellow, brown, black, white, red",
+   "scene": "An acoustic guitar rests on a stand against a white wall in a room with wooden floors.",
+   "colors": [
+    "light brown",
+    "dark brown",
+    "white",
+    "tan"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -63,10 +81,15 @@
    "objects": [
     "dog",
     "snow",
-    "building"
+    "building",
+    "window",
+    "balcony",
+    "door",
+    "wall",
+    "sky"
    ],
-   "scene": "A dog is sitting in the snow in front of a large, older building.",
-   "colors": "white, brown, grey, black",
+   "scene": "A medium-sized tricolor dog sits in the snow in front of an apartment building.",
+   "colors": "white, brown, black, beige, grey",
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -80,10 +103,12 @@
    "objects": [
     "mussels",
     "french fries",
-    "plate"
+    "plate",
+    "glass",
+    "table"
    ],
-   "scene": "A white plate is filled with a generous serving of golden french fries and dark mussels.",
-   "colors": "Yellow, brown, black, white",
+   "scene": "A white plate filled with cooked mussels and french fries sits on a table.",
+   "colors": "black, golden yellow, white",
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -97,10 +122,16 @@
    "objects": [
     "rug",
     "floor",
-    "furniture"
+    "wall",
+    "furniture leg",
+    "cabinet"
    ],
-   "scene": "A blue and beige patterned rug is laid out on a wooden floor in an indoor setting.",
-   "colors": "blue, beige, brown",
+   "scene": "A blue and cream patterned shag rug lies on a dark wood floor in a room.",
+   "colors": [
+    "blue",
+    "cream",
+    "brown"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -113,15 +144,23 @@
   "Photos/2023/IMG_20230318_091200.jpg": {
    "objects": [
     "espresso machine",
-    "coffee machine",
+    "portafilter",
+    "drip tray",
+    "knobs",
+    "pressure gauge",
     "countertop",
     "window",
-    "portafilter",
-    "metal",
-    "kitchen appliance"
+    "wall",
+    "bottle",
+    "pitcher"
    ],
-   "scene": "A professional-looking espresso machine sits on a dark countertop in a kitchen area near a window.",
-   "colors": "Silver, black, grey",
+   "scene": "A stainless steel commercial espresso machine sits on a dark granite countertop next to a window and a wall.",
+   "colors": [
+    "silver",
+    "black",
+    "grey",
+    "white"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -134,20 +173,24 @@
   "Photos/2023/IMG_20230520_142000.jpg": {
    "objects": [
     "books",
-    "bookshelf",
     "table",
-    "piles",
-    "store",
+    "bookcase",
     "window",
-    "books",
-    "display",
-    "stack",
-    "literature",
-    "objects",
-    "shelving"
+    "door",
+    "bag",
+    "sawhorse",
+    "sidewalk",
+    "building",
+    "wall"
    ],
-   "scene": "A large collection of books is displayed on a makeshift wooden table outside a building entrance.",
-   "colors": "Brown, beige, white, black",
+   "scene": "A large collection of old books is displayed on a wooden table outdoors against a building wall.",
+   "colors": [
+    "brown",
+    "beige",
+    "grey",
+    "black",
+    "white"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -159,19 +202,21 @@
   },
   "Photos/2023/IMG_20231224_200000.jpg": {
    "objects": [
-    "table",
     "food",
+    "table",
+    "dishes",
     "glasses",
-    "plates",
-    "basket",
+    "bowls",
+    "bread",
+    "wine",
     "napkins",
+    "cutlery",
+    "lace tablecloth",
     "bookshelf",
-    "room",
-    "utensils",
-    "cake"
+    "radiator"
    ],
-   "scene": "A large wooden table is set with various dishes, drinks, and tableware for a gathering in a cozy room.",
-   "colors": "Brown, white, beige, yellow, red",
+   "scene": "A wooden dining table is covered with a white lace tablecloth and laden with various dishes, drinks, and bowls of food.",
+   "colors": "white, brown, beige, amber, clear",
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -185,12 +230,16 @@
    "objects": [
     "laptop",
     "sticker",
-    "lid",
-    "computer",
-    "label"
+    "label",
+    "case",
+    "hinge"
    ],
-   "scene": "A close-up view of the underside of a silver laptop lid showing a product identification sticker.",
-   "colors": "Silver, gray, white",
+   "scene": "A close-up shot of a silver laptop showing a sticker with the model name and serial number.",
+   "colors": [
+    "silver",
+    "white",
+    "black"
+   ],
    "text": "NIMBUS 14\nS/N NB14-9F3K-2207",
    "make": "Corvid",
    "model": "C12",
@@ -203,12 +252,26 @@
   "Photos/2024/IMG_20240407_101000.jpg": {
    "objects": [
     "tulips",
-    "houses",
-    "tree",
-    "statue"
+    "flowers",
+    "buildings",
+    "person",
+    "windows",
+    "shutters",
+    "balcony",
+    "stems",
+    "leaves",
+    "sky",
+    "trees",
+    "houses"
    ],
-   "scene": "A vibrant field of blooming tulips stretches across the foreground with residential buildings visible in the background.",
-   "colors": "Red, pink, green, white, brown",
+   "scene": "A field of red and white tulips in the foreground with residential buildings in the background.",
+   "colors": [
+    "red",
+    "white",
+    "green",
+    "brown",
+    "beige"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -222,12 +285,25 @@
    "objects": [
     "acoustic guitar",
     "person",
+    "man",
     "jeans",
     "shirt",
-    "bench"
+    "bench",
+    "buildings",
+    "fingers",
+    "guitar strings",
+    "fretboard",
+    "pickguard",
+    "water"
    ],
-   "scene": "A person wearing dark clothing is sitting on a bench outdoors while playing an acoustic guitar.",
-   "colors": "brown, black, tan",
+   "scene": "A person sitting on a wooden bench outdoors is playing an acoustic guitar.",
+   "colors": [
+    "tan",
+    "dark grey",
+    "black",
+    "brown",
+    "blue"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -238,19 +314,10 @@
    ]
   },
   "Photos/2024/IMG_20241201_090000.jpg": {
-   "objects": [
-    "espresso machine",
-    "coffee cups",
-    "coffee",
-    "metal machine",
-    "grinder",
-    "jug",
-    "countertop",
-    "glassware"
-   ],
-   "scene": "A large, vintage, chrome espresso machine sits on a wooden countertop next to a coffee grinder.",
-   "colors": "Silver, black, brown, white",
-   "text": "아메리카노 / 1/1",
+   "objects": [],
+   "scene": "```json\n{\n  \"objects\": [\"espresso machine\", \"coffee cup\", \"coffee grinder\", \"glassware\", \"pitchers\", \"saucer\", \"steam wand\", \"portafilter\", \"cup\", \"countertop\", \"wall\", \"wires\"],\n  \"scene\": \"A professional stainless steel espresso machine sits on a wooden counter in a cafe setting.\",\n  \"colors\": [\"s",
+   "colors": "",
+   "text": "",
    "make": "Corvid",
    "model": "C12",
    "taken": "2024-12-01T09:00:00",
@@ -266,10 +333,20 @@
     "cars",
     "buildings",
     "street",
-    "trees"
+    "trees",
+    "sidewalk",
+    "balconies",
+    "windows",
+    "bicycle"
    ],
-   "scene": "Several people are walking on a wet, rainy street in front of a multi-story building, with trees lining the background.",
-   "colors": "Grey, brown, green, beige",
+   "scene": "Three people walking with umbrellas on a wet, rainy street lined with buildings and parked cars.",
+   "colors": [
+    "grey",
+    "beige",
+    "black",
+    "blue",
+    "green"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -281,15 +358,22 @@
   },
   "Photos/2025/IMG_20250412_150000.jpg": {
    "objects": [
-    "acoustic guitars",
     "guitars",
-    "instrument",
-    "wood",
+    "acoustic guitars",
+    "guitar bodies",
     "guitar necks",
-    "guitar bodies"
+    "guitar strings",
+    "guitar pickups",
+    "wall mounts",
+    "wall"
    ],
-   "scene": "A collection of acoustic guitars is displayed on shelves in what appears to be a music store or collection.",
-   "colors": "Brown, tan, black",
+   "scene": "A collection of acoustic guitars is displayed hanging on a white wall in two rows.",
+   "colors": [
+    "brown",
+    "tan",
+    "black",
+    "white"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -302,13 +386,16 @@
   "Photos/2025/IMG_20250509_112000.jpg": {
    "objects": [
     "laptop",
-    "plant",
-    "desk",
     "potted plant",
-    "notebook"
+    "desk",
+    "notebook",
+    "pot",
+    "keyboard",
+    "screen",
+    "wall"
    ],
-   "scene": "A laptop rests on a desk next to a potted green plant against a white wall.",
-   "colors": "Grey, Green, Black, White",
+   "scene": "A silver laptop sits open on a white desk next to a green potted plant against a plain wall.",
+   "colors": "silver, green, white, black",
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -321,14 +408,24 @@
   "Photos/2025/IMG_20250802_193000.jpg": {
    "objects": [
     "sunset",
-    "cityscape",
+    "ocean",
+    "houses",
     "rooftops",
     "sky",
-    "sea",
-    "buildings"
+    "sun",
+    "windows",
+    "chimneys",
+    "clouds",
+    "horizon"
    ],
-   "scene": "A row of urban rooftops is silhouetted against a vibrant orange and yellow sunset over the sea.",
-   "colors": "Orange, yellow, brown, grey",
+   "scene": "A golden sunset over the ocean viewed from above a row of residential houses.",
+   "colors": [
+    "orange",
+    "yellow",
+    "blue",
+    "brown",
+    "grey"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -340,14 +437,22 @@
   },
   "Photos/2025/IMG_20251130_104000.jpg": {
    "objects": [
-    "latte art",
     "coffee cup",
     "espresso machine",
-    "milk pitcher",
+    "latte art",
+    "portafilter",
+    "water pitcher",
+    "steam wand",
+    "drip tray",
     "countertop"
    ],
-   "scene": "A beautifully crafted latte with intricate foam art sits on a countertop next to a professional espresso machine.",
-   "colors": "Brown, white, silver",
+   "scene": "A white cup of latte with leaf-shaped latte art sits on a granite countertop next to a professional espresso machine.",
+   "colors": [
+    "white",
+    "brown",
+    "silver",
+    "beige"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -361,10 +466,15 @@
    "objects": [
     "dog",
     "rug",
-    "pet"
+    "carpet",
+    "paws",
+    "eyes",
+    "nose",
+    "ears",
+    "fur"
    ],
-   "scene": "A dog is lying down on a patterned blue and white rug.",
-   "colors": "blue, white, brown",
+   "scene": "A white and brown dog is lying down on a blue and white patterned rug.",
+   "colors": "blue, white, brown, tan",
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -377,13 +487,24 @@
   "Photos/2026/IMG_20260308_110000.jpg": {
    "objects": [
     "dog",
-    "bone",
+    "toy",
     "floor",
-    "window",
-    "wall"
+    "wall",
+    "radiator",
+    "door",
+    "paw",
+    "ear",
+    "nose",
+    "eye"
    ],
-   "scene": "A brown and white dog is lying on a wooden floor, chewing on a bone.",
-   "colors": "brown, white, tan, gray",
+   "scene": "A brown and white dog lies on a wooden floor while chewing on a large, worn-out fabric toy.",
+   "colors": [
+    "brown",
+    "white",
+    "tan",
+    "wood",
+    "grey"
+   ],
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -398,11 +519,16 @@
     "salad",
     "bowl",
     "table",
+    "railing",
+    "buildings",
     "balcony",
-    "building"
+    "street",
+    "windows",
+    "leaves",
+    "dressing"
    ],
-   "scene": "A fresh salad is presented in a bowl on a dark outdoor table, with a view of city buildings from a balcony railing.",
-   "colors": "Green, brown, black, beige",
+   "scene": "A bowl of green salad sits on a dark table on a balcony overlooking a city street.",
+   "colors": "green, dark grey, beige, black",
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -416,10 +542,16 @@
    "objects": [
     "acoustic guitar",
     "sheet music",
-    "sofa"
+    "sofa",
+    "guitar strings",
+    "guitar bridge",
+    "guitar fretboard",
+    "sound hole",
+    "book",
+    "cushion"
    ],
-   "scene": "An acoustic guitar rests on a gray sofa next to an open book of sheet music.",
-   "colors": "brown, beige, gray, black",
+   "scene": "An acoustic guitar and an open book of sheet music rest on a grey fabric sofa.",
+   "colors": "brown, tan, grey, white, black",
    "text": "",
    "make": "Corvid",
    "model": "C12",
@@ -431,7 +563,7 @@
   }
  },
  "docs": {
-  "Documents/Achats/2021-06-26_Muziekhuis_receipt.jpg": "Muziekhuis Arend\n6 Lange Ster\n9000 Gent\nNo. MA-6621\n26/06/2021 15:10\n\nHalden OM-2 acoustic guitar 1450.00\nGig bag 59.00\n\nTOTAL\n1509.00 EUR\n\nThank you",
+  "Documents/Achats/2021-06-26_Muziekhuis_receipt.jpg": "Muziekhuis Arend\n6 Lange Ster\n9000 Gent\n\nNo. MA-6621\n26/06/2021 15:10\n---------------------------------------\nHalden OM-2 acoustic guitar      1450.00\nGig bag                           59.00\n---------------------------------------\nTOTAL                           1509.00 EUR\n\nThank you",
   "Documents/Achats/2023-03-15_Cafe-Atelier_invoice.pdf": "Cafe Atelier\n14 Rue des Meuniers\n59000 Lille\nInvoice\nNo. CA-23-0318\nDate: 15/03/2023\nDescription\n Qty\n Unit price\n Amount\nBrava Duo espresso machine, chrome\nSerial number: BD-55102\n 1\n 689.00\n 689.00\nCoffee beans 1 kg\n 2\n 18.50\n 37.00\nTotal: 726.00 EUR\n",
   "Documents/Achats/2024-01-29_Nordtech_invoice.pdf": "Nordtech\n30 Rue du Haut Pre\n59000 Lille\nInvoice\nNo. NT-240129-77\nDate: 29/01/2024\nDescription\n Qty\n Unit price\n Amount\nNimbus 14 laptop, silver, 16 GB, 512 GB\nSerial number: NB14-9F3K-2207\n 1\n 1249.00\n 1249.00\nTotal: 1249.00 EUR\nWarranty until: 29/01/2026\n",
   "Documents/Achats/2025-09-03_Bureau-Plus_receipt.pdf": "Bureau Plus\n 8 Rue des Imprimeurs\n 59000 Lille\n Receipt\n No. BP-0903\n Date: 03/09/2025\nDescription\n Qty\n Unit price\n Amount\nInk cartridge pack,\nblack and colour\n 1\n 42.90\n 42.90\n Total: 42.90 EUR\n",

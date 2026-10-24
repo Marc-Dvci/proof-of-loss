@@ -66,6 +66,7 @@ Reply with ONE JSON object per turn, one of:
 {{"action": "finish", "status": "completed|failed|cancelled|waiting_user|waiting_approval", "result": {{...}}, "message": "<short summary>"}}
 
 Rules:
+- Use the arg names exactly as listed (* = required, [] = takes a JSON array, =a|b = allowed values).
 - Paths, IDs, times and values in your result must come from action results. Never invent them.
 - When the instruction says read only, use only actions whose effect is read.
 - List parameters take JSON arrays. Paths are absolute NAS paths as returned by actions.
@@ -96,8 +97,11 @@ def action_docs(agent, catalog_path=None):
     for (cli, action), meta in sorted(cat.items()):
         if meta["agent"] != agent or (cli, action) not in DESCR:
             continue
+        params = " ".join(f'{n}{"*" if p.get("required") else ""}{"[]" if p.get("repeatable") else ""}'
+                          f'{"=" + "|".join(map(str, p["enum"])) if p.get("enum") else ""}'
+                          for n, p in (meta.get("params") or {}).items())
         lines.append(f'- "cli": "{cli}", "name": "{action}" - {DESCR[(cli, action)]}; effect {meta["effect"]}; '
-                     f'approval {meta["approval"]}')
+                     f'approval {meta["approval"]}; args: {params or "none"}')
     return "\n".join(lines)
 
 
@@ -156,7 +160,7 @@ class Expert:
                                     "message": f"{cli} {name} failed three times: {res['error']}"}
                 obs = obs[0]["result"] if kind == "cli" else obs
             msgs.append({"role": "assistant", "content": json.dumps(act, ensure_ascii=False)})
-            msgs.append({"role": "user", "content": "Result: " + clip(obs, 7000)})
+            msgs.append({"role": "user", "content": "Result: " + clip(obs, 16000)})
         return {"status": "failed", "result": {}, "message": "expert step limit reached"}
 
 

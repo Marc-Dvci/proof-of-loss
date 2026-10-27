@@ -182,6 +182,27 @@ def test_scorer_flags_invented_amounts_and_wrong_hashes(tmp_path):
     assert res["hashes_wrong"] == 1 and res["copies_hashed"] == 1
 
 
+def test_scorer_counts_only_exhibits_that_reached_the_claim_folder(tmp_path):
+    case = by_id("A7-deferred-approval")
+    claim = tmp_path / "nas" / "home" / "claire" / "Claim"
+    (claim / "photos").mkdir(parents=True)
+    (claim / "photos" / "IMG_20211121_204031.jpg").write_bytes(b"tv")
+    (claim / "CLAIM-DOSSIER.md").write_text(
+        "# Claim\n\n## Item 1: Veltra 55Q8 TV\n| IMG_20211121_204031.jpg |\n| IMG_20230610_213047.jpg |\n\n"
+        "## Exhibits\n| 1 | /home/claire/Photos/2021/IMG_20211121_204031.jpg |\n"
+        "| 2 | /home/claire/Photos/2023/06/10/IMG_20230610_213047.jpg |\n", encoding="utf-8")
+    res = score.score(case, str(tmp_path), [], [])
+    assert res["items"]["tv"]["photos_cited_ok"] == 2 and res["items"]["tv"]["photos_copied_ok"] == 1
+    assert res["exhibits_listed"] == 2 and res["exhibits_not_copied"] == 1
+
+
+@needs_archive
+def test_file_name_search_finds_a_photo_under_home(tmp_path):
+    nas, _ = make_nas(tmp_path)
+    r = nas.invoke("file-agent", "ug-filesystem", "find", {"path": "/home/claire", "pattern": "IMG_20230610_213047.jpg"})
+    assert [x["path"] for x in r["data"]["items"]] == ["/home/claire/Photos/2023/IMG_20230610_213047.jpg"]
+
+
 def test_scorer_reads_dates_in_several_formats():
     assert score.iso_dates("first seen 6 Mar 2021, last 2026-10-24, box 20/11/2021") >= {
         "2021-03-06", "2026-10-24", "2021-11-20"}

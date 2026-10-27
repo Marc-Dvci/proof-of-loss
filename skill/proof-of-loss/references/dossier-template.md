@@ -50,7 +50,7 @@ Description given by the user: {description}
 
 | # | Exhibit | Original path | Copy path | Size (bytes) | SHA-256 of copy | Copy check |
 |---|---|---|---|---|---|---|
-| E{n} | {file name} | {original path} | {copy path} | {size} | {hash} | matches original / copy mismatch |
+| E{n} | {file name} | {original path} | {copy path} | {size} | {hash} | matches original / copy mismatch / not copied |
 
 ## Notes
 

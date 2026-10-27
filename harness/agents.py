@@ -138,6 +138,7 @@ class Expert:
                 act = self.llm.chat_json(msgs, max_tokens=8192)
             except ValueError as e:
                 return {"status": "failed", "result": {}, "message": f"expert produced no valid action: {e}"}
+            raw = self.llm.last_text
             self.trace({"who": self.agent, "step": step, "act": act})
             kind = act.get("action")
             if kind == "finish":
@@ -159,7 +160,7 @@ class Expert:
                             return {"status": "failed", "result": {},
                                     "message": f"{cli} {name} failed three times: {res['error']}"}
                 obs = obs[0]["result"] if kind == "cli" else obs
-            msgs.append({"role": "assistant", "content": json.dumps(act, ensure_ascii=False)})
+            msgs.append({"role": "assistant", "content": raw})
             msgs.append({"role": "user", "content": "Result: " + clip(obs, 16000)})
         return {"status": "failed", "result": {}, "message": "expert step limit reached"}
 
@@ -196,6 +197,7 @@ class Main:
             except ValueError as e:
                 self._event(kind="error", message=str(e))
                 return {"final": None, "error": str(e)}
+            raw = self.llm.last_text
             self.trace({"who": "main", "step": step, "act": act})
             kind = act.get("action")
             if kind in AGENTS and act.get("instruction"):
@@ -223,7 +225,7 @@ class Main:
                 obs = {"user": answer}
             else:
                 obs = {"error": "unknown action; use delegate, read_reference, ask_user or reply"}
-            msgs.append({"role": "assistant", "content": json.dumps(act, ensure_ascii=False)})
+            msgs.append({"role": "assistant", "content": raw})
             msgs.append({"role": "user", "content": "Observation: " + clip(obs, 9000)})
         self._event(kind="error", message="main step limit reached")
         return {"final": None, "error": "step limit"}

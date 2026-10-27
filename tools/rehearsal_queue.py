@@ -78,12 +78,13 @@ PROFILES = {
             "servers": lambda: [server(8098, os.environ["POL_VISION_MODEL"], 99, 32768, os.environ["POL_VISION_MMPROJ"])]},
     # Gemma 4 26B-A4B with its vision projector: attention, shared weights and 6 expert layers on the GPU, the other
     # experts memory-mapped (--no-repack keeps them file-backed). Three slots: main assistant, experts, NAS calls.
-    # A 1024-token micro-batch holds a whole image, which the vision encoder needs. One context checkpoint per slot:
-    # each holds a copy of the sliding-window cache in host memory, and the default of 32 per slot fills the RAM.
+    # A 1024-token micro-batch holds a whole image, which the vision encoder needs. No context checkpoints: the harness
+    # sends each reply back verbatim, so a prompt extends the slot's cache; restoring a sliding-window checkpoint into
+    # the unified cache can abort this llama.cpp build, and a prompt that does not extend the cache is re-processed.
     "g26": {"need_gb": 8.0, "llm": 8098, "vlm": 8098, "slots": True,
             "servers": lambda: [server(8098, os.environ["POL_VISION_MODEL"], 99, 49152, os.environ["POL_VISION_MMPROJ"],
                                        extra=("--n-cpu-moe", "24", "--no-repack", "-kvu", "-b", "1024", "-ub", "1024",
-                                              "--ctx-checkpoints", "1"),
+                                              "--ctx-checkpoints", "0"),
                                        parallel=3)]},
     "qwen-e4b": {"need_gb": 14.5, "llm": 8099, "vlm": 8098,
                  "servers": lambda: [server(8099, os.environ["POL_TEXT_MODEL"], 99, 32768),

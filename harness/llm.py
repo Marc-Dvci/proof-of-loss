@@ -23,6 +23,8 @@ class LLM:
         self.log = log            # callable(dict) for usage accounting
         self.calls = 0
         self.seconds = 0.0
+        self.last_text = ""       # raw text of the last JSON reply, sent back verbatim so the server's cache extends
+        self.prompt_n = 0         # prompt tokens the server processed on the last call (cache misses)
 
     def _post(self, payload, timeout=900):
         req = urllib.request.Request(self.url + "/v1/chat/completions", data=json.dumps(payload).encode(),
@@ -33,10 +35,11 @@ class LLM:
         dt = time.time() - t0
         self.calls += 1
         self.seconds += dt
+        self.prompt_n = (out.get("timings") or {}).get("prompt_n", 0)
         if self.log:
             usage = out.get("usage", {})
             self.log({"kind": "llm", "seconds": round(dt, 2), "prompt_tokens": usage.get("prompt_tokens"),
-                      "completion_tokens": usage.get("completion_tokens")})
+                      "prompt_processed": self.prompt_n, "completion_tokens": usage.get("completion_tokens")})
         return out["choices"][0]["message"].get("content") or ""
 
     def chat(self, messages, json_mode=True, max_tokens=None):
@@ -54,7 +57,9 @@ class LLM:
         for _ in range(retries + 1):
             text = self.chat(messages, json_mode=True, max_tokens=max_tokens)
             try:
-                return json.loads(text)
+                parsed = json.loads(text)
+                self.last_text = text
+                return parsed
             except json.JSONDecodeError as e:
                 last = e
                 messages = messages + [{"role": "assistant", "content": text},

@@ -1,0 +1,6 @@
+runs/
+build/
+.git/
+.pytest_cache/
+testdata/raw/
+**/__pycache__/

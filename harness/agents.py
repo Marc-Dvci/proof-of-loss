@@ -75,7 +75,8 @@ Rules:
 - A result error APPROVAL_DENIED means the user declined: finish with status cancelled.
 - If an action fails, fix the arguments once; if it still fails, finish with status failed and the error.
 - An empty result is a valid result: finish completed with empty lists.
-- Keep the finish result compact: only the fields the instruction asks for."""
+- Several calls that do not depend on each other go in one cli_batch.
+- Keep the finish result compact: only the fields the instruction asks for, for every item it asks about."""
 
 MAIN_RULES = """You are Uliya, the assistant of a UGREEN AI NAS. The user's request activated the Skill below. Follow the Skill exactly.
 
@@ -122,7 +123,7 @@ def clip(obj, limit=6000):
 
 
 class Expert:
-    def __init__(self, agent, llm, nas, trace, max_steps=30):
+    def __init__(self, agent, llm, nas, trace, max_steps=60):
         self.agent, self.llm, self.nas, self.trace, self.max_steps = agent, llm, nas, trace, max_steps
         self.system = EXPERT_RULES.format(agent=agent, actions=action_docs(agent) or "- (no actions served)")
         owned = [(cli, a) for (cli, a), m in load_catalog().items() if m["agent"] == agent]

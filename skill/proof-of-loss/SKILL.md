@@ -157,7 +157,7 @@ This is the only step that writes, and it starts only after the step 5 answer. T
 
 delegate --target file-agent --instruction 'Create the folder {claim folder} inside {home folder}, then its three subfolders photos, receipts and camera. Return the real claim folder path.'
 
-Then one delegation per item that has exhibits, in the order of the draft, so that no item is left out. Never put two items in one delegation, and list every exhibit of the item from the results of steps 2 and 3:
+Then copy item by item: one delegation with the exhibits of item 1, then one delegation with the exhibits of item 2, and so on, so that no item is left out. Never put two items in one delegation, and list every exhibit of the item from the results of steps 2 and 3:
 
 delegate --target file-agent --instruction 'Copy, with type copy and overwrite false, each file of this list into the subfolder of {claim folder path} written after its arrow: {exhibit lines of this item}. Do not move any file. When a copy with that name is already in the subfolder, keep it and report it as copied. When a source path is not found, find files with exactly that file name under {home folder}; when exactly one file matches, copy that file and report its real path; otherwise report the file as not copied. Then compute the SHA-256 hash of each copy and of its original. Return one entry for every file of the list, never a sample: the original path, the copy path, the size in bytes and both hashes. List the files not copied.'
 

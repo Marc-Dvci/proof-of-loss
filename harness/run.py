@@ -43,18 +43,21 @@ def policy_for(mode):
 
 def user_for(case, events):
     """A question asked before any search ran is a clarification: the user confirms the request (or gives the case's
-    clarify_answer). The scripted answers go to the questions asked after the search, starting with the draft."""
+    clarify_answer). The first scripted answer goes to the draft, the question about exhibits, the folder or the album.
+    Any other question after the search gets what a user would say: approve, or retry and finish."""
     answers = list(case.get("answers", []))
+    total_answers = len(answers)
 
     def user(message):
         searched = any(e["kind"] == "delegate" and e["target"] in ("photo-agent", "knowledge-agent") for e in events)
         if not searched:
             return case.get("clarify_answer", "Yes, that is right. Please go ahead.")
-        if answers:
+        asks_about_draft = any(word in message.lower() for word in ("exhibit", "folder", "album"))
+        if answers and (asks_about_draft or len(answers) < total_answers):
             return answers.pop(0)
         if "approv" in message.lower():
             return "Yes, I approve."
-        return "Please continue with what you have."
+        return "Please retry what failed and finish every item."
 
     return user
 

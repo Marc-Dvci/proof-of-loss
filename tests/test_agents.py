@@ -482,23 +482,28 @@ def test_a_question_before_any_search_gets_the_clarification(case_id, clarificat
 
 
 @pytest.mark.parametrize("searched_by", ["photo-agent", "knowledge-agent"])
-def test_after_a_photo_or_knowledge_search_the_scripted_answers_come_in_order_then_approval_then_fallback(searched_by):
-    events = []
-    user = user_for({"clarify_answer": "Yes.", "answers": ["First draft answer.", "Second answer."]}, events)
-    assert user("Is the request right?") == "Yes."
-    events.append({"kind": "delegate", "target": searched_by, "instruction": "Find the photos."})
-    answers = [
-        user("Here is the draft. Is it right?"),
+def test_after_a_search_the_draft_gets_the_scripted_answers_in_order_then_approval_then_a_retry(searched_by):
+    case = {"answers": ["First draft answer.", "Second answer."]}
+    events = [{"kind": "delegate", "target": searched_by}]
+    user = user_for(case, events)
+    assert [
+        user("Which exhibits do you keep?"),
         user("Anything else?"),
-        user("Shall I approve the write?"),
-        user("Anything more?"),
-    ]
-    assert answers == [
+        user("Do you approve the copy?"),
+        user("The copy failed. Retry?"),
+    ] == [
         "First draft answer.",
         "Second answer.",
         "Yes, I approve.",
-        "Please continue with what you have.",
+        "Please retry what failed and finish every item.",
     ]
+
+
+def test_a_question_that_is_not_the_draft_never_receives_the_draft_answer():
+    case = {"answers": ["Keep all confirmed exhibits."]}
+    user = user_for(case, [{"kind": "delegate", "target": "photo-agent"}])
+    assert user("I reached a step limit on the watch. Continue?") == "Please retry what failed and finish every item."
+    assert user("Which exhibits do you keep?") == "Keep all confirmed exhibits."
 
 
 # ---------------------------------------------------------------------------------------------------- full scenario

@@ -107,7 +107,10 @@ class MockNAS:
         self.cache_path = os.path.join(
             os.path.dirname(archive_dir), f"{os.path.basename(archive_dir)}_vision_cache.json"
         )
-        self.cache = json.load(open(self.cache_path, encoding="utf-8")) if os.path.exists(self.cache_path) else {}
+        self.cache = {}
+        if os.path.exists(self.cache_path):
+            with open(self.cache_path, encoding="utf-8") as f:
+                self.cache = json.load(f)
         self.albums = []
         self.cams = {c["camera_id"]: c for c in spec.get("cameras", [])}
 
@@ -180,7 +183,7 @@ class MockNAS:
                     result = {"ok": True, "data": fn(args)}
                 except FileNotFoundError as e:
                     result = {"ok": False, "error": {"code": "NOT_FOUND", "message": str(e)}}
-                except (PermissionError, ValueError, KeyError, TypeError) as e:
+                except (OSError, ValueError, KeyError, TypeError, IndexError) as e:
                     result = {"ok": False, "error": {"code": "BAD_REQUEST", "message": f"{type(e).__name__}: {e}"}}
         return self._done(entry, result)
 
@@ -709,7 +712,7 @@ class MockNAS:
         name = a.get("filename-hint") or "note"
         if not os.path.splitext(name)[1]:
             name += ".md"
-        real = os.path.join(self._real(folder), name)
+        real = os.path.join(self._real(folder), os.path.basename(name))
         os.makedirs(os.path.dirname(real), exist_ok=True)
         if os.path.exists(real):
             stem, ext = os.path.splitext(real)

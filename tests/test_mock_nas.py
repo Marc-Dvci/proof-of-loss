@@ -1186,3 +1186,26 @@ def test_load_catalog_keeps_the_enum_of_a_parameter():
 def test_the_cases_here_cover_every_served_read_and_every_write_the_gate_sees():
     assert set(READ_CASES) == SERVED_READS
     assert set(WRITE_CASES) == GATED_WRITES
+
+
+# One regression test per bug found in the stand-in. A rehearsal once died on the first of these.
+
+
+def test_creating_a_folder_where_a_file_exists_returns_an_error_instead_of_ending_the_run(make_nas):
+    nas, _log = make_nas()
+    existing = "/home/claire/Documents/Bills/2026-10_Fibra_bill.pdf"
+    res = nas.invoke("file-agent", "ug-filesystem", "mkdir", {"path": existing})
+    assert res["ok"] is False and res["error"]["code"] == "BAD_REQUEST"
+
+
+@pytest.mark.parametrize("action", ["vision-ocr", "vision-vlm"])
+def test_a_vision_call_with_no_path_returns_an_error_instead_of_ending_the_run(make_nas, action):
+    nas, _log = make_nas()
+    assert nas.invoke("photo-agent", "ug-photo", action, {})["ok"] is False
+
+
+def test_save_text_keeps_a_climbing_file_name_inside_the_named_folder(make_nas, tmp_path):
+    nas, _log = make_nas()
+    args = {"path": "/home/claire/Documents", "content": "x", "filename-hint": "../../../../evil.md"}
+    res = nas.invoke("knowledge-agent", "ug-knowledge", "save-text", args)
+    assert res["ok"] and res["data"]["outputFile"] == "/home/claire/Documents/evil.md"

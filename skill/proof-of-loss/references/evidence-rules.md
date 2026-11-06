@@ -53,7 +53,7 @@ Serial numbers are compared ignoring case, spaces and hyphens, and allowing the 
 - The value of an item is the price of its own line item on a matched receipt, in the currency printed on the receipt.
 - When a receipt shows only an order total that covers several products, write the total and "order total, several products".
 - When no matched receipt states a price, write "no price found". The Skill never estimates a price.
-- The summary shows a total per currency, as the sum of the listed item prices. Add the prices twice and write the total only when both sums agree.
+- The dossier lists each item's price and no total: the Skill does no arithmetic on prices.
 
 ## Camera events
 

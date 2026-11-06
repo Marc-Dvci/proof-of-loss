@@ -14,8 +14,6 @@ Claim folder: {claim folder path}
 |---|---|---|---|---|---|---|
 | {item} | {count} | {date, file name} | {date, file name} | {merchant, date} or none found | {price currency} or no price found | {serial} or none found |
 
-Total of listed prices: {total per currency}
-
 ## Incident
 
 Date and window: {incident date}, {window start} to {window end} ({timezone})

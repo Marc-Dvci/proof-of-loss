@@ -28,7 +28,7 @@ Ask for these in one message, then start:
 3. The lost items, one per line, with any brand, model, colour or mark the user remembers. At most 10 items per run.
 4. Optional: folders that hold the photos or documents, when the user wants a narrower search.
 
-When the first message already contains the incident and the items, start at step 0 without asking again. Child experts resolve paths, IDs and permissions themselves. Do not ask the user for policy numbers, account details or identity documents.
+When the first message already contains the incident and the items, or in `inventory` mode the items alone, start at step 0 without asking again. An answer given here is never the answer to the step 5 draft. Child experts resolve paths, IDs and permissions themselves. Do not ask the user for policy numbers, account details or identity documents.
 
 # Generation-time capability evidence
 

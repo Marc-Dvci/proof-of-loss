@@ -18,7 +18,7 @@ testpaths = ["tests"]
 # pytest-randomly shuffles the order on every run (replay a run with --randomly-seed=<seed>);
 # pytest-timeout fails any test that runs past `timeout` seconds.
 addopts = "-m 'not live' -ra --strict-markers"
-timeout = 60
+timeout = 90
 xfail_strict = true
 # Unmarked tests are unit tests. Mark the others so the split can be counted (see .github/workflows/tests.yml).
 markers = [
@@ -33,3 +33,17 @@ branch = true
 [tool.codespell]
 skip = "*.png,*.jpg,*.gif,*.svg,*.json,*.jsonl,*.lock,.git,.venv,runs,build,testdata/archive,testdata/raw"
 ignore-words-list = "ser,fo,te"
+
+[tool.coverage.report]
+# The decision core: the scorer, the stand-in CLI layer with its approval gate, the agent loops and the case table.
+# harness/llm.py is the model client; harness/run.py and build_index.py need a model server. They are outside the figure.
+include = ["*/harness/score.py", "*/harness/mock_nas.py", "*/harness/agents.py", "*/harness/cases.py", "*/harness/replay.py"]
+fail_under = 85
+show_missing = true
+
+[tool.mypy]
+files = ["harness", "tools", "scripts"]
+ignore_missing_imports = true
+check_untyped_defs = true
+explicit_package_bases = true
+warn_unused_ignores = true

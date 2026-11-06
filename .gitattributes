@@ -1,0 +1,16 @@
+# Text files are stored with LF, whatever machine they were last saved on. Scripts run on Linux too.
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+
+# Keep the languages bar honest: figure sources, recorded runs and test data are not the project's code.
+docs/figures/src/** linguist-generated
+evidence/** linguist-generated
+examples/** linguist-documentation
+testdata/spec/** linguist-generated
+testdata/index/** linguist-generated
+testdata/archive/** linguist-generated

@@ -1,0 +1,14 @@
+{
+  "name": "Proof of Loss",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" }
+  },
+  "postCreateCommand": "pip install -r requirements-dev.txt && curl -sL -o /tmp/kit.zip https://cdn.shopify.com/s/files/1/0630/9416/1602/files/uliya-skill-kit-0.7.3-en.zip && unzip -q /tmp/kit.zip -d .. && mv ../uliya-skill-kit ../uliya-skill-kit-0.7.3",
+  "postAttachCommand": "python tools/replay.py A1-burglary",
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md", "examples/A1-burglary/CLAIM-DOSSIER.md"]
+    }
+  }
+}

@@ -1,0 +1,72 @@
+# On every push: lint, format, types, the package checks, tests with coverage, spelling, local links and placeholders;
+# then the Docker image, built and started. Read-only: nothing here writes to the repository.
+name: tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+env:
+  KIT_URL: https://cdn.shopify.com/s/files/1/0630/9416/1602/files/uliya-skill-kit-0.7.3-en.zip
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: pip install -r requirements-dev.txt
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: mypy
+      - name: Fetch the UGREEN Skill Developer Package
+        run: |
+          curl -sL -o kit.zip "$KIT_URL"
+          unzip -q kit.zip -d ..
+          mv ../uliya-skill-kit ../uliya-skill-kit-0.7.3
+      - name: Official checker and package limits
+        run: python tools/build_package.py
+      - name: Tests in random order, with line and branch coverage
+        shell: bash
+        run: python -m pytest -q --cov --cov-report=term --randomly-seed="$GITHUB_RUN_ID" | tee pytest.log
+      - name: Summary on the run page
+        if: always()
+        shell: bash
+        run: |
+          count() { python -m pytest --collect-only -q -p no:randomly -m "$1" 2>/dev/null | tail -n 1 | grep -Eo '^[0-9]+' || echo 0; }
+          {
+            echo "### Tests"
+            echo
+            grep -E "passed|failed" pytest.log | tail -n 1
+            echo "Random order: replay it with \`python -m pytest --randomly-seed=$GITHUB_RUN_ID\`."
+            echo
+            echo "| Kind | Tests |"
+            echo "|---|---|"
+            echo "| Unit | $(count 'not integration and not live') |"
+            echo "| Integration | $(count integration) |"
+            echo
+            echo "### Coverage of the decision core (lines and branches)"
+            echo
+            python -m coverage report --format=markdown
+            echo
+            echo "### Rehearsal, from the recorded run"
+            echo
+            python tools/results_table.py evidence/final | sed -n '1,/^$/p'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - run: codespell
+      - run: python scripts/check_links.py
+      - run: python scripts/check_placeholders.py
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t proof-of-loss .
+      - name: The image runs the checks and the replay with no network
+        run: docker run --rm --network none proof-of-loss

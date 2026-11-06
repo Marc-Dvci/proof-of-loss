@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.join(ROOT, "harness"))
 from cases import CASES  # noqa: E402
 
 GB = 1024**3
+MAX_ATTEMPTS = 6  # a case that ends without a score (a server crash) restarts from scratch
 
 
 class MEMORYSTATUSEX(ctypes.Structure):
@@ -198,7 +199,7 @@ def main():
     try:
         for case_id in wanted:
             failures = 0
-            while not os.path.exists(os.path.join(out, case_id, "score.json")) and failures < 3:
+            while not os.path.exists(os.path.join(out, case_id, "score.json")) and failures < MAX_ATTEMPTS:
                 if not procs:
                     while free_commit_gb() < need_gb:
                         time.sleep(30)

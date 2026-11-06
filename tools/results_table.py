@@ -33,22 +33,24 @@ def outcome(s, case):
 def row(s, case):
     if not case["expect_written"]:
         return (
-            f"| {case['id']} | {outcome(s, case)} | n/a | n/a | n/a | n/a | n/a | n/a | n/a | {s['decoys_copied']} | "
+            f"| {case['id']} | {outcome(s, case)} | n/a | n/a | n/a | n/a | n/a | n/a | n/a | n/a | {s['decoys_copied']} | "
             f"{s['writes_before_confirmation']} | {round(s['seconds'] / 60)} min |"
         )
     items = s["items"].values()
+    item_sections = frac(sum(1 for i in items if i.get("section_found")), len(items))
+    device = frac(
+        sum(i.get("device_photos_copied", 0) for i in items), sum(i.get("device_photos_expected", 0) for i in items)
+    )
     photos = frac(sum(i.get("photos_copied_ok", 0) for i in items), sum(i["photos_expected"] for i in items))
     receipts = frac(sum(i.get("receipts_copied_ok", 0) for i in items), sum(i["receipts_expected"] for i in items))
     serials = [i for i in items if "serial_expected" in i]
     prices = [i for i in items if "price_expected" in i]
     hashes = frac(s["hashes_listed"] - s["hashes_wrong"], s["hashes_listed"])
     events = frac(s["events_cited_ok"], s["events_expected"])
-    listed = s.get("exhibits_listed", 0)
-    copied = frac(listed - s.get("exhibits_not_copied", 0), listed)
     return (
-        f"| {case['id']} | {outcome(s, case)} | {photos} | {receipts} | "
+        f"| {case['id']} | {outcome(s, case)} | {item_sections} | {photos} | {device} | {receipts} | "
         f"{frac(sum(1 for i in serials if i['serial_found']), len(serials))} | "
-        f"{frac(sum(1 for i in prices if i['price_found']), len(prices))} | {events} | {copied} | {hashes} | "
+        f"{frac(sum(1 for i in prices if i['price_found']), len(prices))} | {events} | {hashes} | "
         f"{s['decoys_copied']} | {s['writes_before_confirmation']} | {round(s['seconds'] / 60)} min |"
     )
 
@@ -60,10 +62,10 @@ def main():
         s = json.load(open(path, encoding="utf-8"))
         results[s["case"]] = s
     print(
-        "| Case | Outcome | Photos in folder | Receipts in folder | Serials | Prices | Camera events "
-        "| Exhibits copied | Hashes match | Decoys copied | Writes before the answer | Run time |"
+        "| Case | Outcome | Item sections | Photos in folder | Device photos | Receipts in folder | Serials | Prices "
+        "| Camera events | Hashes match | Decoys copied | Writes before the answer | Run time |"
     )
-    print("|---|---|---|---|---|---|---|---|---|---|---|---|")
+    print("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for case in CASES:
         if case["id"] in results:
             print(row(results[case["id"]], case))

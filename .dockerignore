@@ -1,6 +1,21 @@
-runs/
-build/
-.git/
-.pytest_cache/
-testdata/raw/
-**/__pycache__/
+# An allowlist: nothing reaches a build unless it is named here, so keys, caches and runs cannot slip in.
+*
+!docs/figures/
+!evidence/
+!examples/
+!harness/
+!pyproject.toml
+!README.md
+!requirements.txt
+!requirements-dev.txt
+!scripts/
+!skill/
+!submission/
+!testdata/archive/
+!testdata/index/
+!testdata/spec/
+!testdata/*.py
+!tests/
+!tools/
+
+**/__pycache__

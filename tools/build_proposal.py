@@ -3,7 +3,7 @@
     python tools/build_proposal.py [--chrome PATH]
 
 The ten answers (sections 1 to 10) must total 500 English words or fewer; the third-party licence section is
-excluded from the count, as the rules allow. No {{PLACEHOLDER}} may remain. The PDF must be 1 MB or smaller.
+excluded from the count, as the rules allow. No placeholder may remain. The PDF must be 1 MB or smaller.
 """
 
 import argparse

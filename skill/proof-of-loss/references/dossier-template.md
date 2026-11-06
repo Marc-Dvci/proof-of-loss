@@ -62,7 +62,7 @@ Description given by the user: {description}
 
 ## Draft shown in step 5
 
-The draft is the same layout without the Exhibits hashes and without the claim folder path. Under the Summary table, add one line per decision the user has to make:
+The draft is the same layout without the Exhibits table and without the claim folder path. In its place it ends with the Exhibit list: one line per file, `source path -> photos` or `source path -> receipts`. Under the Summary table, add one line per decision the user has to make:
 
 - possible sightings, with the detail that contradicts the user description;
 - possible receipts;

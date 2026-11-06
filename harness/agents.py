@@ -248,6 +248,6 @@ class Main:
             else:
                 obs = {"error": "unknown action; use delegate, read_reference, ask_user or reply"}
             msgs.append({"role": "assistant", "content": raw})
-            msgs.append({"role": "user", "content": "Observation: " + clip(obs, 9000)})
+            msgs.append({"role": "user", "content": "Observation: " + clip(obs, 16000)})
         self._event(kind="error", message="main step limit reached")
         return {"final": None, "error": "step limit"}

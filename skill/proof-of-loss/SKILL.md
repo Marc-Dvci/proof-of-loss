@@ -111,7 +111,7 @@ delegate --target security-monitor-agent --instruction 'List events between {win
 
 ## Step 5. Draft and confirm
 
-Before the draft, check every item against the results: its photo delegation ran, its device photo delegation ran when it takes photos, and its purchase delegation ran. Run what is missing.
+This step runs in every mode: nothing is written before the user has answered this draft. Before the draft, check every item against the results: its photo delegation ran, its device photo delegation ran when it takes photos, and its purchase delegation ran. Run what is missing.
 
 Read [Dossier template](references/dossier-template.md) and build the draft in its layout, from real results only. In every mode the draft and the dossier hold one `## Item {n}` section per item, with its own tables, however many items there are. The sections, in this order:
 
@@ -127,7 +127,10 @@ Read [Dossier template](references/dossier-template.md) and build the draft in i
 ### Purchase
 | File | Merchant | Date | Line item | Price | Serial number | Warranty end |
 ### Gaps
-## Exhibits
+## Exhibit list (draft only)
+{source path} -> photos
+{source path} -> receipts
+## Exhibits (dossier only)
 | # | Exhibit | Original path | Copy path | Size (bytes) | SHA-256 of copy | Copy check |
 ## Notes
 - Every exhibit is a copy of a file stored on this NAS. Its SHA-256 hash was recorded on {today} for the copy and for the original.
@@ -139,7 +142,7 @@ The draft holds:
 
 - per item: confirmed photos with first seen and last seen, device photos, matched receipts with merchant, date, price and serial number, and the gaps. The price is the item's own line on a matched receipt; a possible receipt gives no price, so the item reads "no price found" until the user keeps that receipt;
 - the incident section with camera events and snapshot references;
-- the exhibit list, grouped by item, one line per file in the form `source path -> photos` or `source path -> receipts`. Confirmed photos and device photos go to `photos`, matched receipts to `receipts`. Every confirmed photo, device photo, photo found by its serial number and matched receipt of every item is on it.
+- the Exhibit list section, one line per file in the form `source path -> photos` or `source path -> receipts`. Confirmed photos and device photos go to `photos`, matched receipts to `receipts`. Every confirmed photo, device photo, photo found by its serial number and matched receipt of every item is on it, each file once.
 
 List possible sightings and possible receipts under the summary, each with the reason. They join the exhibit list only when the user keeps them.
 
@@ -157,11 +160,11 @@ This is the only step that writes, and it starts only after the step 5 answer. T
 
 delegate --target file-agent --instruction 'Create the folder {claim folder} inside {home folder}, then its three subfolders photos, receipts and camera. Return the real claim folder path.'
 
-Then copy item by item: one delegation with the exhibits of item 1, then one delegation with the exhibits of item 2, and so on, so that no item is left out. Never put two items in one delegation, and list every exhibit of the item from the results of steps 2 and 3:
+Then copy every line of the Exhibit list from the draft, leaving out only what the user removed:
 
-delegate --target file-agent --instruction 'Copy, with type copy and overwrite false, each file of this list into the subfolder of {claim folder path} written after its arrow: {exhibit lines of this item}. Do not move any file. When a copy with that name is already in the subfolder, keep it and report it as copied. When a source path is not found, find files with exactly that file name under {home folder}; when exactly one file matches, copy that file and report its real path; otherwise report the file as not copied. Then compute the SHA-256 hash of each copy and of its original. Return one entry for every file of the list, never a sample: the original path, the copy path, the size in bytes and both hashes. List the files not copied.'
+delegate --target file-agent --instruction 'Copy, with type copy and overwrite false, each file of this list into the subfolder of {claim folder path} written after its arrow: {exhibit list lines}. Do not move any file. When a copy with that name is already in the subfolder, keep it and report it as copied. When a source path is not found, find files with exactly that file name under {home folder}; when exactly one file matches, copy that file and report its real path; otherwise report the file as not copied. Then compute the SHA-256 hash of each copy and of its original. Return one entry for every file of the list, never a sample: the original path, the copy path, the size in bytes and both hashes. List the files not copied.'
 
-After the last item, fill the Exhibits table from these real results, one row for every file copied, each file once: original path, copy path, size and hash exactly as returned. A file that was not copied gets "not copied" in the Copy check column and one line under that item's Gaps. In the Photos and Purchase tables, name each file by its copy path. Then save the whole dossier, with the Summary, the Incident, every `## Item {n}` section, the Exhibits and the Notes:
+When file-agent has returned, fill the Exhibits table from its real result, one row for every file copied, each file once: original path, copy path, size and hash exactly as returned. A file that was not copied gets "not copied" in the Copy check column and one line under that item's Gaps. In the Photos and Purchase tables, name each file by its copy path. Then save the whole dossier, with the Summary, the Incident, every `## Item {n}` section, the Exhibits and the Notes, without the Exhibit list:
 
 delegate --target knowledge-agent --instruction 'Save the following Markdown text as a file named CLAIM-DOSSIER.md in the folder {claim folder path}: {dossier text}. Return the verified output path and the byte count.'
 

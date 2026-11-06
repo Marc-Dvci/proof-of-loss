@@ -18,7 +18,7 @@ A yearly record of valuables, made before anything happens.
 
 - Input 2 is not asked. `{incident end}` in step 2 is today.
 - Input 3 lists the valuables to record. When the user gives categories instead, such as "electronics, bikes, jewellery", run step 2 once per category and ask in step 5 which found objects to keep as items.
-- Step 4 is left out.
+- Step 4 is left out. Step 5 runs as in the other modes: the draft is shown and the user answers before anything is written.
 - Default folder name: `Inventory-{year}`.
 - The dossier title is `Home inventory {year}` and the Incident section is replaced by one line: "Inventory made on {today}."
 - Running inventory mode every year creates a new folder each time. Files are never overwritten, so last year's hashes stay valid.

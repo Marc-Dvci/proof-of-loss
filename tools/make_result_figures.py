@@ -75,11 +75,11 @@ def conversation_html(run_case_dir, case_id):
     events = json.load(open(os.path.join(run_case_dir, "events.json"), encoding="utf-8"))
     s = json.load(open(os.path.join(run_case_dir, "score.json"), encoding="utf-8"))
     rows = [("user", by_id(case_id)["request"])]
-    calls = []
+    calls: list = []
 
     def flush():
         if calls:
-            counts = {}
+            counts: dict = {}
             for target, status in calls:
                 counts.setdefault(target, []).append(status)
             parts = [

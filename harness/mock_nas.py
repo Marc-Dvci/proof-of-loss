@@ -683,7 +683,7 @@ class MockNAS:
             docs.append((rel, text))
         if not docs:
             return {"evidence": [], "coverage": {"files_scanned": 0}}
-        df = {}
+        df: dict = {}
         for _, text in docs:
             for t in set(tokens(text) + tokens(_)):
                 df[t] = df.get(t, 0) + 1

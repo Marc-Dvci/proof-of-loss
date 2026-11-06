@@ -10,6 +10,7 @@ import json
 import os
 import re
 import time
+from typing import Any
 
 from mock_nas import load_catalog
 
@@ -128,7 +129,7 @@ class Expert:
         self.system = EXPERT_RULES.format(agent=agent, actions=action_docs(agent) or "- (no actions served)")
         owned = [(cli, a) for (cli, a), m in load_catalog().items() if m["agent"] == agent]
         self.owned = set(owned)
-        self.by_action = {}
+        self.by_action: dict = {}
         for cli, a in owned:
             self.by_action.setdefault(a, []).append(cli)
 
@@ -144,7 +145,7 @@ class Expert:
 
     def run(self, instruction):
         msgs = [{"role": "system", "content": self.system}, {"role": "user", "content": instruction}]
-        failures = {}
+        failures: dict = {}
         for step in range(self.max_steps):
             try:
                 act = self.llm.chat_json(msgs, max_tokens=8192)
@@ -158,7 +159,7 @@ class Expert:
                 return {"status": status, "result": act.get("result", {}), "message": act.get("message", "")}
             calls = act.get("calls") if kind == "cli_batch" else [act] if kind == "cli" else None
             if not calls:
-                obs = {"error": "unknown action; use cli, cli_batch or finish"}
+                obs: Any = {"error": "unknown action; use cli, cli_batch or finish"}
             else:
                 obs = []
                 for c in calls[:15]:

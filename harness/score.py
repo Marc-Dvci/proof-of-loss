@@ -61,7 +61,9 @@ def amounts(text):
 
 def sections(dossier):
     """Split the dossier into {heading: text} on '## ' headings."""
-    out, cur, buf = {}, "_head", []
+    out: dict = {}
+    cur = "_head"
+    buf: list = []
     for line in dossier.splitlines():
         if line.startswith("## "):
             out[cur] = (out[cur] + "\n" if cur in out else "") + "\n".join(buf)
@@ -247,7 +249,7 @@ def score(case, run_dir, events, action_log):
 
 
 def summarize(results):
-    tot = {"cases": len(results)}
+    tot: dict = {"cases": len(results)}
     keys = [
         "photos_expected",
         "photos_cited_ok",

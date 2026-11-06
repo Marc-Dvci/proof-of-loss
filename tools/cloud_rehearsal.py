@@ -18,13 +18,11 @@ import urllib.request
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 sys.path.insert(0, os.path.join(ROOT, "harness"))
-from run import REHEARSAL_DAY, policy_for, user_for  # noqa: E402
 
-import score as scoring  # noqa: E402
-from agents import Main  # noqa: E402
+from run import run_case  # noqa: E402
+
 from cases import by_id  # noqa: E402
 from llm import LLM  # noqa: E402
-from mock_nas import Gate, MockNAS  # noqa: E402
 
 RETRIES = 9
 RETRY_CODES = {429, 500, 502, 503, 504}
@@ -89,55 +87,15 @@ class CloudLLM(LLM):
         return out["choices"][0]["message"].get("content") or ""
 
 
-def run_case(case, out_dir, text_model, vision_model, skill_dir):
-    os.makedirs(out_dir, exist_ok=True)
+def cloud_clients(text_model, vision_model):
     key, base = credentials()
-    household = case["household"]
-    with open(os.path.join(ROOT, "testdata", "spec", f"{household}.json"), encoding="utf-8") as f:
-        spec = json.load(f)
-    with open(os.path.join(ROOT, "testdata", "index", f"{household}.json"), encoding="utf-8") as f:
-        index = json.load(f)
-    actions = []
-    with open(os.path.join(out_dir, "trace.jsonl"), "w", encoding="utf-8") as trace_f:
 
-        def trace(rec):
-            rec["t"] = time.time()
-            trace_f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-            trace_f.flush()
-
+    def build(trace):
         llm = CloudLLM(base, key, text_model, log=trace)
         vlm = CloudLLM(base, key, vision_model, max_tokens=400, log=trace)
-        gate = Gate(policy_for(case["approval"]))
-        archive = os.path.join(ROOT, "testdata", "archive", household)
-        nas = MockNAS(spec, archive, out_dir, index, llm, gate, actions.append, vlm=vlm)
-        nas.cache_path = os.path.join(out_dir, "vision_cache.json")
-        nas.cache = {}
-        main = Main(skill_dir, llm, nas, None, trace, expert_llm=llm, today=case.get("today", REHEARSAL_DAY))
-        main.user = user_for(case, main.events)
-        started = time.time()
-        outcome = main.run(case["request"])
-        elapsed = time.time() - started
-    with open(os.path.join(out_dir, "actions.jsonl"), "w", encoding="utf-8") as f:
-        for a in actions:
-            f.write(json.dumps(a, ensure_ascii=False) + "\n")
-    with open(os.path.join(out_dir, "events.json"), "w", encoding="utf-8") as f:
-        json.dump(main.events, f, indent=1, ensure_ascii=False)
-    res = scoring.score(case, out_dir, main.events, actions)
-    res.update(
-        {
-            "seconds": round(elapsed),
-            "llm_calls": llm.calls + vlm.calls,
-            "cli_calls": len(actions),
-            "approval_requests": len(gate.requests),
-            "delegations": sum(1 for e in main.events if e["kind"] == "delegate"),
-            "error": outcome.get("error"),
-            "text_model": text_model,
-            "vision_model": vision_model,
-        }
-    )
-    with open(os.path.join(out_dir, "score.json"), "w", encoding="utf-8") as f:
-        json.dump(res, f, indent=1, ensure_ascii=False)
-    return res
+        return llm, llm, llm, vlm
+
+    return build
 
 
 def main():
@@ -149,7 +107,15 @@ def main():
     ap.add_argument("--skill", default=os.path.join(ROOT, "skill", "proof-of-loss"))
     args = ap.parse_args()
     for case_id in [c.strip() for c in args.cases.split(",") if c.strip()]:
-        res = run_case(by_id(case_id), os.path.join(args.out, case_id), args.text_model, args.vision_model, args.skill)
+        out_dir = os.path.join(args.out, case_id)
+        res = run_case(
+            by_id(case_id),
+            out_dir,
+            cloud_clients(args.text_model, args.vision_model),
+            args.skill,
+            vision_cache=os.path.join(out_dir, "vision_cache.json"),
+            extra={"text_model": args.text_model, "vision_model": args.vision_model},
+        )
         print(json.dumps({k: v for k, v in res.items() if k not in ("items", "final_reply")}, ensure_ascii=False))
 
 

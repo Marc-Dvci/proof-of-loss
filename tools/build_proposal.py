@@ -42,7 +42,9 @@ strong { font-weight: 650; }
 
 def split(text):
     m = re.match(r"^---\n(.*?)\n---\n(.*)$", text, re.S)
-    meta = dict(line.split(": ", 1) for line in m.group(1).splitlines())
+    if m is None:
+        raise ValueError("the proposal has no front matter")
+    meta = {k: v for k, v in (line.split(": ", 1) for line in m.group(1).splitlines())}
     return meta, m.group(2)
 
 

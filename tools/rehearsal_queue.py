@@ -114,7 +114,7 @@ def server(port, model, ngl, ctx, mmproj=None, extra=(), parallel=1):
     return subprocess.Popen(args, stdout=log, stderr=subprocess.STDOUT)
 
 
-PROFILES = {
+PROFILES: dict = {
     "e4b": {
         "need_gb": 8.5,
         "llm": 8098,
@@ -187,7 +187,7 @@ def main():
     wanted = [c.strip() for c in args.cases.split(",") if c.strip()] or [
         c["id"] for c in CASES if args.split == "all" or c["split"] == args.split
     ]
-    procs = []
+    procs: list = []
 
     def stop_servers():
         for p in procs:

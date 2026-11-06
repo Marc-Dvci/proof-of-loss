@@ -51,7 +51,7 @@ def user_for(case, events):
     def user(message):
         searched = any(e["kind"] == "delegate" and e["target"] in ("photo-agent", "knowledge-agent") for e in events)
         if not searched:
-            return case.get("clarify_answer", "Yes, that is right. Please go ahead.")
+            return case.get("clarify_answer", "Yes, that is right.")
         asks_about_draft = any(word in message.lower() for word in ("exhibit", "folder", "album"))
         if answers and (asks_about_draft or len(answers) < total_answers):
             return answers.pop(0)
@@ -62,61 +62,71 @@ def user_for(case, events):
     return user
 
 
-def run_case(case, out_dir, llm_url, vlm_url, skill_dir, slots=False):
+def local_clients(llm_url, vlm_url, slots=False):
+    """Model clients on a local llama.cpp server. With slots (one server, three slots), the main assistant, the experts
+    and the NAS-side model calls each keep their own prompt cache."""
+
+    def build(trace):
+        llm = LLM(llm_url, log=trace, slot=0 if slots else None)
+        expert_llm = LLM(llm_url, log=trace, slot=1) if slots else llm
+        tool_llm = LLM(llm_url, log=trace, slot=2) if slots else llm
+        vlm = LLM(vlm_url, max_tokens=400, log=trace, slot=2 if slots else None)
+        return llm, expert_llm, tool_llm, vlm
+
+    return build
+
+
+def run_case(case, out_dir, clients, skill_dir, vision_cache=None, extra=None):
+    """Run one case end to end and score it. clients(trace) returns the four model clients: main assistant, experts,
+    NAS-side calls, vision. vision_cache names a cache file of its own, so answers from different models never mix."""
     os.makedirs(out_dir, exist_ok=True)
-    spec = json.load(open(os.path.join(ROOT, "testdata", "spec", f"{case['household']}.json"), encoding="utf-8"))
-    index = json.load(open(os.path.join(ROOT, "testdata", "index", f"{case['household']}.json"), encoding="utf-8"))
-    trace_f = open(os.path.join(out_dir, "trace.jsonl"), "w", encoding="utf-8")
-    actions = []
+    with open(os.path.join(ROOT, "testdata", "spec", f"{case['household']}.json"), encoding="utf-8") as f:
+        spec = json.load(f)
+    with open(os.path.join(ROOT, "testdata", "index", f"{case['household']}.json"), encoding="utf-8") as f:
+        index = json.load(f)
+    actions: list = []
+    with open(os.path.join(out_dir, "trace.jsonl"), "w", encoding="utf-8") as trace_f:
 
-    def trace(rec):
-        rec["t"] = time.time()
-        trace_f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-        trace_f.flush()
+        def trace(rec):
+            rec["t"] = time.time()
+            trace_f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            trace_f.flush()
 
-    def log_action(entry):
-        actions.append(entry)
-
-    # With --slots (one server, three slots), the main assistant, the experts and the NAS-side model calls each keep
-    # their own prompt cache.
-    llm = LLM(llm_url, log=trace, slot=0 if slots else None)
-    expert_llm = LLM(llm_url, log=trace, slot=1) if slots else llm
-    tool_llm = LLM(llm_url, log=trace, slot=2) if slots else llm
-    vlm = LLM(vlm_url, max_tokens=400, log=trace, slot=2 if slots else None)
-    gate = Gate(policy_for(case["approval"]))
-    nas = MockNAS(
-        spec,
-        os.path.join(ROOT, "testdata", "archive", case["household"]),
-        out_dir,
-        index,
-        tool_llm,
-        gate,
-        log_action,
-        vlm=vlm,
-    )
-    main = Main(skill_dir, llm, nas, None, trace, expert_llm=expert_llm, today=case.get("today", REHEARSAL_DAY))
-    main.user = user_for(case, main.events)
-    t0 = time.time()
-    outcome = main.run(case["request"])
-    elapsed = time.time() - t0
-    trace_f.close()
+        llm, expert_llm, tool_llm, vlm = clients(trace)
+        gate = Gate(policy_for(case["approval"]))
+        archive = os.path.join(ROOT, "testdata", "archive", case["household"])
+        nas = MockNAS(spec, archive, out_dir, index, tool_llm, gate, actions.append, vlm=vlm)
+        if vision_cache:
+            nas.cache_path = vision_cache
+            nas.cache = {}
+            if os.path.exists(vision_cache):
+                with open(vision_cache, encoding="utf-8") as f:
+                    nas.cache = json.load(f)
+        assistant = Main(
+            skill_dir, llm, nas, None, trace, expert_llm=expert_llm, today=case.get("today", REHEARSAL_DAY)
+        )
+        assistant.user = user_for(case, assistant.events)
+        t0 = time.time()
+        outcome = assistant.run(case["request"])
+        elapsed = time.time() - t0
     with open(os.path.join(out_dir, "actions.jsonl"), "w", encoding="utf-8") as f:
         for a in actions:
             f.write(json.dumps(a, ensure_ascii=False) + "\n")
     with open(os.path.join(out_dir, "events.json"), "w", encoding="utf-8") as f:
-        json.dump(main.events, f, indent=1, ensure_ascii=False)
-    res = scoring.score(case, out_dir, main.events, actions)
-    clients = {id(c): c for c in (llm, expert_llm, tool_llm, vlm)}.values()
+        json.dump(assistant.events, f, indent=1, ensure_ascii=False)
+    res = scoring.score(case, out_dir, assistant.events, actions)
+    unique = {id(c): c for c in (llm, expert_llm, tool_llm, vlm)}.values()
     res.update(
         {
             "seconds": round(elapsed),
-            "llm_calls": sum(c.calls for c in clients),
+            "llm_calls": sum(c.calls for c in unique),
             "cli_calls": len(actions),
             "approval_requests": len(gate.requests),
-            "delegations": sum(1 for e in main.events if e["kind"] == "delegate"),
+            "delegations": sum(1 for e in assistant.events if e["kind"] == "delegate"),
             "error": outcome.get("error"),
         }
     )
+    res.update(extra or {})
     with open(os.path.join(out_dir, "score.json"), "w", encoding="utf-8") as f:
         json.dump(res, f, indent=1, ensure_ascii=False)
     return res
@@ -143,7 +153,7 @@ def main():
         if os.path.exists(os.path.join(out, c["id"], "score.json")):
             continue
         print(f"== {c['id']}", flush=True)
-        r = run_case(c, os.path.join(out, c["id"]), args.llm_url, args.vlm_url, args.skill, args.slots)
+        r = run_case(c, os.path.join(out, c["id"]), local_clients(args.llm_url, args.vlm_url, args.slots), args.skill)
         print(
             json.dumps({k: v for k, v in r.items() if k not in ("items", "final_reply")}, ensure_ascii=False),
             flush=True,

@@ -472,7 +472,7 @@ def test_policy_for_decides_each_operation_by_mode(mode, decisions):
     "case_id, clarification",
     [
         ("A6-fabrication-request", "No, I only wanted the receipt."),
-        ("A1-burglary", "Yes, that is right. Please go ahead."),
+        ("A1-burglary", "Yes, that is right."),
     ],
     ids=["case-clarify-answer", "default-confirmation"],
 )

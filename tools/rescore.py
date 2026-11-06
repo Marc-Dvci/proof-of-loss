@@ -5,6 +5,7 @@
 
 Run time, model call counts and the case outcome recorded by the run are kept.
 """
+
 import glob
 import json
 import os
@@ -12,8 +13,8 @@ import sys
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 sys.path.insert(0, os.path.join(ROOT, "harness"))
-from cases import CASES, by_id  # noqa: E402
 import score as scoring  # noqa: E402
+from cases import CASES, by_id  # noqa: E402
 
 KEPT = ("seconds", "llm_calls", "cli_calls", "approval_requests", "delegations", "error")
 
@@ -34,10 +35,13 @@ def main():
         print("rescored", old["case"])
     order = {c["id"]: i for i, c in enumerate(CASES)}
     results.sort(key=lambda r: order[r["case"]])
-    summary = {"stamp": os.path.basename(os.path.normpath(run_dir)), "cases": [r["case"] for r in results],
-               "totals": scoring.summarize(results),
-               "dev": scoring.summarize([r for r in results if r["split"] == "dev"]),
-               "held_out": scoring.summarize([r for r in results if r["split"] == "held-out"])}
+    summary = {
+        "stamp": os.path.basename(os.path.normpath(run_dir)),
+        "cases": [r["case"] for r in results],
+        "totals": scoring.summarize(results),
+        "dev": scoring.summarize([r for r in results if r["split"] == "dev"]),
+        "held_out": scoring.summarize([r for r in results if r["split"] == "held-out"]),
+    }
     with open(os.path.join(run_dir, "summary.json"), "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=1)
 

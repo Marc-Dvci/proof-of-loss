@@ -8,6 +8,7 @@ synthetic household archive. Each action returns the catalog envelope {"ok": tru
 Photo search runs over an AI index (objects, scene, visible text) built once per household by a vision model,
 the way the NAS album indexes photos on upload. Visual checks and OCR call the vision model live.
 """
+
 import datetime as dt
 import fnmatch
 import hashlib
@@ -24,15 +25,28 @@ import piexif
 KIT_DIR = os.environ.get("POL_KIT_DIR", os.path.join(os.path.dirname(__file__), "..", "..", "uliya-skill-kit-0.7.3"))
 CATALOG_PATH = os.path.join(KIT_DIR, "data", "capability-catalog.json")
 
-STOP = set("a an and the of for to in on at by with from this that these those is are was were be it its as or "
-           "any all each one per into only your user their there here find look search show return photo photos "
-           "image images file files household item".split())
-SYNONYMS = {"tv": ["television", "screen", "tv"], "television": ["tv", "television", "screen"],
-            "bike": ["bicycle", "bike", "cycle"], "bicycle": ["bike", "bicycle"],
-            "watch": ["wristwatch", "watch"], "wristwatch": ["watch", "wristwatch"],
-            "sofa": ["couch", "sofa"], "couch": ["sofa", "couch"], "laptop": ["laptop", "notebook", "computer"],
-            "camera": ["camera"], "guitar": ["guitar"], "rug": ["rug", "carpet"], "carpet": ["rug", "carpet"],
-            "espresso": ["espresso", "coffee machine"], "headphones": ["headphones", "headset"]}
+STOP = set(
+    "a an and the of for to in on at by with from this that these those is are was were be it its as or "
+    "any all each one per into only your user their there here find look search show return photo photos "
+    "image images file files household item".split()
+)
+SYNONYMS = {
+    "tv": ["television", "screen", "tv"],
+    "television": ["tv", "television", "screen"],
+    "bike": ["bicycle", "bike", "cycle"],
+    "bicycle": ["bike", "bicycle"],
+    "watch": ["wristwatch", "watch"],
+    "wristwatch": ["watch", "wristwatch"],
+    "sofa": ["couch", "sofa"],
+    "couch": ["sofa", "couch"],
+    "laptop": ["laptop", "notebook", "computer"],
+    "camera": ["camera"],
+    "guitar": ["guitar"],
+    "rug": ["rug", "carpet"],
+    "carpet": ["rug", "carpet"],
+    "espresso": ["espresso", "coffee machine"],
+    "headphones": ["headphones", "headset"],
+}
 
 
 def tokens(text):
@@ -45,9 +59,12 @@ def load_catalog():
     actions = {}
     for c in cat["clis"]:
         for a in c["actions"]:
-            actions[(c["name"], a["name"])] = {"agent": c["agent"], "effect": a.get("effect"),
-                                               "approval": a.get("approval"),
-                                               "params": {p["name"]: p for p in a.get("parameters", [])}}
+            actions[(c["name"], a["name"])] = {
+                "agent": c["agent"],
+                "effect": a.get("effect"),
+                "approval": a.get("approval"),
+                "params": {p["name"]: p for p in a.get("parameters", [])},
+            }
     return actions
 
 
@@ -86,8 +103,10 @@ class MockNAS:
         if os.path.exists(self.root):
             shutil.rmtree(self.root)
         shutil.copytree(archive_dir, home_real)
-        self.index = index                      # {"photos": {rel: {...}}, "docs": {rel: text}}
-        self.cache_path = os.path.join(os.path.dirname(archive_dir), f"{os.path.basename(archive_dir)}_vision_cache.json")
+        self.index = index  # {"photos": {rel: {...}}, "docs": {rel: text}}
+        self.cache_path = os.path.join(
+            os.path.dirname(archive_dir), f"{os.path.basename(archive_dir)}_vision_cache.json"
+        )
         self.cache = json.load(open(self.cache_path, encoding="utf-8")) if os.path.exists(self.cache_path) else {}
         self.albums = []
         self.cams = {c["camera_id"]: c for c in spec.get("cameras", [])}
@@ -130,20 +149,32 @@ class MockNAS:
         else:
             args = entry["args"] = self._normalise_args(meta, args)
             entry["effect"], entry["approval"] = meta["effect"], meta["approval"]
-            if meta["effect"] == "state-change" or (meta["effect"] == "mixed" and meta["approval"] != "none"
-                                                     and action in ("translate", "writing")):
+            if meta["effect"] == "state-change" or (
+                meta["effect"] == "mixed" and meta["approval"] != "none" and action in ("translate", "writing")
+            ):
                 decision = self.gate.check({"agent": agent, "cli": cli, "action": action, "args": args})
                 entry["decision"] = decision
                 if decision == "deny":
-                    result = {"ok": False, "error": {"code": "APPROVAL_DENIED", "message": "the user declined this operation"}}
+                    result = {
+                        "ok": False,
+                        "error": {"code": "APPROVAL_DENIED", "message": "the user declined this operation"},
+                    }
                     return self._done(entry, result)
                 if decision == "defer":
-                    result = {"ok": False, "error": {"code": "APPROVAL_PENDING",
-                                                     "message": "waiting for the user to approve this operation"}}
+                    result = {
+                        "ok": False,
+                        "error": {
+                            "code": "APPROVAL_PENDING",
+                            "message": "waiting for the user to approve this operation",
+                        },
+                    }
                     return self._done(entry, result)
             fn = getattr(self, "_" + (cli + "_" + action).replace("-", "_"), None)
             if fn is None:
-                result = {"ok": False, "error": {"code": "UNSUPPORTED", "message": f"{cli} {action} is not served here"}}
+                result = {
+                    "ok": False,
+                    "error": {"code": "UNSUPPORTED", "message": f"{cli} {action} is not served here"},
+                }
             else:
                 try:
                     result = {"ok": True, "data": fn(args)}
@@ -179,8 +210,10 @@ class MockNAS:
     def _normalise_args(meta, args):
         """A one-element list given to a flag that is not repeatable is that single value."""
         spec = meta.get("params") or {}
-        return {k: (v[0] if isinstance(v, list) and len(v) == 1 and k in spec and not spec[k].get("repeatable") else v)
-                for k, v in args.items()}
+        return {
+            k: (v[0] if isinstance(v, list) and len(v) == 1 and k in spec and not spec[k].get("repeatable") else v)
+            for k, v in args.items()
+        }
 
     def _done(self, entry, result):
         entry["ok"] = result["ok"]
@@ -210,15 +243,22 @@ class MockNAS:
     # ------------------------------------------------------------------ file-workflow / ug-filesystem
     def _file_workflow_get_user_dir(self, a):
         real = self._real(self.home)
-        return {"path": self.home, "fileId": "dir:home",
-                "children": sorted(n for n in os.listdir(real) if os.path.isdir(os.path.join(real, n)))}
+        return {
+            "path": self.home,
+            "fileId": "dir:home",
+            "children": sorted(n for n in os.listdir(real) if os.path.isdir(os.path.join(real, n))),
+        }
 
     def _entry(self, real):
         st = os.stat(real)
-        return {"name": os.path.basename(real), "path": self._virtual(real),
-                "type": "dir" if os.path.isdir(real) else "file", "size": st.st_size,
-                "mtime": dt.datetime.fromtimestamp(st.st_mtime).isoformat(timespec="seconds"),
-                "fileId": "file:" + hashlib.md5(self._virtual(real).encode()).hexdigest()[:12]}
+        return {
+            "name": os.path.basename(real),
+            "path": self._virtual(real),
+            "type": "dir" if os.path.isdir(real) else "file",
+            "size": st.st_size,
+            "mtime": dt.datetime.fromtimestamp(st.st_mtime).isoformat(timespec="seconds"),
+            "fileId": "file:" + hashlib.md5(self._virtual(real).encode()).hexdigest()[:12],
+        }
 
     def _ug_filesystem_ls(self, a):
         real = self._real(a.get("path"))
@@ -234,8 +274,12 @@ class MockNAS:
                 out.append(self._entry(os.path.join(dirpath, n)))
         return {"items": out[: int(a.get("limit") or 200)]}
 
-    KIND_EXT = {"image": (".jpg", ".jpeg", ".png", ".heic"), "video": (".mp4", ".mov"),
-                "documents": (".pdf", ".docx", ".txt", ".md", ".jpg"), "audio": (".m4a", ".mp3")}
+    KIND_EXT = {
+        "image": (".jpg", ".jpeg", ".png", ".heic"),
+        "video": (".mp4", ".mov"),
+        "documents": (".pdf", ".docx", ".txt", ".md", ".jpg"),
+        "audio": (".m4a", ".mp3"),
+    }
 
     def _ug_filesystem_find(self, a):
         real = self._real(a.get("path"))
@@ -243,7 +287,7 @@ class MockNAS:
         kind = a.get("type") or "all"
         start, end = a.get("start-timestamp"), a.get("end-timestamp")
         out = []
-        for dirpath, dirs, files in os.walk(real):
+        for dirpath, _dirs, files in os.walk(real):
             for n in files:
                 p = os.path.join(dirpath, n)
                 if not fnmatch.fnmatch(n.lower(), pattern.lower()):
@@ -271,8 +315,8 @@ class MockNAS:
             raw = f.read(int(a.get("length") or 4096))
         try:
             return {"path": a["path"], "content": raw.decode("utf-8")}
-        except UnicodeDecodeError:
-            raise ValueError("binary file; use a document or photo action to read it")
+        except UnicodeDecodeError as err:
+            raise ValueError("binary file; use a document or photo action to read it") from err
 
     def _hash(self, a, algo):
         real = self._real(a["path"])
@@ -338,8 +382,13 @@ class MockNAS:
             yield rel, row
 
     def _photo_item(self, rel, row):
-        return {"path": f"{self.home}/{rel}", "file_name": os.path.basename(rel), "taken": row.get("taken"),
-                "camera_model": row.get("model"), "gps": row.get("gps")}
+        return {
+            "path": f"{self.home}/{rel}",
+            "file_name": os.path.basename(rel),
+            "taken": row.get("taken"),
+            "camera_model": row.get("model"),
+            "gps": row.get("gps"),
+        }
 
     @staticmethod
     def _expand(words):
@@ -349,7 +398,9 @@ class MockNAS:
         return out
 
     def _match_score(self, row, query_words):
-        flat = lambda v: " ".join(map(str, v)) if isinstance(v, list) else str(v or "")
+        def flat(v):
+            return " ".join(map(str, v)) if isinstance(v, list) else str(v or "")
+
         hay = " ".join(flat(row.get(k)) for k in ("objects", "scene", "colors")).lower()
         hay_tokens = set(tokens(hay))
         score = 0.0
@@ -399,8 +450,11 @@ class MockNAS:
             if names and not any(n in rel.lower() for n in names):
                 continue
             if cams:
-                if not any(c in (row.get("model") or "").lower() or c in f"{row.get('make', '')} {row.get('model', '')}".lower()
-                           for c in cams):
+                if not any(
+                    c in (row.get("model") or "").lower()
+                    or c in f"{row.get('make', '')} {row.get('model', '')}".lower()
+                    for c in cams
+                ):
                     continue
                 score += 1
             hits.append((score, row.get("taken") or "", rel, row))
@@ -418,7 +472,9 @@ class MockNAS:
             if not self._dir_ok(rel, a):
                 continue
             if cat == "ocr":
-                text = (" ".join(map(str, row["text"])) if isinstance(row.get("text"), list) else (row.get("text") or "")).lower()
+                text = (
+                    " ".join(map(str, row["text"])) if isinstance(row.get("text"), list) else (row.get("text") or "")
+                ).lower()
                 s = sum(1 for w in q if w in text)
             else:
                 s = self._match_score(row, q)
@@ -430,15 +486,26 @@ class MockNAS:
 
     def _exif(self, real):
         ex = piexif.load(real)
-        g = lambda ifd, tag: ex.get(ifd, {}).get(tag)
-        dec = lambda v: v.decode(errors="replace") if isinstance(v, bytes) else v
-        out = {"DateTimeOriginal": dec(g("Exif", piexif.ExifIFD.DateTimeOriginal)),
-               "Make": dec(g("0th", piexif.ImageIFD.Make)), "Model": dec(g("0th", piexif.ImageIFD.Model)),
-               "LensModel": dec(g("Exif", piexif.ExifIFD.LensModel)),
-               "BodySerialNumber": dec(g("Exif", piexif.ExifIFD.BodySerialNumber))}
+
+        def g(ifd, tag):
+            return ex.get(ifd, {}).get(tag)
+
+        def dec(v):
+            return v.decode(errors="replace") if isinstance(v, bytes) else v
+
+        out = {
+            "DateTimeOriginal": dec(g("Exif", piexif.ExifIFD.DateTimeOriginal)),
+            "Make": dec(g("0th", piexif.ImageIFD.Make)),
+            "Model": dec(g("0th", piexif.ImageIFD.Model)),
+            "LensModel": dec(g("Exif", piexif.ExifIFD.LensModel)),
+            "BodySerialNumber": dec(g("Exif", piexif.ExifIFD.BodySerialNumber)),
+        }
         lat, lon = g("GPS", piexif.GPSIFD.GPSLatitude), g("GPS", piexif.GPSIFD.GPSLongitude)
         if lat and lon:
-            conv = lambda dms: dms[0][0] / dms[0][1] + dms[1][0] / dms[1][1] / 60 + dms[2][0] / dms[2][1] / 3600
+
+            def conv(dms):
+                return dms[0][0] / dms[0][1] + dms[1][0] / dms[1][1] / 60 + dms[2][0] / dms[2][1] / 3600
+
             la, lo = conv(lat), conv(lon)
             if g("GPS", piexif.GPSIFD.GPSLatitudeRef) == b"S":
                 la = -la
@@ -463,8 +530,13 @@ class MockNAS:
         if not os.path.isfile(real):
             raise FileNotFoundError(p)
         rel = self._rel_home(p)
-        text = self._vision_cached("ocr::" + rel, lambda: self.vlm.vision(
-            real, "Transcribe all text visible in this image exactly, line by line. If there is no text, reply NO TEXT."))
+        text = self._vision_cached(
+            "ocr::" + rel,
+            lambda: self.vlm.vision(
+                real,
+                "Transcribe all text visible in this image exactly, line by line. If there is no text, reply NO TEXT.",
+            ),
+        )
         return {"path": p, "text": text}
 
     def _ug_photo_vision_vlm(self, a):
@@ -487,8 +559,11 @@ class MockNAS:
         return {"status": "completed", "album_uuid": album["album_uuid"], "photo_count": len(items)}
 
     def _ug_photo_albums(self, a):
-        return {"items": [{"album_uuid": x["album_uuid"], "name": x["album_name"], "count": len(x["items"])}
-                          for x in self.albums]}
+        return {
+            "items": [
+                {"album_uuid": x["album_uuid"], "name": x["album_name"], "count": len(x["items"])} for x in self.albums
+            ]
+        }
 
     # ------------------------------------------------------------------ ug-document
     def _doc_text(self, p):
@@ -502,6 +577,7 @@ class MockNAS:
             return self._ug_photo_vision_ocr({"path": p})["text"]
         if real.lower().endswith(".pdf"):
             from pypdf import PdfReader
+
             return "\n".join(page.extract_text() or "" for page in PdfReader(real).pages)
         with open(real, encoding="utf-8", errors="replace") as f:
             return f.read()
@@ -509,11 +585,12 @@ class MockNAS:
     EXTRACT_PROMPT = (
         "You extract purchase facts from one document. Use only text that appears in the document. "
         "Copy amounts, dates, document numbers and serial numbers exactly as printed. Use null for anything absent. "
-        "Reply with one JSON object: {\"document_type\": str, \"merchant\": str|null, \"document_number\": str|null, "
-        "\"date\": str|null, \"currency\": str|null, \"total\": str|null, \"line_items\": [{\"description\": str, "
-        "\"quantity\": str|null, \"unit_price\": str|null, \"amount\": str|null, \"serial_number\": str|null}], "
-        "\"warranty_end\": str|null, \"delivery_date\": str|null, \"tracking_number\": str|null, "
-        "\"other_text\": str|null}. Put any line that is not a purchase fact in other_text.")
+        'Reply with one JSON object: {"document_type": str, "merchant": str|null, "document_number": str|null, '
+        '"date": str|null, "currency": str|null, "total": str|null, "line_items": [{"description": str, '
+        '"quantity": str|null, "unit_price": str|null, "amount": str|null, "serial_number": str|null}], '
+        '"warranty_end": str|null, "delivery_date": str|null, "tracking_number": str|null, '
+        '"other_text": str|null}. Put any line that is not a purchase fact in other_text.'
+    )
 
     def _ug_document_extract(self, a):
         files = [str(x) for x in self._list(a.get("file"))]
@@ -527,36 +604,65 @@ class MockNAS:
                 continue
             rel = self._rel_home(p)
             key = "extract::" + rel
-            fields = self._vision_cached(key, lambda: self.llm.chat_json([
-                {"role": "system", "content": self.EXTRACT_PROMPT},
-                {"role": "user", "content": f"Schema hint: {schema}\n\nDocument {os.path.basename(p)}:\n{text[:6000]}"}]))
+            fields = self._vision_cached(
+                key,
+                lambda: self.llm.chat_json(
+                    [
+                        {"role": "system", "content": self.EXTRACT_PROMPT},
+                        {
+                            "role": "user",
+                            "content": f"Schema hint: {schema}\n\nDocument {os.path.basename(p)}:\n{text[:6000]}",  # noqa: B023 (called at once by _vision_cached)
+                        },
+                    ]
+                ),
+            )
             out.append({"file": p, "fields": fields})
         return {"items": out, "coverage": {"requested": len(files), "read": len(out)}, "failures": failures}
 
     def _ug_document_qa(self, a):
         files = [str(x) for x in self._list(a.get("file"))]
         ctx = "\n\n".join(f"[{os.path.basename(p)}]\n{self._doc_text(p)[:4000]}" for p in files)
-        ans = self.llm.chat([{"role": "system", "content": "Answer from the documents only and cite the file name."},
-                             {"role": "user", "content": f"{ctx}\n\nQuestion: {a.get('query')}"}], json_mode=False)
+        ans = self.llm.chat(
+            [
+                {"role": "system", "content": "Answer from the documents only and cite the file name."},
+                {"role": "user", "content": f"{ctx}\n\nQuestion: {a.get('query')}"},
+            ],
+            json_mode=False,
+        )
         return {"answer": ans, "sources": files}
 
     def _ug_document_metadata(self, a):
         out = []
         for p in self._list(a.get("file")):
             real = self._real(p)
-            out.append({"file": p, "size": os.path.getsize(real),
-                        "mtime": dt.datetime.fromtimestamp(os.stat(real).st_mtime).isoformat(timespec="seconds")})
+            out.append(
+                {
+                    "file": p,
+                    "size": os.path.getsize(real),
+                    "mtime": dt.datetime.fromtimestamp(os.stat(real).st_mtime).isoformat(timespec="seconds"),
+                }
+            )
         return {"items": out}
 
     def _ug_document_writing(self, a):
         content = a.get("content") or ""
         if not content and a.get("file"):
             content = "\n\n".join(self._doc_text(p) for p in self._list(a.get("file")))
-        draft = self.llm.chat([
-            {"role": "system", "content": "You write documents. Use only the facts given. Keep every number, date and "
-                                          "identifier exactly as given."},
-            {"role": "user", "content": f"Task: {a.get('task') or 'draft'}. Style: {a.get('style') or 'formal'}.\n"
-                                        f"Request: {a.get('query') or ''}\n\nFacts:\n{content}"}], json_mode=False)
+        draft = self.llm.chat(
+            [
+                {
+                    "role": "system",
+                    "content": "You write documents. Use only the facts given. Keep every number, date and "
+                    "identifier exactly as given.",
+                },
+                {
+                    "role": "user",
+                    "content": f"Task: {a.get('task') or 'draft'}. Style: {a.get('style') or 'formal'}.\n"
+                    f"Request: {a.get('query') or ''}\n\nFacts:\n{content}",
+                },
+            ],
+            json_mode=False,
+        )
         return {"mode": "draft", "draft": draft, "task": a.get("task") or "draft"}
 
     # ------------------------------------------------------------------ ug-knowledge
@@ -590,9 +696,13 @@ class MockNAS:
         scored.sort(key=lambda s: -s[0])
         top = scored[0][0] if scored else 0
         keep = [s for s in scored if s[0] >= 0.45 * top][:8]
-        return {"evidence": [{"path": f"{self.home}/{rel}", "passage": passage, "score": round(score, 2)}
-                             for score, rel, passage in keep],
-                "coverage": {"files_scanned": len(docs)}}
+        return {
+            "evidence": [
+                {"path": f"{self.home}/{rel}", "passage": passage, "score": round(score, 2)}
+                for score, rel, passage in keep
+            ],
+            "coverage": {"files_scanned": len(docs)},
+        }
 
     def _ug_knowledge_save_text(self, a):
         folder = a.get("path") or f"{self.home}/Documents"
@@ -638,9 +748,15 @@ class MockNAS:
                 continue
             if ident != "all" and e["identity"] != ident:
                 continue
-            row = {"event_id": e["event_id"], "time": e["time"], "camera_id": e["camera_id"],
-                   "camera_name": self.cams[e["camera_id"]]["name"], "topic": e["topic"], "identity": e["identity"],
-                   "summary": e["note"]}
+            row = {
+                "event_id": e["event_id"],
+                "time": e["time"],
+                "camera_id": e["camera_id"],
+                "camera_name": self.cams[e["camera_id"]]["name"],
+                "topic": e["topic"],
+                "identity": e["identity"],
+                "summary": e["note"],
+            }
             if e.get("person"):
                 row["person_name"] = e["person"]
             if e.get("plate"):
@@ -651,22 +767,47 @@ class MockNAS:
     def _ug_surveillance_event_evidence(self, a):
         ids = {str(x) for x in self._list(a.get("event-id"))}
         known = {e["event_id"] for e in self.spec.get("events", [])}
-        return {"items": [{"event_id": i, "evidence_type": "snapshot", "reference": f"snapshot://{i}/1",
-                           "expires_in_sec": int(a.get("ttl-sec") or 3600)} for i in sorted(ids) if i in known],
-                "missing": sorted(ids - known)}
+        return {
+            "items": [
+                {
+                    "event_id": i,
+                    "evidence_type": "snapshot",
+                    "reference": f"snapshot://{i}/1",
+                    "expires_in_sec": int(a.get("ttl-sec") or 3600),
+                }
+                for i in sorted(ids)
+                if i in known
+            ],
+            "missing": sorted(ids - known),
+        }
 
     def _ug_surveillance_vehicle_plates(self, a):
         ident = a.get("identity-type") or "all"
         plates = [e for e in self.spec.get("events", []) if e.get("plate")]
-        return {"items": [{"plate_id": "plate_" + e["plate"].replace("-", ""), "plate": e["plate"],
-                           "identity": e["identity"], "last_seen": e["time"]}
-                          for e in plates if ident == "all" or e["identity"] == ident]}
+        return {
+            "items": [
+                {
+                    "plate_id": "plate_" + e["plate"].replace("-", ""),
+                    "plate": e["plate"],
+                    "identity": e["identity"],
+                    "last_seen": e["time"],
+                }
+                for e in plates
+                if ident == "all" or e["identity"] == ident
+            ]
+        }
 
     def _ug_surveillance_identity_resolve(self, a):
         ids = {str(x) for x in self._list(a.get("event-id"))}
         out = []
         for e in self.spec.get("events", []):
             if e["event_id"] in ids:
-                out.append({"event_id": e["event_id"], "identity": e["identity"], "person_name": e.get("person"),
-                            "confidence": 0.93 if e["identity"] == "known" else None})
+                out.append(
+                    {
+                        "event_id": e["event_id"],
+                        "identity": e["identity"],
+                        "person_name": e.get("person"),
+                        "confidence": 0.93 if e["identity"] == "known" else None,
+                    }
+                )
         return {"items": out}

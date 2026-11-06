@@ -6,6 +6,7 @@ Checks: Markdown files only; at most 100 files; each file at most 1 MB; package 
 every reference linked from SKILL.md; no credential-like strings; the kit's check-skill.mjs returns static-pass
 with zero errors and zero warnings. Prints the ZIP path, size and SHA-256.
 """
+
 import argparse
 import hashlib
 import json
@@ -57,8 +58,12 @@ def main():
         if r.startswith("references/") and f"({r})" not in skill_md:
             fail(f"{r} is not linked from SKILL.md")
 
-    node = subprocess.run(["node", os.path.join(args.kit, "scripts", "check-skill.mjs"), SKILL],
-                          capture_output=True, text=True, encoding="utf-8")
+    node = subprocess.run(
+        ["node", os.path.join(args.kit, "scripts", "check-skill.mjs"), SKILL],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
     try:
         check = json.loads(node.stdout)
     except json.JSONDecodeError:
@@ -80,9 +85,22 @@ def main():
         fail(f"zip is {zsize} bytes, limit 10 MB")
     digest = hashlib.sha256(open(zip_path, "rb").read()).hexdigest()
     lines = len(skill_md.split("---", 2)[2].splitlines())
-    print(json.dumps({"zip": zip_path, "zip_bytes": zsize, "package_bytes": total, "files": rel,
-                      "skill_md_body_lines": lines, "checker": check["status"], "checker_summary": check["summary"],
-                      "sha256": digest, "version": version.group(1) if version else None}, indent=1))
+    print(
+        json.dumps(
+            {
+                "zip": zip_path,
+                "zip_bytes": zsize,
+                "package_bytes": total,
+                "files": rel,
+                "skill_md_body_lines": lines,
+                "checker": check["status"],
+                "checker_summary": check["summary"],
+                "sha256": digest,
+                "version": version.group(1) if version else None,
+            },
+            indent=1,
+        )
+    )
 
 
 if __name__ == "__main__":

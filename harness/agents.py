@@ -5,6 +5,7 @@ delegate, read_reference, ask_user and reply. Each expert receives one instructi
 actions of the CLIs the catalog assigns to it, calls them through the mock NAS, and finishes with one of the
 five public delegation states.
 """
+
 import json
 import os
 import re
@@ -30,7 +31,7 @@ DESCR = {
     ("ug-filesystem", "chtimes"): "change file times",
     ("ug-filesystem", "del"): "delete a file to the recycle bin",
     ("ug-photo", "search-picture"): "filter photos: ai-object-name (list of recognised objects), ocr-contains (text in "
-                                    "image), file-name-contains, camera-model, dir, start-time, end-time, page-size",
+    "image), file-name-contains, camera-model, dir, start-time, end-time, page-size",
     ("ug-photo", "search-screen"): "keyword search; category scene for content, ocr for text in images",
     ("ug-photo", "meta"): "EXIF of photos: capture time, make, model, lens, body serial number, GPS",
     ("ug-photo", "vision-ocr"): "read the text in one image",
@@ -38,18 +39,18 @@ DESCR = {
     ("ug-photo", "create-album"): "create a normal album (album-name, add-item list of photo paths)",
     ("ug-photo", "albums"): "list albums",
     ("ug-document", "extract"): "extract structured facts from document files (file list, schema receipt|invoice|"
-                                "auto, query)",
+    "auto, query)",
     ("ug-document", "qa"): "answer a question from document files",
     ("ug-document", "metadata"): "file metadata",
     ("ug-document", "writing"): "draft a document (task draft, style, query, content with the facts)",
     ("ug-knowledge", "collect-evidence"): "find passages that match a query across files under path(s), optional "
-                                          "extension list",
+    "extension list",
     ("ug-knowledge", "save-text"): "save text as a file (path = folder, content, filename-hint = file name)",
     ("ug-surveillance", "cameras"): "registered cameras",
     ("ug-surveillance", "event-timeline"): "events between start-time and end-time (ISO 8601 with offset), topic list, "
-                                           "identity-type, camera-id list",
+    "identity-type, camera-id list",
     ("ug-surveillance", "event-evidence"): "snapshot or clip references for event IDs (event-id list, evidence-type, "
-                                           "purpose)",
+    "purpose)",
     ("ug-surveillance", "vehicle-plates"): "licence plates seen (identity-type)",
     ("ug-surveillance", "identity-resolve"): "who a person in an event is, when known",
 }
@@ -97,11 +98,15 @@ def action_docs(agent, catalog_path=None):
     for (cli, action), meta in sorted(cat.items()):
         if meta["agent"] != agent or (cli, action) not in DESCR:
             continue
-        params = " ".join(f'{n}{"*" if p.get("required") else ""}{"[]" if p.get("repeatable") else ""}'
-                          f'{"=" + "|".join(map(str, p["enum"])) if p.get("enum") else ""}'
-                          for n, p in (meta.get("params") or {}).items())
-        lines.append(f'- "cli": "{cli}", "name": "{action}" - {DESCR[(cli, action)]}; effect {meta["effect"]}; '
-                     f'approval {meta["approval"]}; args: {params or "none"}')
+        params = " ".join(
+            f"{n}{'*' if p.get('required') else ''}{'[]' if p.get('repeatable') else ''}"
+            f"{'=' + '|'.join(map(str, p['enum'])) if p.get('enum') else ''}"
+            for n, p in (meta.get("params") or {}).items()
+        )
+        lines.append(
+            f'- "cli": "{cli}", "name": "{action}" - {DESCR[(cli, action)]}; effect {meta["effect"]}; '
+            f"approval {meta['approval']}; args: {params or 'none'}"
+        )
     return "\n".join(lines)
 
 
@@ -157,8 +162,11 @@ class Expert:
                         sig = json.dumps([cli, name, cargs], sort_keys=True)
                         failures[sig] = failures.get(sig, 0) + 1
                         if failures[sig] >= 3:
-                            return {"status": "failed", "result": {},
-                                    "message": f"{cli} {name} failed three times: {res['error']}"}
+                            return {
+                                "status": "failed",
+                                "result": {},
+                                "message": f"{cli} {name} failed three times: {res['error']}",
+                            }
                 obs = obs[0]["result"] if kind == "cli" else obs
             msgs.append({"role": "assistant", "content": raw})
             msgs.append({"role": "user", "content": "Result: " + clip(obs, 16000)})
@@ -167,7 +175,14 @@ class Expert:
 
 class Main:
     def __init__(self, skill_dir, llm, nas, user, trace, max_steps=60, expert_llm=None, today=None):
-        self.skill_dir, self.llm, self.nas, self.user, self.trace, self.max_steps = skill_dir, llm, nas, user, trace, max_steps
+        self.skill_dir, self.llm, self.nas, self.user, self.trace, self.max_steps = (
+            skill_dir,
+            llm,
+            nas,
+            user,
+            trace,
+            max_steps,
+        )
         self.expert_llm = expert_llm or llm
         self.today = today
         with open(os.path.join(skill_dir, "SKILL.md"), encoding="utf-8") as f:

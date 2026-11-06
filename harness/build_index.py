@@ -6,6 +6,7 @@ evidence collection read; visual checks still look at the image itself at run ti
 
     python harness/build_index.py --household household_a --vlm-url http://127.0.0.1:8098
 """
+
 import argparse
 import json
 import os
@@ -20,22 +21,32 @@ from llm import LLM  # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 TESTDATA = os.path.join(HERE, "..", "testdata")
 
-TAG_PROMPT = ("Index this photo for a photo library search engine. Reply with one JSON object: "
-              "{\"objects\": [up to 12 short nouns for the visible objects, most important first], "
-              "\"scene\": \"one sentence describing the scene\", \"colors\": \"main colours of the main objects\", "
-              "\"text\": \"all legible text in the image, exactly as written, or empty\"}")
+TAG_PROMPT = (
+    "Index this photo for a photo library search engine. Reply with one JSON object: "
+    '{"objects": [up to 12 short nouns for the visible objects, most important first], '
+    '"scene": "one sentence describing the scene", "colors": "main colours of the main objects", '
+    '"text": "all legible text in the image, exactly as written, or empty"}'
+)
 
 
 def exif_row(path):
     ex = piexif.load(path)
-    dec = lambda v: v.decode(errors="replace") if isinstance(v, bytes) else v
+
+    def dec(v):
+        return v.decode(errors="replace") if isinstance(v, bytes) else v
+
     taken = dec(ex.get("Exif", {}).get(piexif.ExifIFD.DateTimeOriginal))
     gps = ex.get("GPS", {})
-    row = {"make": dec(ex.get("0th", {}).get(piexif.ImageIFD.Make)),
-           "model": dec(ex.get("0th", {}).get(piexif.ImageIFD.Model)),
-           "taken": taken.replace(":", "-", 2).replace(" ", "T") if taken else None}
+    row = {
+        "make": dec(ex.get("0th", {}).get(piexif.ImageIFD.Make)),
+        "model": dec(ex.get("0th", {}).get(piexif.ImageIFD.Model)),
+        "taken": taken.replace(":", "-", 2).replace(" ", "T") if taken else None,
+    }
     if gps.get(piexif.GPSIFD.GPSLatitude):
-        conv = lambda d: d[0][0] / d[0][1] + d[1][0] / d[1][1] / 60 + d[2][0] / d[2][1] / 3600
+
+        def conv(d):
+            return d[0][0] / d[0][1] + d[1][0] / d[1][1] / 60 + d[2][0] / d[2][1] / 3600
+
         row["gps"] = [round(conv(gps[piexif.GPSIFD.GPSLatitude]), 5), round(conv(gps[piexif.GPSIFD.GPSLongitude]), 5)]
     return row
 
@@ -58,7 +69,7 @@ def main():
             if low.endswith((".jpg", ".jpeg", ".png")) and rel not in index["photos"]:
                 raw = vlm.vision(full, TAG_PROMPT, max_tokens=500)
                 try:
-                    tags = json.loads(raw[raw.find("{"): raw.rfind("}") + 1])
+                    tags = json.loads(raw[raw.find("{") : raw.rfind("}") + 1])
                 except json.JSONDecodeError:
                     tags = {"objects": [], "scene": raw[:300], "colors": "", "text": ""}
                 tags.update(exif_row(full))
@@ -68,8 +79,12 @@ def main():
                 if low.endswith(".pdf"):
                     text = "\n".join(p.extract_text() or "" for p in PdfReader(full).pages)
                 elif low.endswith((".jpg", ".jpeg", ".png")):
-                    text = vlm.vision(full, "Transcribe all text in this image exactly, line by line, keeping each "
-                                            "amount on the line it belongs to.", max_tokens=800)
+                    text = vlm.vision(
+                        full,
+                        "Transcribe all text in this image exactly, line by line, keeping each "
+                        "amount on the line it belongs to.",
+                        max_tokens=800,
+                    )
                 else:
                     continue
                 index["docs"][rel] = text

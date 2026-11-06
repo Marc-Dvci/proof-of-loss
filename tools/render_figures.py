@@ -3,6 +3,7 @@ and check docs/figures/CAPTIONS.md: one caption per figure, 140 characters or fe
 
     python tools/render_figures.py [name ...]
 """
+
 import os
 import re
 import subprocess
@@ -19,9 +20,20 @@ CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 def render(name):
     src = os.path.join(SRC, f"{name}.html")
     out = os.path.join(OUT, f"{name}.png")
-    subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=2",
-                    "--window-size=1200,800", f"--screenshot={out}", "file:///" + src.replace("\\", "/")],
-                   check=True, capture_output=True)
+    subprocess.run(
+        [
+            CHROME,
+            "--headless=new",
+            "--disable-gpu",
+            "--hide-scrollbars",
+            "--force-device-scale-factor=2",
+            "--window-size=1200,800",
+            f"--screenshot={out}",
+            "file:///" + src.replace("\\", "/"),
+        ],
+        check=True,
+        capture_output=True,
+    )
     w, h = Image.open(out).size
     ok = (w, h) == (2400, 1600)
     print(f"{name}.png {w}x{h} {'ok' if ok else 'WRONG SIZE'}")

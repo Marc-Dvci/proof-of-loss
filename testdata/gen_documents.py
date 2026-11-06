@@ -37,8 +37,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.lib.utils import simpleSplit
-from reportlab.platypus import (BaseDocTemplate, Frame, PageBreak, PageTemplate,
-                                Paragraph, Spacer, Table, TableStyle)
+from reportlab.platypus import BaseDocTemplate, Frame, PageBreak, PageTemplate, Paragraph, Spacer, Table, TableStyle
 
 # No timestamps or random IDs in the PDFs, so reruns match byte for byte.
 rl_config.invariant = 1
@@ -110,8 +109,7 @@ PAPER_RGB = (246, 243, 232)
 INK = (0, 0, 0, 255)
 HEAD_PX, BODY_PX, TOTAL_PX = 32, 26, 28
 MIN_FONT_PX = 22
-ROW_HEIGHT = {"head": 48, "center": 42, "text": 42, "indent": 40,
-              "rule": 28, "total": 48, "gap": 20}
+ROW_HEIGHT = {"head": 48, "center": 42, "text": 42, "indent": 40, "rule": 28, "total": 48, "gap": 20}
 CENTERED_ROWS = ("head", "center")
 MONO_FONTS = {
     True: ["C:/Windows/Fonts/consolab.ttf", "C:/Windows/Fonts/courbd.ttf"],
@@ -120,6 +118,7 @@ MONO_FONTS = {
 
 
 # ---------------------------------------------------------------- helpers
+
 
 def load_spec(key):
     """Read testdata/spec/<key>.json."""
@@ -165,6 +164,7 @@ def _squash(text):
 
 # ---------------------------------------------------------------- PDF pages
 
+
 def _para(text, size=10, bold=False, grey=False, align=TA_LEFT):
     """A reportlab paragraph. `text` is markup, so escape user data first."""
     style = ParagraphStyle(
@@ -194,6 +194,7 @@ def _bottom_margin(footer_lines, minimum):
 
 def _draw_footer(footer_lines, left):
     """Return an onPage callback that prints the footer lines at the bottom."""
+
     def draw(canvas, _doc):
         canvas.saveState()
         canvas.setFont("Helvetica", FOOTER_SIZE)
@@ -202,6 +203,7 @@ def _draw_footer(footer_lines, left):
             y = FOOTER_BASE + (len(footer_lines) - 1 - i) * FOOTER_LEADING
             canvas.drawString(left, y, line)
         canvas.restoreState()
+
     return draw
 
 
@@ -213,8 +215,16 @@ def _build_pdf(story, pagesize, margins, footer_lines, title):
     """
     left, right, top, bottom = margins
     page_w, page_h = pagesize
-    frame = Frame(left, bottom, page_w - left - right, page_h - top - bottom,
-                  leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
+    frame = Frame(
+        left,
+        bottom,
+        page_w - left - right,
+        page_h - top - bottom,
+        leftPadding=0,
+        rightPadding=0,
+        topPadding=0,
+        bottomPadding=0,
+    )
     on_page = _draw_footer(footer_lines, left) if footer_lines else (lambda c, d: None)
     buf = io.BytesIO()
     doc = BaseDocTemplate(buf, pagesize=pagesize, title=title)
@@ -241,52 +251,62 @@ def _receipt_pdf(story, footer, title):
 
 def _line_table(doc, narrow, scale):
     """Description, Qty, Unit price, Amount. A serial is printed under its line."""
-    qty_w, unit_w, amount_w = ((9 * mm, 17 * mm, 17 * mm) if narrow
-                               else (16 * mm, 28 * mm, 28 * mm))
+    qty_w, unit_w, amount_w = (9 * mm, 17 * mm, 17 * mm) if narrow else (16 * mm, 28 * mm, 28 * mm)
     body_w = RECEIPT_BODY_W if narrow else A4_BODY_W
     desc_w = body_w - qty_w - unit_w - amount_w
     serials = doc.get("serials", {})
     size = 10 * scale
-    rows = [[
-        _para("Description", size, bold=True),
-        _para("Qty", size, bold=True, align=TA_RIGHT),
-        _para("Unit price", size, bold=True, align=TA_RIGHT),
-        _para("Amount", size, bold=True, align=TA_RIGHT),
-    ]]
+    rows = [
+        [
+            _para("Description", size, bold=True),
+            _para("Qty", size, bold=True, align=TA_RIGHT),
+            _para("Unit price", size, bold=True, align=TA_RIGHT),
+            _para("Amount", size, bold=True, align=TA_RIGHT),
+        ]
+    ]
     for desc, qty, unit in doc["lines"]:
         label = escape(desc)
         if desc in serials:
-            label += (f"<br/><font size='{8 * scale:.1f}' color='#444444'>"
-                      f"Serial number: {escape(serials[desc])}</font>")
+            label += f"<br/><font size='{8 * scale:.1f}' color='#444444'>Serial number: {escape(serials[desc])}</font>"
         unit_text = "" if unit is None else money(unit)
         amount_text = "" if unit is None else money(Decimal(unit) * qty)
-        rows.append([
-            _para(label, size),
-            _para(str(qty), size, align=TA_RIGHT),
-            _para(unit_text, size, align=TA_RIGHT),
-            _para(amount_text, size, align=TA_RIGHT),
-        ])
+        rows.append(
+            [
+                _para(label, size),
+                _para(str(qty), size, align=TA_RIGHT),
+                _para(unit_text, size, align=TA_RIGHT),
+                _para(amount_text, size, align=TA_RIGHT),
+            ]
+        )
     table = Table(rows, colWidths=[desc_w, qty_w, unit_w, amount_w])
-    table.setStyle(TableStyle([
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LINEBELOW", (0, 0), (-1, 0), 0.6, colors.black),
-        ("TOPPADDING", (0, 0), (-1, -1), 3),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
-        ("LEFTPADDING", (0, 0), (-1, -1), 2),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 2),
-    ]))
+    table.setStyle(
+        TableStyle(
+            [
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("LINEBELOW", (0, 0), (-1, 0), 0.6, colors.black),
+                ("TOPPADDING", (0, 0), (-1, -1), 3),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+                ("LEFTPADDING", (0, 0), (-1, -1), 2),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 2),
+            ]
+        )
+    )
     return table
 
 
 def _key_value_table(rows):
     data = [[_para(escape(k), 10, bold=True), _para(escape(v), 10)] for k, v in rows]
     table = Table(data, colWidths=[40 * mm, A4_BODY_W - 40 * mm])
-    table.setStyle(TableStyle([
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, -1), 2),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
-    ]))
+    table.setStyle(
+        TableStyle(
+            [
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                ("TOPPADDING", (0, 0), (-1, -1), 2),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+            ]
+        )
+    )
     return table
 
 
@@ -300,6 +320,7 @@ def _clauses(items):
 
 
 # ---------------------------------------------------------------- PDF kinds
+
 
 def render_commercial(doc):
     """Order confirmation, delivery note, invoice, bill, or till receipt."""
@@ -360,25 +381,27 @@ def render_policy(doc, key):
         _para("Your household contents are insured up to 40,000 EUR in total at the insured address.", 10),
         Spacer(1, 10),
         _para("2. Valuables", 11, bold=True),
-        _para("Valuables (jewellery, watches) are covered up to 3,000 EUR per item "
-              "without a valuation certificate.", 10),
+        _para(
+            "Valuables (jewellery, watches) are covered up to 3,000 EUR per item without a valuation certificate.", 10
+        ),
         PageBreak(),
         _para("3. Theft and burglary", 11, bold=True),
         _para("Theft and burglary are covered when there is forced entry.", 10),
         Spacer(1, 10),
         _para("4. Making a claim", 11, bold=True),
     ]
-    story += _clauses([
-        "Declare a theft to us within two working days of discovering it.",
-        "File a police report and send us a copy.",
-        "Provide proof of ownership and value for each item claimed: invoices, "
-        "receipts, photos, warranty cards or bank statements.",
-    ])
+    story += _clauses(
+        [
+            "Declare a theft to us within two working days of discovering it.",
+            "File a police report and send us a copy.",
+            "Provide proof of ownership and value for each item claimed: invoices, "
+            "receipts, photos, warranty cards or bank statements.",
+        ]
+    )
     story += [
         Spacer(1, 10),
         _para("5. Water damage", 11, bold=True),
-        _para("Water damage is covered. Declare it to us within five working days "
-              "of discovering it.", 10),
+        _para("Water damage is covered. Declare it to us within five working days of discovering it.", 10),
     ]
     return _a4_pdf(story, doc.get("footer", ""), f"Home insurance policy {doc['number']}")
 
@@ -412,6 +435,7 @@ def render_manual(doc):
 
 
 # ---------------------------------------------------------------- receipt photo
+
 
 def _font(size, bold=False):
     """Monospace font from C:/Windows/Fonts (consola.ttf, else cour.ttf)."""
@@ -503,8 +527,11 @@ def _wood_background(rng):
         draw.rectangle([0, y, w, y + plank], fill=_shade(base, rng.randint(-14, 14)))
         for _ in range(rng.randint(10, 18)):
             gy = y + rng.randint(0, plank)
-            draw.line([(0, gy), (w, gy + rng.randint(-8, 8))],
-                      fill=_shade(base, rng.randint(-40, 12)), width=rng.randint(1, 3))
+            draw.line(
+                [(0, gy), (w, gy + rng.randint(-8, 8))],
+                fill=_shade(base, rng.randint(-40, 12)),
+                width=rng.randint(1, 3),
+            )
         draw.line([(0, y), (w, y)], fill=(48, 30, 18), width=4)
         y += plank
     return img.filter(ImageFilter.GaussianBlur(1.0))
@@ -522,8 +549,7 @@ def _add_noise(img, rng, sigma):
 def _place_receipt(scene, paper, rng):
     """Turn the slip 2 to 5 degrees and lay it on the scene with a soft shadow."""
     angle = rng.uniform(2.0, 5.0) * rng.choice((-1.0, 1.0))
-    turned = paper.rotate(angle, resample=Image.Resampling.BICUBIC, expand=True,
-                          fillcolor=(0, 0, 0, 0))
+    turned = paper.rotate(angle, resample=Image.Resampling.BICUBIC, expand=True, fillcolor=(0, 0, 0, 0))
     x = (scene.width - turned.width) // 2 + rng.randint(-40, 40)
     y = (scene.height - turned.height) // 2 + rng.randint(-30, 30)
     shadow = Image.new("L", scene.size, 0)
@@ -552,25 +578,27 @@ def _exif_bytes(doc, key, home_gps):
     taken = datetime.datetime.fromisoformat(doc["taken"]).strftime("%Y:%m:%d %H:%M:%S")
     taken = taken.encode("ascii")
     lat, lon = home_gps
-    return piexif.dump({
-        "0th": {
-            piexif.ImageIFD.Make: make.encode("ascii"),
-            piexif.ImageIFD.Model: model.encode("ascii"),
-        },
-        "Exif": {
-            piexif.ExifIFD.DateTimeOriginal: taken,
-            piexif.ExifIFD.DateTimeDigitized: taken,
-        },
-        "GPS": {
-            piexif.GPSIFD.GPSVersionID: (2, 2, 0, 0),
-            piexif.GPSIFD.GPSLatitudeRef: b"N" if lat >= 0 else b"S",
-            piexif.GPSIFD.GPSLatitude: _dms(lat),
-            piexif.GPSIFD.GPSLongitudeRef: b"E" if lon >= 0 else b"W",
-            piexif.GPSIFD.GPSLongitude: _dms(lon),
-        },
-        "1st": {},
-        "thumbnail": None,
-    })
+    return piexif.dump(
+        {
+            "0th": {
+                piexif.ImageIFD.Make: make.encode("ascii"),
+                piexif.ImageIFD.Model: model.encode("ascii"),
+            },
+            "Exif": {
+                piexif.ExifIFD.DateTimeOriginal: taken,
+                piexif.ExifIFD.DateTimeDigitized: taken,
+            },
+            "GPS": {
+                piexif.GPSIFD.GPSVersionID: (2, 2, 0, 0),
+                piexif.GPSIFD.GPSLatitudeRef: b"N" if lat >= 0 else b"S",
+                piexif.GPSIFD.GPSLatitude: _dms(lat),
+                piexif.GPSIFD.GPSLongitudeRef: b"E" if lon >= 0 else b"W",
+                piexif.GPSIFD.GPSLongitude: _dms(lon),
+            },
+            "1st": {},
+            "thumbnail": None,
+        }
+    )
 
 
 def render_receipt_photo(doc, spec, key):
@@ -586,6 +614,7 @@ def render_receipt_photo(doc, spec, key):
 
 
 # ---------------------------------------------------------------- dispatch
+
 
 def render_document(key, spec, doc):
     """Return the file bytes for one spec document."""
@@ -612,6 +641,7 @@ def render_all():
 
 
 # ---------------------------------------------------------------- checks
+
 
 def check_pdf(doc, path):
     """The PDF text must hold the merchant, number, lines, total, serials and footer."""
@@ -658,8 +688,12 @@ def check_photo(doc, key, spec, path):
         failures.append("Model mismatch")
 
     gps = exif["GPS"]
-    tags = (piexif.GPSIFD.GPSLatitudeRef, piexif.GPSIFD.GPSLatitude,
-            piexif.GPSIFD.GPSLongitudeRef, piexif.GPSIFD.GPSLongitude)
+    tags = (
+        piexif.GPSIFD.GPSLatitudeRef,
+        piexif.GPSIFD.GPSLatitude,
+        piexif.GPSIFD.GPSLongitudeRef,
+        piexif.GPSIFD.GPSLongitude,
+    )
     if not all(tag in gps for tag in tags):
         failures.append("GPS tags missing")
     else:

@@ -1,0 +1,9 @@
+-r requirements.txt
+codespell==2.4.3       # spelling, settings in pyproject.toml
+hypothesis==6.168.5    # property-based tests
+mypy==2.4.1            # types, settings in pyproject.toml
+pytest==9.2.0
+pytest-cov==7.1.0      # line and branch coverage of the decision core, settings in pyproject.toml
+pytest-randomly==5.0.0 # a new random order on each run; the seed is printed
+pytest-timeout==2.4.0  # fails a test that hangs, limit in pyproject.toml
+ruff==0.17.3           # lint and format, settings in pyproject.toml

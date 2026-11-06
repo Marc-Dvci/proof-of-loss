@@ -5,6 +5,7 @@
 The ten answers (sections 1 to 10) must total 500 English words or fewer; the third-party licence section is
 excluded from the count, as the rules allow. No {{PLACEHOLDER}} may remain. The PDF must be 1 MB or smaller.
 """
+
 import argparse
 import html
 import os
@@ -69,19 +70,28 @@ def main():
         print("FAIL: over 500 words")
         sys.exit(1)
     content = markdown.markdown(body, extensions=["tables"])
-    page = f"""<!doctype html><html><head><meta charset="utf-8"><title>{html.escape(meta['title'])}</title>
+    page = f"""<!doctype html><html><head><meta charset="utf-8"><title>{html.escape(meta["title"])}</title>
 <style>{CSS}</style></head><body>
-<p class="title">{html.escape(meta['title'])}</p><p class="subtitle">{html.escape(meta['subtitle'])}</p>
-<p class="meta">{html.escape(meta['entrant'])} · Track: {html.escape(meta['track'])} · UGREEN Hackathon 2026 on AI NAS</p>
+<p class="title">{html.escape(meta["title"])}</p><p class="subtitle">{html.escape(meta["subtitle"])}</p>
+<p class="meta">{html.escape(meta["entrant"])} · Track: {html.escape(meta["track"])} · UGREEN Hackathon 2026 on AI NAS</p>
 {content}
 <p class="count">Answers 1 to 10: {n} words.</p>
 </body></html>"""
     os.makedirs(os.path.dirname(OUT_HTML), exist_ok=True)
     with open(OUT_HTML, "w", encoding="utf-8") as f:
         f.write(page)
-    subprocess.run([args.chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-                    f"--print-to-pdf={OUT_PDF}", "file:///" + OUT_HTML.replace("\\", "/")],
-                   check=True, capture_output=True)
+    subprocess.run(
+        [
+            args.chrome,
+            "--headless=new",
+            "--disable-gpu",
+            "--no-pdf-header-footer",
+            f"--print-to-pdf={OUT_PDF}",
+            "file:///" + OUT_HTML.replace("\\", "/"),
+        ],
+        check=True,
+        capture_output=True,
+    )
     size = os.path.getsize(OUT_PDF)
     print("pdf:", OUT_PDF, size, "bytes")
     if size > 1024 * 1024:

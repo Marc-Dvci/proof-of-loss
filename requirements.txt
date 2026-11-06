@@ -1,0 +1,6 @@
+# What the rehearsal harness and the package tools import. CI and Docker install from this file.
+markdown==3.11.3   # tools/build_proposal.py
+piexif==1.1.3      # harness/mock_nas.py, testdata/gen_photos.py
+pillow==13.0.0     # tools/render_figures.py, testdata generators
+pypdf==7.0.0       # harness/mock_nas.py, harness/build_index.py, tools/build_proposal.py
+reportlab==5.1.0   # testdata/gen_documents.py, tools/build_proposal.py

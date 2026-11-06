@@ -5,6 +5,7 @@
 The claim folder must contain CLAIM-DOSSIER.md and the photos/, receipts/ and camera/ subfolders as the NAS
 wrote them. Write-order checks need the platform log and are left to the transcript review.
 """
+
 import json
 import os
 import shutil
@@ -12,8 +13,8 @@ import sys
 import tempfile
 
 sys.path.insert(0, os.path.dirname(__file__))
-from cases import by_id  # noqa: E402
 import score  # noqa: E402
+from cases import by_id  # noqa: E402
 
 
 def main():

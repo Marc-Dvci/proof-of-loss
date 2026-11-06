@@ -139,7 +139,7 @@ A new rehearsal needs your own model, and a model's choices vary from run to run
 
 ```bash
 python tools/cloud_rehearsal.py --text-model qwen-plus-2025-04-28 --cases A1-burglary --out runs/mine   # your Model Studio key
-python tools/rehearsal_queue.py --profile g26 --out runs/local --split all                              # llama.cpp and Gemma 4 26B-A4B
+python tools/rehearsal_queue.py --profile g26 --out runs/local --split all                              # Windows: llama.cpp and Gemma 4 26B-A4B
 ```
 
 732 tests (688 unit, 44 integration) run in random order in under a minute, with no network and no key. Decision core coverage is 97% (98% of lines, 95% of branches): the scorer, the stand-in with its approval gate, the agent loops, the case table and the replay. The model client and the two entry points that need a model server are outside that figure.

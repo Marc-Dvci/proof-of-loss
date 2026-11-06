@@ -1,9 +1,11 @@
 # An allowlist: nothing reaches a build unless it is named here, so keys, caches and runs cannot slip in.
 *
-!docs/figures/
+!.env.example
+!docs/
 !evidence/
 !examples/
 !harness/
+!LICENSE
 !pyproject.toml
 !README.md
 !requirements.txt

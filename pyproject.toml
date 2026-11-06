@@ -42,6 +42,7 @@ fail_under = 85
 show_missing = true
 
 [tool.mypy]
+platform = "win32"  # tools/rehearsal_queue.py reads Windows memory counters
 files = ["harness", "tools", "scripts"]
 ignore_missing_imports = true
 check_untyped_defs = true

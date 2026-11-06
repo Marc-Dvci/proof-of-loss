@@ -4,7 +4,7 @@
 
 All of it. `SKILL.md` and every reference file were written for this Hackathon, between 22 October and the submission date:
 
-- the claim, inventory and parcel workflow over six registered experts;
+- the claim, inventory and parcel workflow over five registered experts;
 - the evidence rules: confirmed sightings, device photos, receipt matching, values, the at-home test, and the handling of instruction-like text found inside evidence;
 - the dossier layout with its SHA-256 exhibit table;
 - the read-first, write-once approval design.
@@ -15,7 +15,8 @@ All of it. `SKILL.md` and every reference file were written for this Hackathon, 
 |---|---|
 | Claude Code with Claude Opus 5.5 | writing `SKILL.md` and the reference files, the local rehearsal harness and its tests, and the project documents |
 | Qwen-Image 2.1 | generating the synthetic photos of the validation household |
-| Gemma 4 26B-A4B, run locally through llama.cpp | indexing the validation photos, then playing the assistant and the experts in the local rehearsal |
+| Qwen Plus (`qwen-plus-2025-04-28`, Qwen3 series) and `qwen3-vl-plus` on Alibaba Cloud Model Studio | playing the assistant, the experts and the visual checks in the rehearsal, on synthetic test data only |
+| Gemma 4 26B-A4B, run locally through llama.cpp | building the photo index of the validation households |
 
 ## Third-party components in the package
 
@@ -35,6 +36,7 @@ None. The package contains only Markdown files written for this Skill. It calls 
 - Outputs: one claim folder in the user's home folder (copies of the exhibits plus `CLAIM-DOSSIER.md`) and, on request, one album.
 - No sharing link is created and nothing is sent outside the NAS. The user decides what to send to an insurer.
 - When Uliya is configured with an online model, the Skill asks the user before step 2, as described in the evidence rules.
+- The rehearsal, which is not part of the package, sent synthetic test data to Alibaba Cloud Model Studio. No real household data went anywhere.
 
 ## Test data
 

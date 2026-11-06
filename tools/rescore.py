@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.join(ROOT, "harness"))
 import score as scoring  # noqa: E402
 from cases import CASES, by_id  # noqa: E402
 
-KEPT = ("seconds", "llm_calls", "cli_calls", "approval_requests", "delegations", "error")
+KEPT = ("seconds", "llm_calls", "cli_calls", "approval_requests", "delegations", "error", "text_model", "vision_model")
 
 
 def main():

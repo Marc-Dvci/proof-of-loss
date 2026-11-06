@@ -31,8 +31,8 @@ source = ["harness"]
 branch = true
 
 [tool.codespell]
-skip = "*.png,*.jpg,*.gif,*.svg,*.json,*.jsonl,*.lock,.git,.venv,runs,build,testdata/archive,testdata/raw"
-ignore-words-list = "ser,fo,te"
+skip = "*.png,*.jpg,*.JPG,*.pdf,*.gif,*.svg,*.json,*.jsonl,*.lock,.git,.venv,runs,build,testdata/archive,testdata/raw"
+ignore-words-list = "ser,fo,te,ans"
 
 [tool.coverage.report]
 # The decision core: the scorer, the stand-in CLI layer with its approval gate, the agent loops and the case table.

@@ -3,7 +3,6 @@ __pycache__/
 .venv/
 /build/
 /runs/
-/testdata/archive/
 /testdata/raw/
 *.log
 .coverage
@@ -11,3 +10,4 @@ __pycache__/
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
+/testdata/archive/*_vision_cache.json

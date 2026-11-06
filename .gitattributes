@@ -7,6 +7,13 @@
 *.json text eol=lf
 *.jsonl text eol=lf
 
+# The synthetic archive is hashed byte for byte: git must never touch its line endings.
+testdata/archive/** -text
+*.pdf binary
+*.jpg binary
+*.JPG binary
+*.png binary
+
 # Keep the languages bar honest: figure sources, recorded runs and test data are not the project's code.
 docs/figures/src/** linguist-generated
 evidence/** linguist-generated

@@ -33,7 +33,7 @@ body { width: 1200px; height: 800px; overflow: hidden; font-family: "Segoe UI", 
 TABLE_CSS = """
 table { border-collapse: collapse; width: 100%; margin: 2px 0 8px 0; }
 td, th { border-bottom: 1px solid #e4ebe7; padding: 2px 6px 2px 0; text-align: left; vertical-align: top;
-         overflow-wrap: anywhere; }
+         overflow-wrap: break-word; }
 th { color: #66736c; font-weight: 600; }
 """
 
@@ -55,14 +55,15 @@ def dossier_html(run_case_dir):
 
     rel = os.path.relpath(path, os.path.join(run_case_dir, "nas")).replace("\\", "/")
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>{BASE_CSS}{TABLE_CSS}
-.wrap {{ display: flex; gap: 44px; padding: 36px 56px; }}
+.wrap {{ display: flex; gap: 36px; padding: 36px 40px; }}
 .col {{ flex: 1; min-width: 0; }}
 .path {{ font-size: 12px; color: #0f8a55; letter-spacing: .03em; margin-bottom: 6px; }}
 h1 {{ font-size: 22px; margin: 0 0 10px 0; }} h2 {{ font-size: 15px; margin: 14px 0 5px 0; color: #0f8a55; }}
 h3 {{ font-size: 13px; margin: 8px 0 3px 0; }}
 p, li {{ font-size: 11.5px; line-height: 1.38; margin: 2px 0; }} ul {{ margin: 2px 0; padding-left: 16px; }}
 table {{ font-size: 10.5px; }}
-.ex td:nth-child(6) {{ font-family: Consolas, monospace; font-size: 9.5px; }}
+.ex td:nth-child(6) {{ font-family: Consolas, monospace; font-size: 8.5px; }}
+.ex th:nth-child(3), .ex td:nth-child(3), .ex th:nth-child(4), .ex td:nth-child(4) {{ display: none; }}
 </style></head><body><div class="wrap">
 <div class="col"><div class="path">/{html.escape(rel)}</div><h1>{html.escape(title)}</h1>
 <h2>Summary</h2>{md("Summary")}<h2>Incident</h2>{md("Incident")}<h2>Notes</h2>{md("Notes")}</div>
@@ -124,7 +125,7 @@ def conversation_html(run_case_dir, case_id):
 .text h3 {{ font-size: 12px; margin: 4px 0 2px 0; }} .text table {{ font-size: 10.5px; }}
 .calls {{ font-size: 12px; color: #0f8a55; margin: 4px 0 12px 0; letter-spacing: .02em; }}
 </style></head><body><div class="wrap">
-<div class="meta">{s.get("delegations")} DELEGATIONS · {s.get("cli_calls")} CLI CALLS · {s.get("approval_requests")} APPROVALS · {round(s.get("seconds", 0) / 60)} MIN ON ONE RTX 4070</div>
+<div class="meta">{s.get("delegations")} DELEGATIONS · {s.get("cli_calls")} CLI CALLS · {s.get("approval_requests")} APPROVALS · {round(s.get("seconds", 0) / 60)} MIN</div>
 {items}</div></body></html>"""
 
 
@@ -200,12 +201,11 @@ def safety_html(run_dir):
         )
     a4 = os.path.join(run_dir, "A4-absent-and-injection")
     if os.path.isdir(a4):
-        found = glob.glob(os.path.join(a4, "nas", "**", "CLAIM-DOSSIER*.md"), recursive=True)
-        note = (
-            next((ln.strip("- \n") for ln in open(found[0], encoding="utf-8") if "instruction-like" in ln.lower()), "")
-            if found
-            else ""
-        )
+        # the note the run wrote: the first dossier holding a positive line, never a denial
+        note = ""
+        for path in sorted(glob.glob(os.path.join(run_dir, "*", "nas", "**", "CLAIM-DOSSIER*.md"), recursive=True)):
+            with open(path, encoding="utf-8") as f:
+                note = note or next((ln.strip("- \n") for ln in f if ln.lower().startswith("- instruction-like")), "")
         s = json.load(open(os.path.join(a4, "score.json"), encoding="utf-8"))
         panels.append(
             (

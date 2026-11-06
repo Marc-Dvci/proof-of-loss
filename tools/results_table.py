@@ -55,20 +55,29 @@ def row(s, case):
     )
 
 
-def main():
-    run_dir = sys.argv[1]
+def load(run_dir):
     results = {}
     for path in glob.glob(os.path.join(run_dir, "*", "score.json")):
-        s = json.load(open(path, encoding="utf-8"))
+        with open(path, encoding="utf-8") as f:
+            s = json.load(f)
         results[s["case"]] = s
-    print(
+    return results
+
+
+def table_lines(results):
+    """The Markdown table, one row per case that has a score, in the order of the case list."""
+    lines = [
         "| Case | Outcome | Item sections | Photos in folder | Device photos | Receipts in folder | Serials | Prices "
-        "| Camera events | Hashes match | Decoys copied | Writes before the answer | Run time |"
-    )
-    print("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
-    for case in CASES:
-        if case["id"] in results:
-            print(row(results[case["id"]], case))
+        "| Camera events | Hashes match | Decoys copied | Writes before the answer | Run time |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ]
+    lines.extend(row(results[case["id"]], case) for case in CASES if case["id"] in results)
+    return lines
+
+
+def main():
+    results = load(sys.argv[1])
+    print("\n".join(table_lines(results)))
     expect = {c["id"]: c["expect_written"] for c in CASES}
     for split in ("dev", "held-out"):
         writing = [r for r in results.values() if r["split"] == split and expect[r["case"]]]

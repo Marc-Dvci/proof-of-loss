@@ -7,8 +7,6 @@ on:
   pull_request:
 permissions:
   contents: read
-env:
-  KIT_URL: https://cdn.shopify.com/s/files/1/0630/9416/1602/files/uliya-skill-kit-0.7.3-en.zip
 jobs:
   python:
     runs-on: ubuntu-latest
@@ -28,9 +26,7 @@ jobs:
       - run: mypy
       - name: Fetch the UGREEN Skill Developer Package
         run: |
-          curl -sL -o kit.zip "$KIT_URL"
-          unzip -q kit.zip -d ..
-          mv ../uliya-skill-kit ../uliya-skill-kit-0.7.3
+          python tools/fetch_kit.py
       - name: Official checker and package limits
         run: python tools/build_package.py
       - name: Tests in random order, with line and branch coverage

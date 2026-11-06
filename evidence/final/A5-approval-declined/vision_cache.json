@@ -1,0 +1,111 @@
+{
+"vlm::Photos/2021/IMG_20211121_204031.jpg::a1e47cecaddb96c0": "YES\n\nThe object is a flat-screen TV with a black bezel and a black stand/base visible beneath the screen. Under indoor lighting, the frame appears uniformly black (a near match to true black, as allowed by the prompt). No brand logo, label, serial number, or readable text is visible on the front of the TV in the image \u2014 the lower center of the screen shows only a thin black bar (likely part of the display\u2019s UI or a reflection), but no identifiable branding.\n\nSetting: This is clearly a home living room \u2014 evidenced by the green velvet sofa in the foreground, a wooden TV stand with open shelves holding electronics and cables, a white interior door to the left, plain painted walls, baseboards, and a houseplant partially visible on the right. No commercial signage, price tags, or institutional fixtures are present.",
+"vlm::Photos/2022/IMG_20221224_190512.jpg::a1e47cecaddb96c0": "YES. The image clearly shows a black flat-screen TV.\n\n- **Colour**: The screen is off and appears uniformly black; the bezel is also black, consistent with typical modern flat-screen TVs. Under indoor lighting, it reads as black (no visible grey or reflective tint that would suggest otherwise).\n- **Brand mark**: A small, faint white logo is visible at the bottom center of the bezel \u2014 it appears to be \u201cLG\u201d, though not perfectly sharp, it is legible enough to identify as the LG brand mark.\n- **Labels/serial numbers**: None visible on the front or sides in the image.\n- **Setting**: A home living room \u2014 evidenced by the decorated Christmas tree, wooden TV stand, neutral wall, open doorway, and domestic flooring. No commercial signage, display stands, or public-space features are present.\n\nThus, based solely on object type (flat-screen TV), colour (black), and shape (rectangular with thin bezel), the answer is YES.",
+"vlm::Photos/2023/IMG_20230610_213047.jpg::a1e47cecaddb96c0": "YES.  \nThe object is a black flat-screen TV: rectangular with thin bezels, supported by two angled black legs, placed on a wooden TV stand. Under indoor lighting, the frame and stand appear uniformly black (a near match to true black). A small white logo \u201cCasio\u201d is faintly but legibly visible centered on the bottom bezel. No labels or serial numbers are readable. The setting is a home living room, indicated by the wooden TV cabinet, coffee table with a bowl of popcorn, wall socket, and domestic furniture.",
+"vlm::Photos/2024/IMG_20240302_221107.jpg::a1e47cecaddb96c0": "YES\n\nThe object is a black flat-screen TV mounted on a light-coloured textured wall. Its colour is uniformly black (screen off), consistent with typical flat-panel TVs under indoor lighting; the bezel is also black and thin. A small, faint white logo or brand mark is visible at the bottom center of the bezel \u2014 it appears to read \u201cTCL\u201d (three letters, stylized, common on TCL TVs), though not perfectly sharp, it is legible enough to identify as such.\n\nNo label, serial number, or other text is readable.\n\nThe setting appears to be a hotel room: the TV is wall-mounted above a simple light-wood desk and matching headboard, with a telephone, glasses, and a bag on the desk \u2014 typical furnishings in a standard hotel room. The wall texture and furniture style support this interpretation.",
+"vlm::Photos/2025/IMG_20250214_132009.jpg::a1e47cecaddb96c0": "YES. The image clearly shows a black flat-screen TV. Its screen is off, appearing uniformly black under indoor lighting, consistent with typical LCD/LED displays when powered off. The bezel is slim and also black, matching the screen. No brand mark, logo, label, or serial number is visible on the front of the TV in the image \u2014 the only discernible detail is a small, dark rectangular base stand (likely plastic or metal), but no text is legible. The setting is a home living room: wooden herringbone flooring, a green velvet sofa, a light-wood TV console, potted plants, and a window with sheer curtains and indoor plants on the sill.",
+"vlm::Photos/2026/IMG_20261018_211055.jpg::a1e47cecaddb96c0": "YES.  \nThe TV is a black flat-screen (rectangular, thin-bezel design) with a glossy black frame and stand legs. Under indoor lighting, the bezel and casing appear uniformly black\u2014no visible grey or dark charcoal tones; a near match in colour counts as a match per instructions.  \nNo brand mark, logo, label, or serial number is visible or readable on the front or sides of the TV in this image.  \nThe setting is clearly a home: two people sit on a dark green velvet sofa facing the TV, which rests on a light-wood media console against a plain off-white wall, typical of a living room.",
+"vlm::Photos/2021/IMG_20211120_181204.jpg::a1e47cecaddb96c0": "NO.  \n\nThe image shows a large, upright brown cardboard box leaning against a white wall on a light wood-laminate floor. There is no visible black flat-screen TV\u2014only the packaging. The box has a white label with black text reading:  \n- **VELTRA 55Q8** (likely the product model)  \n- **SN VT55Q8-2111-4471** (serial number)  \n\nNo brand logo or mark is visible beyond the printed model name. The setting appears to be a residential interior (a home), based on the plain wall, baseboard, and flooring style.",
+"ocr::Photos/2021/IMG_20211120_181204.jpg": "VELTRA 55Q8  \nSN VT55Q8-2111-4471",
+"extract::Documents/Manuals/Veltra-55Q8_quick-start.pdf": {
+"document_type": "receipt",
+"merchant": null,
+"document_number": null,
+"date": null,
+"currency": null,
+"total": null,
+"line_items": [],
+"warranty_end": null,
+"delivery_date": null,
+"tracking_number": null,
+"other_text": "Document Veltra-55Q8_quick-start.pdf: Veltra 1 Parc des Ateliers, 38000 Grenoble Quick start guide Veltra 55Q8 TV Edition date: 01/06/2021 1. Remove the packaging and the protective film from the screen. Keep the box for any future move. 2. Place the TV on a stable stand, or fit the wall bracket as shown in the mounting guide. 3. Connect the power cable to the back of the TV, then to a wall socket. 4. Insert the two batteries into the remote control. 5. Connect your devices to the HDMI and USB ports on the back of the TV. 6. Press the power button on the remote control. The set-up wizard starts. 7. Choose your language, country and Wi-Fi network, then follow the on-screen steps. 8. When the wizard asks, check for a software update and let it install."
+},
+"extract::Documents/Purchases/2021-11-15_Maison-Electro_order-confirmation.pdf": {
+"document_type": "invoice",
+"merchant": "Maison Electro",
+"document_number": "ME-2021-4471",
+"date": "15/11/2021",
+"currency": "EUR",
+"total": "1348.90",
+"line_items": [
+{
+"description": "Veltra 55Q8 55-inch OLED TV",
+"quantity": "1",
+"unit_price": "1299.00",
+"amount": "1299.00",
+"serial_number": null
+},
+{
+"description": "Wall bracket VB-200",
+"quantity": "1",
+"unit_price": "49.90",
+"amount": "49.90",
+"serial_number": null
+}
+],
+"warranty_end": null,
+"delivery_date": "20/11/2021",
+"tracking_number": null,
+"other_text": "22 Cours des Peupliers 69007 Lyon Order confirmation"
+},
+"extract::Documents/Purchases/2021-11-20_Maison-Electro_delivery-note.pdf": {
+"document_type": "Delivery note",
+"merchant": "Maison Electro",
+"document_number": "BL-88213",
+"date": "20/11/2021",
+"currency": null,
+"total": null,
+"line_items": [
+{
+"description": "Veltra 55Q8 55-inch OLED TV",
+"quantity": "1",
+"unit_price": null,
+"amount": null,
+"serial_number": "VT55Q8-2111-4471"
+}
+],
+"warranty_end": null,
+"delivery_date": null,
+"tracking_number": null,
+"other_text": "22 Cours des Peupliers 69007 Lyon"
+},
+"vlm::Photos/2021/IMG_20210306_110218.jpg::12f9a698b0cd6487": "YES\n\nThe bicycle is clearly a road bike with drop handlebars, thin tires, and a diamond frame geometry typical of road bikes. Its frame, fork, and seat stays are a uniform matte grey (appearing slightly greenish-grey under indoor lighting, but consistent with \u201cgrey\u201d as allowed by the prompt). The handlebars, brake levers, saddle, pedals, and drivetrain components are black. No brand markings, logos, labels, or serial numbers are visible or legible in the image \u2014 the frame is plain.\n\nThe setting appears to be indoors, against a plain off-white wall with a light brown parquet wooden floor; there are no commercial displays, signage, or outdoor elements. This strongly suggests a home environment (e.g., a hallway or room), not a shop, hotel, or public space.",
+"vlm::Photos/2022/IMG_20220515_154740.jpg::12f9a698b0cd6487": "YES\n\nThe bicycle is clearly a grey road bike with drop handlebars.  \n- **Colour**: The frame, fork, and seatpost are matte or semi-gloss grey (a neutral medium-grey, consistent across components). The wheels, handlebars, saddle, and drivetrain are black. Under natural daylight, the grey appears true to tone\u2014no strong blue or brown cast\u2014so it qualifies as grey per the instruction that near matches under indoor light count as matches.  \n- **Brand mark**: A small green oval-shaped sticker or decal is visible on the down tube, near the bottom bracket. It appears to have some white markings inside (possibly a logo), but no readable text or brand name (e.g., \u201cTrek\u201d, \u201cGiant\u201d, \u201cSpecialized\u201d) is legible. No other brand markings (head badge, seat tube logo) are clearly readable.  \n- **Label/serial number**: None visible in the image.  \n- **Setting**: Outdoors \u2014 the bike is leaning against a metal railing beside a turquoise lake, with mountains, trees, and scattered houses in the background. This is a scenic alpine lakeside location, likely a public viewpoint or roadside rest area.",
+"vlm::Photos/2023/IMG_20230820_091502.jpg::12f9a698b0cd6487": "YES\n\nThe bicycle is clearly a grey road bike with drop handlebars.  \n- **Colour**: The frame, fork, and seatpost are a uniform matte or semi-gloss grey (appears as dark grey/charcoal under ambient daylight). The wheels, rims, and drivetrain components are black or dark metallic; the tires are black with silver reflective sidewall strips. Handlebars and saddle are black.  \n- **Brand mark**: No readable brand name, logo, or model designation is visible on the frame, fork, or components in this image. There is a small indistinct marking near the bottom bracket, but it is not legible.  \n- **Label/serial number**: None visible or readable.  \n- **Setting**: Outdoors \u2014 specifically, on a concrete balcony or terrace, with potted plants (some dried/dead), a wooden railing, and a brick building with shuttered windows in the background. This appears to be a residential setting (a home balcony/terrace), not a shop, hotel, or public display.",
+"vlm::Photos/2024/IMG_20240303_102000.jpg::12f9a698b0cd6487": "NO.  \n\nThe image shows two bicycles parked on the right side of a narrow street:  \n- One is a blue city-style bike with a green basket and upright (not drop) handlebars.  \n- The other, in the foreground, is a utility/commuter bike with straight or slightly swept-back handlebars (not drop), orange/red grips, a front wire basket, and a rear rack. It appears to be mostly black or dark grey with some red/orange accents (e.g., rear reflector, grip ends). There is no visible brand mark, label, or serial number readable on either bike.  \n\nThe setting is outdoors \u2014 a narrow paved alleyway between aged residential buildings, likely in a European town. No grey road bike with drop handlebars is present.",
+"vlm::Photos/2024/IMG_20240608_162245.jpg::12f9a698b0cd6487": "NO.  \nThe bicycle in the image is a bright red city/commuter-style bike, not grey. It has upright (straight) handlebars with black grips, not drop handlebars. A black wire basket is mounted on the front. The frame displays white lettering reading \u201cCORTINA\u201d (partially visible, likely \u201cCORTINA\u201d or \u201cCORTINA BICI\u201d) and a circular logo near the head tube. There are no readable serial numbers or labels beyond that. The setting is outdoors: the bike is parked on dirt/gravel beside a tree, with a paved path, grassy area, and buildings in the background\u2014suggesting a park or urban green space.",
+"vlm::Photos/2025/IMG_20250412_173026.jpg::12f9a698b0cd6487": "NO\n\nThe image shows a close-up of a bicycle crankset and bottom bracket area \u2014 specifically the drive-side crank arm and part of the frame junction (likely the bottom bracket shell and chainstay/seatstay). There is no handlebar visible, nor any indication of drop handlebars or the full bike geometry required to identify it as a road bike. The object type shown is a metal crank arm (likely aluminum), not a complete bicycle.\n\nColour: Matte grey/silver metallic finish (consistent with anodized or painted aluminum under ambient light).\n\nReadable brand/mark/serial: \u201cWTU8841K\u201d is clearly stamped into the crank arm near the spindle bore. No other brand logo or name is visible in this cropped view.\n\nSetting: Outdoors \u2014 the background shows unpaved ground (dirt/concrete mix), with natural daylight and slight shadows; possibly a workshop yard or roadside repair setting. Not a shop display, home interior, or hotel.",
+"vlm::Photos/2026/IMG_20261024_080513.jpg::12f9a698b0cd6487": "YES\n\nThe bicycle is clearly a grey road bike with drop handlebars. The frame, fork, and seat stays are a uniform matte or semi-gloss grey (appearing as medium-to-dark grey under indoor lighting, consistent with \u201cnear match in colour under indoor light\u201d being acceptable). The handlebars are black drop bars with integrated brake/shift levers, typical of road bikes.\n\nNo brand markings, logos, labels, or serial numbers are visible or legible in the image \u2014 the frame is clean and unbranded in the visible areas.\n\nThe setting appears to be an indoor space with plain off-white walls and a concrete or tiled floor, likely a home garage, basement, or utility corridor \u2014 not a shop display, hotel, or outdoor location. A white-and-black cycling helmet rests on the saddle, reinforcing a personal-use context.",
+"ocr::Photos/2021/IMG_20210306_110218.jpg": "NO TEXT",
+"ocr::Photos/2022/IMG_20220515_154740.jpg": "NO TEXT",
+"ocr::Photos/2023/IMG_20230820_091502.jpg": "NO TEXT",
+"ocr::Photos/2026/IMG_20261024_080513.jpg": "NO TEXT",
+"extract::Documents/Receipts/2021-03-04_Cyclonord_receipt.jpg": {
+"document_type": "receipt",
+"merchant": "Cyclonord",
+"document_number": "T-0412",
+"date": "04/03/2021",
+"currency": "EUR",
+"total": "911.00",
+"line_items": [
+{
+"description": "Kestrel Strada 105 grey 56cm",
+"quantity": null,
+"unit_price": null,
+"amount": "899.00",
+"serial_number": "WTU8841K"
+},
+{
+"description": "Bottle cage",
+"quantity": null,
+"unit_price": null,
+"amount": "12.00",
+"serial_number": null
+}
+],
+"warranty_end": null,
+"delivery_date": null,
+"tracking_number": null,
+"other_text": "5 Rue Vallon-Clair 69002 Lyon\n---------------------------\n---------------------------\nThank you"
+}
+}

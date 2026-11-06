@@ -427,11 +427,20 @@ def test_action_docs_lists_only_the_agents_own_described_actions(agent):
     assert len(listed) == len(owned)
 
 
-def test_action_docs_marks_required_parameters_with_a_star_and_repeatable_ones_with_brackets():
+def test_action_docs_give_plain_names_with_their_notes_in_brackets():
     file_docs, photo_docs = action_docs("file-agent"), action_docs("photo-agent")
-    assert "args: path* mode parents" in doc_line(file_docs, "mkdir")
-    assert "args: src* dst* type=move|copy action-type overwrite" in doc_line(file_docs, "cpmv")
-    assert "add-item[]" in doc_line(photo_docs, "create-album")
+    assert "args: path (required), mode, parents" in doc_line(file_docs, "mkdir")
+    assert "args: src (required), dst (required), type (one of move|copy), action-type, overwrite" in doc_line(
+        file_docs, "cpmv"
+    )
+    assert "add-item (list)" in doc_line(photo_docs, "create-album")
+
+
+def test_no_marker_is_glued_to_a_parameter_name_because_a_model_copies_it_as_the_name():
+    for agent in AGENTS:
+        for line in action_docs(agent).splitlines():
+            names = [part.split(" (")[0] for part in line.split("args: ")[1].split(", ")]
+            assert not [n for n in names if any(mark in n for mark in "*[]=")], line
 
 
 def test_every_described_action_exists_in_the_catalog():

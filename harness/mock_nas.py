@@ -190,10 +190,10 @@ class MockNAS:
         spec = meta.get("params") or {}
         if not spec:
             return None
-        valid = ", ".join(f"--{n}{'*' if p.get('required') else ''}" for n, p in spec.items())
+        valid = ", ".join(f"--{n}{' (required)' if p.get('required') else ''}" for n, p in spec.items())
         unknown = [k for k in args if k not in spec]
         if unknown:
-            return f"unknown parameter {', '.join('--' + k for k in unknown)}; this action takes {valid} (* = required)"
+            return f"unknown parameter {', '.join('--' + k for k in unknown)}; this action takes {valid}"
         missing = [n for n, p in spec.items() if p.get("required") and args.get(n) in (None, "", [])]
         if missing:
             return f"missing required parameter {', '.join('--' + n for n in missing)}; this action takes {valid}"

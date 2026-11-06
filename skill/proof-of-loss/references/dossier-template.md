@@ -34,7 +34,7 @@ Description given by the user: {description}
 
 | File | Captured | Device | Place | What is visible |
 |---|---|---|---|---|
-| {file name} | {EXIF capture time} | {camera model} | at home / away {coordinate} / place not recorded | {visual description} |
+| {file name} | {EXIF capture time} | {camera model} | at home / away {coordinate} / place not recorded | {visual description in one short line} |
 
 ### Purchase
 

@@ -188,6 +188,10 @@ def score(case, run_dir, events, action_log):
                 allowed.add(f"{float(ln[2]) * q:.2f}")
         if d.get("total"):
             allowed.add(d["total"])
+    # the dossier's "Total of listed prices" is the sum of the item prices
+    item_prices = [float(it["price_expected"]) for it in per_item.values() if "price_expected" in it]
+    if item_prices:
+        allowed.add(f"{sum(item_prices):.2f}")
     summary_amounts = amounts(dossier)
     sizes = {f"{os.path.getsize(p)}" for p in copied}
     res["amounts_not_in_archive"] = sorted(

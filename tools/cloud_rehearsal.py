@@ -26,7 +26,7 @@ from cases import by_id  # noqa: E402
 from llm import LLM  # noqa: E402
 from mock_nas import Gate, MockNAS  # noqa: E402
 
-RETRIES = 6
+RETRIES = 9
 RETRY_CODES = {429, 500, 502, 503, 504}
 
 
@@ -71,7 +71,7 @@ class CloudLLM(LLM):
             except (urllib.error.URLError, TimeoutError) as e:
                 if attempt == RETRIES - 1:
                     raise RuntimeError(f"{self.model}: {e}") from e
-            time.sleep(2**attempt)
+            time.sleep(min(2**attempt, 60))
         seconds = time.time() - started
         self.calls += 1
         self.seconds += seconds

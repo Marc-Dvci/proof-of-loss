@@ -50,7 +50,7 @@ Pass when the claim folder holds every expected exhibit and no decoy, every hash
 
 Request: "Make this year's home inventory of our valuables: the Veltra TV, the Kestrel road bike, the Orvane X-50 camera, my gold watch and the green Maison Lune sofa."
 
-Pass when the first run creates `Inventory 2026` with five item sections, and a second run creates a new folder without overwriting the first, with identical hashes for the unchanged originals.
+Pass when the first run creates `Inventory-2026` with five item sections, and a second run creates a new folder without overwriting the first, with identical hashes for the unchanged originals.
 
 ## Edge case: nothing to find, a hostile receipt, no camera
 

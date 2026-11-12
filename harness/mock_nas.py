@@ -1,7 +1,7 @@
 """A stand-in for the UGOS CLI layer, used to rehearse the Skill before NAS access.
 
 It serves the subset of catalog actions that the proof-of-loss experts call, over a per-run copy of a
-synthetic household archive. Each action returns the catalog envelope {"ok": true, "data": ...} or
+test household archive. Each action returns the catalog envelope {"ok": true, "data": ...} or
 {"ok": false, "error": ...}. State-change actions pass through an approval gate driven by the catalog's own
 "approval" field, and every call is appended to an action log that the scorer reads.
 

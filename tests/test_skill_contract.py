@@ -529,7 +529,7 @@ def test_a_receipt_is_matched_by_the_extractor_lists_never_by_a_colour():
 def test_the_draft_ends_with_its_three_questions_and_is_never_the_final_reply():
     step5 = STEPS.get(5, "")
     assert "## Your answer (draft only)" in step5
-    assert "The draft is never the final reply" in step5
+    assert "The draft waits for the user" in step5
     assert "A possible image is listed in the Possible table only" in STEPS.get(2, "")
 
 

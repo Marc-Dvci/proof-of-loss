@@ -168,7 +168,7 @@ Send the draft as a question, `waiting_user`, ending with its "Your answer" sect
 2. The claim folder name. The default is `Claim-{incident date}`, `Inventory-{today}` or `Parcel-claim-{order number}`, without spaces.
 3. Whether to create a matching album for the claim photos.
 
-The draft is never the final reply: the run goes on to step 6 after the user answers, and ends at step 7. The answer to this message is the only answer that allows step 6. When the user cancels, reply that nothing was written and stop.
+The draft waits for the user: the run goes on to step 6 after the answer, and ends at step 7. The answer to this message is the only answer that allows step 6. When the user cancels, reply that nothing was written and stop.
 
 ## Step 6. Write the claim folder
 

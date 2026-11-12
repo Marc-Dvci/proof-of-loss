@@ -511,7 +511,7 @@ def test_real_captions_pass_the_renderer_check_for_every_figure_source():
 
 @pytest.fixture
 def rescored(tmp_path, monkeypatch, capsys):
-    """A synthetic run folder with one scored case, rescored by rescore.main()."""
+    """A run folder built here with one scored case, rescored by rescore.main()."""
     run = tmp_path / "run-stamp"
     case_dir = run / "A5-approval-declined"
     (case_dir / "nas").mkdir(parents=True)

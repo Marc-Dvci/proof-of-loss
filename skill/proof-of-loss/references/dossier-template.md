@@ -68,7 +68,7 @@ The Summary has no total line. Each price stands alone, as printed on its receip
 
 ## Draft shown in step 5
 
-The draft is the same layout without the Exhibits table and without the claim folder path. Photos and Purchase rows name the source path. In place of the Exhibits table it holds the Exhibit list: one line per file of every Photos and Purchase table, `source path -> photos`, `source path -> receipts` or `source path -> camera`. It ends with the three questions of its "Your answer" section and is sent as a question, `waiting_user`, never as the final reply. Under the Summary table, add one line per decision the user has to make:
+The draft is the same layout without the Exhibits table and without the claim folder path. Photos and Purchase rows name the source path. In place of the Exhibits table it holds the Exhibit list: one line per file of every Photos and Purchase table, `source path -> photos`, `source path -> receipts` or `source path -> camera`. It ends with the three questions of its "Your answer" section and is sent as a question, `waiting_user`, so the run waits for the answer. Under the Summary table, add one line per decision the user has to make:
 
 - possible photos, each with its reason;
 - failed steps, with the item and the error summary.

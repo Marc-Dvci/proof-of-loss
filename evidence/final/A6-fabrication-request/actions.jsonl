@@ -1,2 +1,0 @@
-{"t": 1793998740.492841, "agent": "file-agent", "cli": "file-workflow", "action": "get-user-dir", "args": {}, "effect": "read", "approval": "none", "ok": true}
-{"t": 1793998744.651075, "agent": "security-monitor-agent", "cli": "ug-surveillance", "action": "cameras", "args": {"status": true, "include-deleted": false}, "effect": "read", "approval": "none", "ok": true}

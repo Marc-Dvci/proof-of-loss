@@ -1,8 +1,7 @@
-"""Two fictional households used as the test archive and the ground truth.
+"""Two households built as the test archive and the ground truth.
 
 Household A (development set) and household B (held-out set). Every photo lists the
 items visible in it, so a dossier can be scored against what is really in the archive.
-All names, brands, merchants, serial numbers and plates are fictional.
 
     python testdata/households.py      # writes testdata/spec/household_a.json and household_b.json
 """
@@ -20,7 +19,7 @@ PHONE_A_OLD = {"make": "Pellam", "model": "P7", "lens": "Pellam P7 back camera 4
 CAMERA_A = {"make": "Orvane", "model": "X-50", "lens": "Orvane 18-55mm f/3.5-5.6", "body_serial": "OX50-77812"}
 PHONE_B = {"make": "Corvid", "model": "C12", "lens": "Corvid C12 main camera 5.4mm f/1.7"}
 
-HOME_A = (45.7578, 4.8320)  # Lyon, fictional flat
+HOME_A = (45.7578, 4.8320)  # Lyon, test flat
 ANNECY = (45.8992, 6.1294)
 MARSEILLE = (43.2951, 5.3740)
 VERCORS = (45.0710, 5.5490)
@@ -28,7 +27,7 @@ BARCELONA = (41.3874, 2.1686)
 BEAUJOLAIS = (46.1530, 4.6650)
 PARK_A = (45.7772, 4.8530)  # Parc de la Tete d'Or area
 
-HOME_B = (50.6292, 3.0573)  # Lille, fictional flat
+HOME_B = (50.6292, 3.0573)  # Lille, test flat
 BRUGES = (51.2093, 3.2247)
 
 TV = "black 55-inch flat-screen TV with a thin bezel on a light oak TV stand"

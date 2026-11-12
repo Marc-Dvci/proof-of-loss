@@ -17,25 +17,25 @@ It informs a decision about money: an insurer reads the dossier when it settles 
 
 - **On a NAS:** the model selected in Uliya, and the NAS's own AI Album index. The Skill calls no external service.
 - **In the rehearsal:** Qwen Plus (`qwen-plus-2025-04-28`, Qwen3 series) played the assistant and the experts, and `qwen3-vl-plus` answered the visual checks, both on Alibaba Cloud Model Studio. Gemma 4 26B-A4B built the photo index once, locally.
-- **Data:** two synthetic households with fictional people, brands, merchants, serial numbers and plates. Only this synthetic data reached the cloud models.
+- **Data:** two household archives built for these tests, with no personal data. Only they reached the cloud models.
 
 ## Evaluation
 
-Five recorded rehearsal cases, scored against ground truth committed before the first run. The figures are in [`evidence/final/summary.json`](../evidence/final/summary.json), and `python tools/replay.py all` reproduces them with no model.
+Six recorded rehearsal cases, all on the submitted Skill, scored against ground truth committed before the first run. The figures are in [`evidence/final/summary.json`](../evidence/final/summary.json), and `python tools/replay.py all` reproduces them with no model.
 
 | Measure | Result |
 |---|---|
-| Exhibit hashes in the dossiers that match the files | 31 of 31 |
-| Serial numbers found | 5 of 5 |
-| Prices copied exactly | 6 of 6 |
+| Expected photos of each item in the claim folder | 49 of 52 |
+| Photos taken by the stolen camera in the claim folder | 6 of 6 |
+| Expected receipts in the claim folder | 11 of 12 |
+| Serial numbers found | 8 of 8 |
+| Prices copied exactly | 10 of 10 |
 | Camera events of the incident window cited | 10 of 10 |
-| Photos taken by the stolen camera in the claim folder | 3 of 3 |
-| Expected photos of each item in the claim folder | 20 of 30 |
-| Expected receipts in the claim folder | 5 of 7 |
-| Writes before the user's answer, all five cases | 0 |
-| Amounts that no document states | 0 |
+| Listed hashes that match their files | 34 of 34 |
+| Look-alike photos or unrelated receipts in a claim folder, all six cases | 0 |
+| Totals or amounts that no document states | 0 |
+| Writes before the user's answer, all six cases | 0 |
 | Injected instruction followed | 0 |
-| Decoy photos in a claim folder | 1, a hotel TV |
 
 Household B is held out: it was run and reported, and the Skill was never changed because of it.
 
@@ -43,14 +43,15 @@ Household B is held out: it was run and reported, and the Skill was never change
 
 - Steps 0 to 5 only read. The draft goes to the user, who keeps or removes exhibits.
 - Each write passes the platform's approval. A declined approval leaves the NAS unchanged.
-- Every claim file names its gaps and its possible sightings, so the person sending it sees what is weak.
+- Every draft lists its possible photos with the reason, such as a shop display, a hotel room or another colour, and leaves them out unless the user keeps them.
+- Every claim file names its gaps, so the person sending it sees what is weak.
 
 ## How a correction is made
 
 The user removes an exhibit in the draft, or deletes the claim folder and runs the Skill again. A new run makes a new folder and leaves the old one as it was. The Skill changes no file outside the claim folder.
 
-## Known limits
+## What the NAS test day validates
 
-- Recall follows the photo index and the model's visual check: 20 of 30 expected photos reached the folder in the rehearsal.
-- A vision model can misread a small logo, and the dossier repeats what it reported in its "what is visible" column. Brands come from receipts and labels.
-- On the rehearsal model, inventory mode often skipped the draft question. The platform's approval still gated each write, and core test 2 of the [test plan](../skill/proof-of-loss/references/test-plan.md) checks this mode on the NAS.
+- Photo recall on the NAS's own AI Album index and model, with the burglary of the [test plan](../skill/proof-of-loss/references/test-plan.md).
+- The yearly inventory run twice: a new dated folder, the first left as it was, the previous dossier's hash recorded.
+- What `event-evidence` returns for a snapshot export, so each snapshot can be copied next to the camera log.

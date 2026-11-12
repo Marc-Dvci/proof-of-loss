@@ -1,4 +1,4 @@
-"""Render the fictional household documents for the proof-of-loss test archive.
+"""Render the household documents for the proof-of-loss test archive.
 
 Every household spec in testdata/spec has a "documents" list. Each entry is
 written to testdata/archive/<household>/<path>:
@@ -48,7 +48,7 @@ ARCHIVE_DIR = HERE / "archive"
 HOUSEHOLDS = ("household_a", "household_b")
 MAX_BYTES = 1_000_000
 
-# Fictional merchant and insurer addresses (street, city line), keyed by the
+# Test merchant and insurer addresses (street, city line), keyed by the
 # merchant name as written in the specs. A merchant always gets the same one.
 ADDRESSES = {
     "Maison Electro": ("22 Cours des Peupliers", "69007 Lyon"),

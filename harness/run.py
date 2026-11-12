@@ -102,19 +102,31 @@ def run_case(case, out_dir, clients, skill_dir, vision_cache=None, extra=None):
             if os.path.exists(vision_cache):
                 with open(vision_cache, encoding="utf-8") as f:
                     nas.cache = json.load(f)
-        assistant = Main(
-            skill_dir, llm, nas, None, trace, expert_llm=expert_llm, today=case.get("today", REHEARSAL_DAY)
-        )
-        assistant.user = user_for(case, assistant.events)
+        events: list = []
+        starts: list = []
+        first_run = None
         t0 = time.time()
-        outcome = assistant.run(case["request"])
+        for n in range(int(case.get("sessions", 1))):
+            if n == 1:
+                # the NAS as the first run left it, so the second run can be checked against it
+                first_run = scoring.session_snapshot(out_dir, archive)
+            starts.append(time.time())
+            assistant = Main(
+                skill_dir, llm, nas, None, trace, expert_llm=expert_llm, today=case.get("today", REHEARSAL_DAY)
+            )
+            assistant.user = user_for(case, assistant.events)
+            outcome = assistant.run(case["request"])
+            events.extend(assistant.events)
         elapsed = time.time() - t0
+    if first_run is not None:
+        with open(os.path.join(out_dir, "sessions.json"), "w", encoding="utf-8") as f:
+            json.dump({"starts": starts, "first_run": first_run}, f, indent=1)
     with open(os.path.join(out_dir, "actions.jsonl"), "w", encoding="utf-8") as f:
         for a in actions:
             f.write(json.dumps(a, ensure_ascii=False) + "\n")
     with open(os.path.join(out_dir, "events.json"), "w", encoding="utf-8") as f:
-        json.dump(assistant.events, f, indent=1, ensure_ascii=False)
-    res = scoring.score(case, out_dir, assistant.events, actions)
+        json.dump(events, f, indent=1, ensure_ascii=False)
+    res = scoring.score(case, out_dir, events, actions)
     unique = {id(c): c for c in (llm, expert_llm, tool_llm, vlm)}.values()
     res.update(
         {
@@ -122,7 +134,7 @@ def run_case(case, out_dir, clients, skill_dir, vision_cache=None, extra=None):
             "llm_calls": sum(c.calls for c in unique),
             "cli_calls": len(actions),
             "approval_requests": len(gate.requests),
-            "delegations": sum(1 for e in assistant.events if e["kind"] == "delegate"),
+            "delegations": sum(1 for e in events if e["kind"] == "delegate"),
             "error": outcome.get("error"),
         }
     )

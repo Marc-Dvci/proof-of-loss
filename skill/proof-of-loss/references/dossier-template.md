@@ -1,6 +1,6 @@
 # Dossier template
 
-`CLAIM-DOSSIER.md` uses this layout. Fill every field from real results. Keep the section order. Write "none found" for an empty section.
+Step 5 shows this layout to the user as a draft and waits for the answer. Step 6 saves it as `CLAIM-DOSSIER.md` only after that answer. Fill every field from real results. Keep the section order. Write "none found" for an empty section.
 
 ```markdown
 # Claim dossier: {incident type}, {incident date}
@@ -12,15 +12,15 @@ Claim folder: {claim folder path}
 
 | Item | Confirmed photos | First seen | Last seen | Receipt | Price | Serial number |
 |---|---|---|---|---|---|---|
-| {item} | {count} | {date, file name} | {date, file name} | {merchant, date} or none found | {price currency} or no price found | {serial} or none found |
+| {item} | {count of sighting, label and serial rows} | {date, file name} | {date, file name} | {merchant, date} or none found | {price currency} or no price found | {serial} or none found |
 
 ## Incident
 
 Date and window: {incident date}, {window start} to {window end} ({timezone})
 
-| Time | Camera | Event | Person | Event ID | Snapshot |
+| Time | Camera | Event | Person | Event ID | Snapshot reference |
 |---|---|---|---|---|---|
-| {time} | {camera} | {topic} | {known name or stranger} | {event ID} | {snapshot reference} |
+| {time} | {camera} | {topic} | {known name or stranger} | {event ID} | {reference exactly as returned} |
 
 Licence plates of stranger vehicle events in the window: {plates} or none found.
 
@@ -30,15 +30,21 @@ Description given by the user: {description}
 
 ### Photos
 
-| File | Captured | Device | Place | What is visible |
-|---|---|---|---|---|
-| {file name} | {EXIF capture time} | {camera model} | at home / away {coordinate} / place not recorded | {visual description in one short line} |
+| File | Captured | Device | Place | Setting | Colour | Text read (OCR) | Status |
+|---|---|---|---|---|---|---|---|
+| {copy path} | {EXIF capture time} | {camera model} | at home / away {coordinate} / place not recorded | {Setting line} | {Colour line} | {OCR text} or no text | sighting / label / serial / device photo |
 
 ### Purchase
 
-| File | Merchant | Date | Line item | Price | Serial number | Warranty end |
-|---|---|---|---|---|---|---|
-| {file name} | {merchant} | {date} | {line item} | {price currency} | {serial} | {date} |
+| File | Merchant | Date | Line item | Matched by | Price | Serial number | Warranty end |
+|---|---|---|---|---|---|---|---|
+| {copy path} | {merchant} | {date} | {line item} | brand / model / serial | {price currency} | {serial} | {date} |
+
+### Possible, left out unless the user keeps them
+
+| File | Captured | Place | Setting, colour, text read | Reason |
+|---|---|---|---|---|
+| {source path} | {EXIF capture time} | {place} | {Setting}, {Colour}, {OCR text} | shop / not at home / colour / brand / receipt, type only |
 
 ### Gaps
 
@@ -46,22 +52,27 @@ Description given by the user: {description}
 
 ## Exhibits
 
-| # | Exhibit | Original path | Copy path | Size (bytes) | SHA-256 of copy | Copy check |
+| # | Exhibit | Original path | Copy path | Size (bytes) | SHA-256 | Copy check |
 |---|---|---|---|---|---|---|
-| E{n} | {file name} | {original path} | {copy path} | {size} | {hash} | matches original / copy mismatch / not copied |
+| E{n} | {file name} | {original path} | {copy path} | {size} | {hash} | matches original / copy mismatch / not copied / camera log saved by this run |
 
 ## Notes
 
 - Every exhibit is a copy of a file stored on this NAS. Its SHA-256 hash was recorded on {today} for the copy and for the original.
 - Capture times are the EXIF values written by the device that took each photo.
 - Prices come from the receipts listed. Items without a receipt are marked no price found.
-- {one line per instruction-like text found, per failed step, and per possible sighting the user kept}
+- {one line per instruction-like text found, per failed step, per possible photo the user kept, and in inventory mode the previous inventory and its hash}
 ```
+
+The Summary has no total line. Each price stands alone, as printed on its receipt.
 
 ## Draft shown in step 5
 
-The draft is the same layout without the Exhibits table and without the claim folder path. In its place it ends with the Exhibit list: one line per file, `source path -> photos` or `source path -> receipts`. Under the Summary table, add one line per decision the user has to make:
+The draft is the same layout without the Exhibits table and without the claim folder path. Photos and Purchase rows name the source path. In place of the Exhibits table it ends with the Exhibit list: one line per file of every Photos and Purchase table, `source path -> photos`, `source path -> receipts` or `source path -> camera`. Under the Summary table, add one line per decision the user has to make:
 
-- possible sightings, with the detail that contradicts the user description;
-- possible receipts;
+- possible photos and possible receipts, each with its reason;
 - failed steps, with the item and the error summary.
+
+## Inventory mode
+
+The title is `Home inventory {today}`, and the Incident section is replaced by one line: "Inventory made on {today}." When an earlier inventory folder exists, the Notes end with: "Previous inventory: {previous inventory folder}. Its CLAIM-DOSSIER.md had SHA-256 {hash} on {today}."

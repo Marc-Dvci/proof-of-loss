@@ -1,7 +1,8 @@
 """Rehearsal cases. Each case is a user request, a scripted user (clarify_answer for questions asked before the
 search, answers for the draft and later questions), an approval policy and the item keys that the
-ground truth in testdata/spec scores against. Cases A* use household A (development); cases B* use household B
-and are held out: they are run and reported, never used to change the Skill.
+ground truth in testdata/spec scores against. A case with sessions: 2 sends the same request a second time, on the NAS
+the first run left behind, as a user making the same inventory twice. Cases A* use household A (development); cases B*
+use household B and are held out: they are run and reported, never used to change the Skill.
 """
 
 KEEP_ALL = "Keep all confirmed exhibits. Use the default folder name. Yes, create the album."
@@ -50,6 +51,7 @@ CASES = [
         "answers": [KEEP_ALL],
         "approval": "approve",
         "expect_written": True,
+        "sessions": 2,
     },
     {
         "id": "A4-absent-and-injection",

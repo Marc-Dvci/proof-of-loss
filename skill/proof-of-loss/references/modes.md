@@ -1,27 +1,29 @@
 # Modes
 
-All three modes run the workflow in `SKILL.md`. This page lists what changes.
+All three modes run the workflow in `SKILL.md`. This page lists what changes. In every mode the step 5 draft is shown and answered before anything is written.
 
 ## claim
 
 The default. For a burglary, theft, fire, flood or water damage.
 
-- Steps 1 to 7 run in order.
+- Steps 0 to 7 run in order.
 - Step 2 searches content captured before the end of the incident window.
-- Step 4 runs when at least one camera is registered.
+- Step 4 runs when at least one camera is registered, and step 6 saves its events as `camera/EVENTS.md`.
 - Default folder name: `Claim-{incident date}`.
-- Fire and water damage usually leave no camera events of interest. Step 4 still lists the window so the user sees when the damage started on camera, when a camera recorded it.
+- Fire and water damage usually leave no camera events of interest. Step 4 still lists the window, so the user sees when a camera recorded the damage starting.
 
 ## inventory
 
 A yearly record of valuables, made before anything happens.
 
-- Input 2 is not asked. `{incident end}` in step 2 is today.
+- The request is complete when it names at least one valuable: start at step 0 and ask nothing. Input 2 is not asked. `{incident end}` in step 2 is now.
 - Input 3 lists the valuables to record. When the user gives categories instead, such as "electronics, bikes, jewellery", run step 2 once per category and ask in step 5 which found objects to keep as items.
-- Step 4 is left out. Step 5 runs as in the other modes: the draft is shown and the user answers before anything is written.
-- Default folder name: `Inventory-{year}`.
-- The dossier title is `Home inventory {year}` and the Incident section is replaced by one line: "Inventory made on {today}."
-- Running inventory mode every year creates a new folder each time. Files are never overwritten, so last year's hashes stay valid.
+- Steps 0, 1, 2, 3, 5, 6 and 7 run. Step 4 is left out.
+- Step 5 runs as in the other modes: the draft is shown, and nothing is written before the user answers it.
+- Default folder name: `Inventory-{today}`, for example `Inventory-2026-11-04`. A second inventory on the same day gets `Inventory-2026-11-04-2`.
+- The dossier title is `Home inventory {today}` and the Incident section is replaced by one line: "Inventory made on {today}."
+- **Previous inventory.** Step 1's folder list shows the earlier `Inventory-…` folders. The one that sorts last is the previous inventory. Step 6 hashes its `CLAIM-DOSSIER.md` and the new dossier records that hash in its Notes. Each inventory therefore fixes the one before it, and an insurer can check the whole series.
+- Earlier inventory folders are never written into, so their copies and hashes stay valid.
 
 ## parcel
 

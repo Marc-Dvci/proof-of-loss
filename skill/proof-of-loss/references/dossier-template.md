@@ -52,9 +52,9 @@ Description given by the user: {description}
 
 ## Exhibits
 
-| # | Exhibit | Original path | Copy path | Size (bytes) | SHA-256 | Copy check |
-|---|---|---|---|---|---|---|
-| E{n} | {file name} | {original path} | {copy path} | {size} | {hash} | matches original / copy mismatch / not copied / camera log saved by this run |
+| Exhibit | Original path | Copy path | Size (bytes) | SHA-256 of the copy | Copy check |
+|---|---|---|---|---|---|
+| {file name} | {original path} | {copy path} | {size} | {hash} | matches original / copy mismatch / not copied / camera log saved by this run |
 
 ## Notes
 
@@ -68,7 +68,7 @@ The Summary has no total line. Each price stands alone, as printed on its receip
 
 ## Draft shown in step 5
 
-The draft is the same layout without the Exhibits table and without the claim folder path. Photos and Purchase rows name the source path. In place of the Exhibits table it holds the Exhibit list: one line per file of every Photos and Purchase table, `source path -> photos`, `source path -> receipts` or `source path -> camera`. It ends with the three questions of its "Your answer" section and is sent as a question, `waiting_user`, so the run waits for the answer. Under the Summary table, add one line per decision the user has to make:
+The draft is the same layout without the Exhibits table and without the claim folder path. Photos and Purchase rows name the source path. In place of the Exhibits table it holds the Exhibit list: under one `### Item {n}` line per item, one line per file of that item's Photos and Purchase tables, `source path -> photos` or `source path -> receipts`. It ends with the three questions of its "Your answer" section and is sent as a question, `waiting_user`, so the run waits for the answer. Under the Summary table, add one line per decision the user has to make:
 
 - possible photos, each with its reason;
 - failed steps, with the item and the error summary.

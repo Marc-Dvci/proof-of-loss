@@ -566,3 +566,15 @@ def test_the_copy_never_takes_a_possible_file_even_when_the_exhibit_list_names_i
     copy = next(i for _e, i in _delegations(step6) if i.startswith("Copy, with type copy"))
     assert "Never copy a file of this second list, even when the first list names it: {files left out}." in copy
     assert "The saved dossier's Photos and Purchase tables hold only files that were copied" in step6
+
+
+def test_step_6_copies_one_item_at_a_time_and_saves_the_dossier_in_every_case():
+    step6 = STEPS.get(6, "")
+    assert "one delegation per item" in step6
+    assert "The dossier is saved in every case." in step6
+    assert "a dossier is named in the report only after its save returned the verified path" in STEPS.get(7, "")
+
+
+def test_an_earlier_inventory_is_never_the_folder_of_a_new_run():
+    assert "It is never this run's folder" in STEPS.get(1, "")
+    assert "even when an earlier claim or inventory folder exists" in STEPS.get(5, "")

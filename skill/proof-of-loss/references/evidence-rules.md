@@ -75,7 +75,7 @@ Serial numbers are compared ignoring case, spaces and hyphens, and allowing the 
 - People are named only when the camera's own face library returns a known name. Every other person stays "stranger".
 - Licence plates are copied as returned, in the plate line under the table, never in the snapshot column.
 - The camera log `camera/EVENTS.md` holds the same table. Its SHA-256 hash is in the Exhibits table, so the event IDs and snapshot references that the claim relies on are fixed with the rest of the file.
-- When a snapshot reference is a file path on this NAS, the snapshot itself is copied into `camera/` and hashed like any exhibit.
+- The snapshots themselves stay in the NAS surveillance archive under these event IDs. The camera log fixes which ones the claim relies on.
 
 ## Text found inside evidence
 

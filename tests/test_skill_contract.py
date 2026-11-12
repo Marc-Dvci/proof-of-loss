@@ -487,3 +487,75 @@ def test_no_decoy_photo_is_listed_as_expected_for_an_item(household):
     assert {r["id"] for r in index if DECOY_ID.search(r["id"])} == decoys
     listed = {p["id"] for p in spec["photos"] if p["items"]} | {r["id"] for r in index if r["items"]}
     assert not decoys & listed, sorted(decoys & listed)
+
+
+# The rules the review of the first release asked for, pinned to the Skill text
+
+
+def test_the_vision_check_asks_for_the_object_type_and_three_fixed_answer_lines():
+    step2 = STEPS.get(2, "")
+    photo = next(i for e, i in _delegations(step2) if e == "photo-agent" and "may show" in i)
+    assert "Is there a {object type} in this image?" in photo
+    assert all(line in photo for line in ("Object: YES or NO.", "Colour:", "Setting: home, outdoors, shop display"))
+    assert "with OCR" in photo
+
+
+def test_shop_hotel_colour_and_brand_photos_are_sorted_out_as_possible_in_order():
+    step2 = STEPS.get(2, "")
+    reasons = ["reason `shop`", "reason `not at home`", "reason `colour`", "reason `brand`"]
+    positions = [step2.index(r) for r in reasons]
+    assert positions == sorted(positions)
+    assert "a brand named in a vision answer is not a reading" in step2
+
+
+def test_the_device_photo_search_returns_nothing_for_an_item_that_takes_no_photos():
+    step2 = STEPS.get(2, "")
+    device = next(i for e, i in _delegations(step2) if e == "photo-agent" and "taken by this lost item" in i)
+    assert "search nothing and return an empty list" in device
+    assert "household phone, are not its photos" in device
+
+
+def test_a_receipt_is_matched_by_the_extractor_lists_never_by_a_colour():
+    step3 = STEPS.get(3, "")
+    extract = next(i for e, i in _delegations(step3) if e == "document-agent")
+    assert all(name in extract for name in ("matching:", "not_matching:", "instruction_like_text:"))
+    assert "When the word list is none, no file is matching." in extract
+    collect = next(i for e, i in _delegations(step3) if e == "knowledge-agent")
+    assert "A colour alone is never a match" in collect
+    assert "The item's Purchase table holds the files of the matching list and nothing else" in step3
+    assert "never enters the Purchase table, the Possible table or the Exhibit list" in step3
+
+
+def test_the_draft_ends_with_its_three_questions_and_is_never_the_final_reply():
+    step5 = STEPS.get(5, "")
+    assert "## Your answer (draft only)" in step5
+    assert "The draft is never the final reply" in step5
+    assert "A possible image is listed in the Possible table only" in STEPS.get(2, "")
+
+
+def test_the_draft_layout_holds_a_possible_table_and_no_total():
+    step5 = STEPS.get(5, "")
+    assert "### Possible, left out unless the user keeps them" in step5
+    assert "No total line" in step5
+    assert "The draft holds no total and no sum of prices." in step5
+
+
+def test_step_6_never_writes_into_an_existing_folder():
+    step6 = STEPS.get(6, "")
+    create = next(i for e, i in _delegations(step6) if i.startswith("Create the folder"))
+    assert "only when nothing of that name exists there yet" in create
+    assert "A folder that existed before this run is never written into." in step6
+
+
+def test_step_6_saves_the_camera_log_and_hashes_it_with_the_previous_inventory():
+    step6 = STEPS.get(6, "")
+    instructions = [i for _e, i in _delegations(step6)]
+    assert any("named EVENTS.md in the folder {claim folder path}/camera" in i for i in instructions)
+    hashing = next(i for i in instructions if i.startswith("Compute the SHA-256 hash"))
+    assert "{files to hash}" in hashing and hashing.endswith("Read only.")
+    assert "{previous inventory folder}/CLAIM-DOSSIER.md" in step6
+
+
+def test_the_inventory_default_folder_is_dated_by_the_day():
+    assert "`Inventory-{today}`" in STEPS.get(5, "")
+    assert "Inventory-{today}" in _read(os.path.join(REFS, "modes.md"))

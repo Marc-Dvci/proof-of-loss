@@ -32,19 +32,19 @@ Description given by the user: {description}
 
 | File | Captured | Device | Place | Setting | Colour | Text read (OCR) | Status |
 |---|---|---|---|---|---|---|---|
-| {copy path} | {EXIF capture time} | {camera model} | at home / away {coordinate} / place not recorded | {Setting line} | {Colour line} | {OCR text} or no text | sighting / label / serial / device photo |
+| {copy path} | {EXIF capture time} | {camera model} | {GPS rounded to three decimals} or not recorded | {Setting line} | {Colour line} | {OCR text} or no text | sighting / label / serial / device photo |
 
 ### Purchase
 
 | File | Merchant | Date | Line item | Matched by | Price | Serial number | Warranty end |
 |---|---|---|---|---|---|---|---|
-| {copy path} | {merchant} | {date} | {line item} | brand / model / serial | {price currency} | {serial} | {date} |
+| {copy path} | {merchant} | {date} | {line item} | brand / model / merchant | {price currency} | {serial} | {date} |
 
 ### Possible, left out unless the user keeps them
 
 | File | Captured | Place | Setting, colour, text read | Reason |
 |---|---|---|---|---|
-| {source path} | {EXIF capture time} | {place} | {Setting}, {Colour}, {OCR text} | shop / not at home / colour / brand / receipt, type only |
+| {source path} | {EXIF capture time} | {place} | {Setting}, {Colour}, {OCR text} | shop / not at home / colour / brand |
 
 ### Gaps
 
@@ -68,9 +68,9 @@ The Summary has no total line. Each price stands alone, as printed on its receip
 
 ## Draft shown in step 5
 
-The draft is the same layout without the Exhibits table and without the claim folder path. Photos and Purchase rows name the source path. In place of the Exhibits table it ends with the Exhibit list: one line per file of every Photos and Purchase table, `source path -> photos`, `source path -> receipts` or `source path -> camera`. Under the Summary table, add one line per decision the user has to make:
+The draft is the same layout without the Exhibits table and without the claim folder path. Photos and Purchase rows name the source path. In place of the Exhibits table it holds the Exhibit list: one line per file of every Photos and Purchase table, `source path -> photos`, `source path -> receipts` or `source path -> camera`. It ends with the three questions of its "Your answer" section and is sent as a question, `waiting_user`, never as the final reply. Under the Summary table, add one line per decision the user has to make:
 
-- possible photos and possible receipts, each with its reason;
+- possible photos, each with its reason;
 - failed steps, with the item and the error summary.
 
 ## Inventory mode

@@ -559,3 +559,10 @@ def test_step_6_saves_the_camera_log_and_hashes_it_with_the_previous_inventory()
 def test_the_inventory_default_folder_is_dated_by_the_day():
     assert "`Inventory-{today}`" in STEPS.get(5, "")
     assert "Inventory-{today}" in _read(os.path.join(REFS, "modes.md"))
+
+
+def test_the_copy_never_takes_a_possible_file_even_when_the_exhibit_list_names_it():
+    step6 = STEPS.get(6, "")
+    copy = next(i for _e, i in _delegations(step6) if i.startswith("Copy, with type copy"))
+    assert "Never copy a file of this second list, even when the first list names it: {files left out}." in copy
+    assert "The saved dossier's Photos and Purchase tables hold only files that were copied" in step6

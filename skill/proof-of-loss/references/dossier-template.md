@@ -30,19 +30,19 @@ Description given by the user: {description}
 
 ### Photos
 
-| File | Captured | Device | Place | Setting | Colour | Text read (OCR) | Status |
+| File | Captured | Device | Place | Setting | Colour | Text read (OCR) | Status: sighting, label, serial or device photo |
 |---|---|---|---|---|---|---|---|
 | {copy path} | {EXIF capture time} | {camera model} | {GPS rounded to three decimals} or not recorded | {Setting line} | {Colour line} | {OCR text} or no text | sighting / label / serial / device photo |
 
 ### Purchase
 
-| File | Merchant | Date | Line item | Matched by | Price | Serial number | Warranty end |
+| File | Merchant | Date | Line item | Matched by: brand, model or merchant | Price | Serial number | Warranty end |
 |---|---|---|---|---|---|---|---|
 | {copy path} | {merchant} | {date} | {line item} | brand / model / merchant | {price currency} | {serial} | {date} |
 
 ### Possible, left out unless the user keeps them
 
-| File | Captured | Place | Setting, colour, text read | Reason |
+| File | Captured | Place | Setting, colour, text read | Reason: shop, not at home, colour or brand |
 |---|---|---|---|---|
 | {source path} | {EXIF capture time} | {place} | {Setting}, {Colour}, {OCR text} | shop / not at home / colour / brand |
 

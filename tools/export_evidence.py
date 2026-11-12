@@ -36,10 +36,12 @@ def export(run_dir, evidence, examples):
         for name in KEPT:
             if os.path.exists(os.path.join(source, name)):
                 shutil.copy2(os.path.join(source, name), dest)
-        for path in glob.glob(os.path.join(source, "nas", "**", "CLAIM-DOSSIER*.md"), recursive=True):
+        for path in sorted(glob.glob(os.path.join(source, "nas", "**", "CLAIM-DOSSIER*.md"), recursive=True))[:1]:
             shutil.copy2(path, os.path.join(dest, "CLAIM-DOSSIER.md"))
+        if os.path.exists(os.path.join(source, "sessions.json")):
+            shutil.copy2(os.path.join(source, "sessions.json"), dest)
         with open(os.path.join(source, "score.json"), encoding="utf-8") as f:
-            scores.append(json.load(f))
+            scores.append(scoring.as_reported(json.load(f)))
         with open(os.path.join(source, "trace.jsonl"), encoding="utf-8") as f:
             models.update(r["model"] for r in map(json.loads, f) if r.get("kind") == "llm" and r.get("model"))
     writing = [s for s in scores if by_id(s["case"])["expect_written"]]

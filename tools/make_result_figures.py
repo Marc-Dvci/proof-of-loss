@@ -62,14 +62,29 @@ h1 {{ font-size: 22px; margin: 0 0 10px 0; }} h2 {{ font-size: 15px; margin: 14p
 h3 {{ font-size: 13px; margin: 8px 0 3px 0; }}
 p, li {{ font-size: 11.5px; line-height: 1.38; margin: 2px 0; }} ul {{ margin: 2px 0; padding-left: 16px; }}
 table {{ font-size: 10.5px; }}
-.ex td:nth-child(6) {{ font-family: Consolas, monospace; font-size: 8.5px; }}
-.ex th:nth-child(3), .ex td:nth-child(3), .ex th:nth-child(4), .ex td:nth-child(4) {{ display: none; }}
+.ex td:nth-child(5) {{ font-family: Consolas, monospace; font-size: 8.5px; }}
+.ex th:nth-child(2), .ex td:nth-child(2), .ex th:nth-child(3), .ex td:nth-child(3),
+.ex th:nth-child(4), .ex td:nth-child(4) {{ display: none; }}
 </style></head><body><div class="wrap">
 <div class="col"><div class="path">/{html.escape(rel)}</div><h1>{html.escape(title)}</h1>
-<h2>Summary</h2>{md("Summary")}<h2>Incident</h2>{md("Incident")}<h2>Notes</h2>{md("Notes")}</div>
+<h2>Summary</h2>{md("Summary")}<h2>Notes</h2>{md("Notes")}</div>
 <div class="col"><h2 style="margin-top:0">{html.escape(item or "")}</h2>{md(item)}
 <h2>Exhibits</h2><div class="ex">{md("Exhibits")}</div></div>
 </div></body></html>"""
+
+
+def draft_excerpt(message):
+    """The parts of a long draft a figure can show: the head and Summary, the first Possible table and the questions."""
+    if "### Possible" not in message:
+        return message
+    head = message.split("## Incident", 1)[0].rstrip()
+    possible = "### Possible" + message.split("### Possible", 1)[1]
+    possible = re.split(r"\n#{2,3} ", possible, maxsplit=1)[0].rstrip()
+    questions = message.split("## Your answer", 1)[1] if "## Your answer" in message else ""
+    parts = [head, "*…*", possible]
+    if questions:
+        parts += ["## Your answer" + questions.rstrip()]
+    return "\n\n".join(parts)
 
 
 def conversation_html(run_case_dir, case_id):
@@ -95,7 +110,7 @@ def conversation_html(run_case_dir, case_id):
             calls.append((e["target"], e["status"]))
         elif e["kind"] in ("ask_user", "reply"):
             flush()
-            rows.append(("uliya", e["message"]))
+            rows.append(("uliya", draft_excerpt(e["message"]) if e["kind"] == "ask_user" else e["message"]))
         elif e["kind"] == "user_answer":
             rows.append(("user", e["message"]))
     flush()
@@ -118,7 +133,7 @@ def conversation_html(run_case_dir, case_id):
 .who {{ font-size: 11px; font-weight: 650; color: #0f8a55; letter-spacing: .08em; text-transform: uppercase; }}
 .msg.user .who {{ color: #66736c; }}
 .text {{ font-size: 13px; line-height: 1.4; }}
-.msg.uliya .text {{ max-height: 250px; overflow: hidden; padding: 2px 0;
+.msg.uliya .text {{ max-height: 330px; overflow: hidden; padding: 2px 0;
   -webkit-mask-image: linear-gradient(#000 78%, transparent); background: radial-gradient(ellipse at left, #eef8f2 0%, #ffffff 75%); }}
 .text p, .text li {{ margin: 2px 0; }} .text ul, .text ol {{ margin: 2px 0; padding-left: 18px; }}
 .text h1 {{ font-size: 15px; margin: 4px 0; }} .text h2 {{ font-size: 13px; margin: 6px 0 2px 0; color: #0f8a55; }}
@@ -130,14 +145,16 @@ def conversation_html(run_case_dir, case_id):
 
 
 def load_scores(run_dir):
-    return [json.load(open(p, encoding="utf-8")) for p in sorted(glob.glob(os.path.join(run_dir, "*", "score.json")))]
+    return [
+        scoring.as_reported(json.load(open(p, encoding="utf-8")))
+        for p in sorted(glob.glob(os.path.join(run_dir, "*", "score.json")))
+    ]
 
 
 def results_html(run_dir):
     scores = load_scores(run_dir)
     writing = [s for s in scores if by_id(s["case"])["expect_written"]]
     ev, safe = scoring.summarize(writing), scoring.summarize(scores)
-    listed = safe["exhibits_listed"]
     evidence = [
         ("photos of each item in the claim folder", f"{ev['photos_copied_ok']}/{ev['photos_expected']}"),
         ("receipts in the claim folder", f"{ev['receipts_copied_ok']}/{ev['receipts_expected']}"),
@@ -146,8 +163,11 @@ def results_html(run_dir):
         ("camera events of the window cited", ev["events_cited"]),
     ]
     safety = [
-        ("listed exhibits copied", f"{listed - safe['exhibits_not_copied']}/{listed}"),
-        ("decoy photos copied", str(safe["decoys_copied"])),
+        (
+            "listed hashes that match their files",
+            f"{safe['hashes_listed'] - safe['hashes_wrong']}/{safe['hashes_listed']}",
+        ),
+        ("look-alike photos or unrelated receipts in a folder", str(safe.get("wrong_exhibits_copied", 0))),
         ("amounts not found in a document", str(safe["invented_amounts"])),
         ("writes before the user's answer", str(safe["writes_before_confirmation"])),
         ("injected instruction followed", str(safe["injection_followed"])),

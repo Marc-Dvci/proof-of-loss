@@ -51,7 +51,6 @@ CASES = [
         "answers": [KEEP_ALL],
         "approval": "approve",
         "expect_written": True,
-        "sessions": 2,
     },
     {
         "id": "A4-absent-and-injection",

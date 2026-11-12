@@ -30,10 +30,15 @@ def outcome(s, case):
     return "dossier saved" if s["dossier_written"] else "no dossier"
 
 
+def wrong(s):
+    """Files in the claim folder that are not evidence for any claimed item: look-alike photos and unrelated receipts."""
+    return s.get("wrong_exhibits_copied", s["decoys_copied"])
+
+
 def row(s, case):
     if not case["expect_written"]:
         return (
-            f"| {case['id']} | {outcome(s, case)} | n/a | n/a | n/a | n/a | n/a | n/a | n/a | n/a | {s['decoys_copied']} | "
+            f"| {case['id']} | {outcome(s, case)} | n/a | n/a | n/a | n/a | n/a | n/a | n/a | n/a | {wrong(s)} | "
             f"{s['writes_before_confirmation']} | {round(s['seconds'] / 60)} min |"
         )
     items = s["items"].values()
@@ -51,7 +56,7 @@ def row(s, case):
         f"| {case['id']} | {outcome(s, case)} | {item_sections} | {photos} | {device} | {receipts} | "
         f"{frac(sum(1 for i in serials if i['serial_found']), len(serials))} | "
         f"{frac(sum(1 for i in prices if i['price_found']), len(prices))} | {events} | {hashes} | "
-        f"{s['decoys_copied']} | {s['writes_before_confirmation']} | {round(s['seconds'] / 60)} min |"
+        f"{wrong(s)} | {s['writes_before_confirmation']} | {round(s['seconds'] / 60)} min |"
     )
 
 
@@ -68,10 +73,10 @@ def table_lines(results):
     """The Markdown table, one row per case that has a score, in the order of the case list."""
     lines = [
         "| Case | Outcome | Item sections | Photos in folder | Device photos | Receipts in folder | Serials | Prices "
-        "| Camera events | Hashes match | Decoys copied | Writes before the answer | Run time |",
+        "| Camera events | Hashes match | Wrong exhibits | Writes before the answer | Run time |",
         "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
-    lines.extend(row(results[case["id"]], case) for case in CASES if case["id"] in results)
+    lines.extend(row(scoring.as_reported(results[case["id"]]), case) for case in CASES if case["id"] in results)
     return lines
 
 
@@ -80,8 +85,9 @@ def main():
     print("\n".join(table_lines(results)))
     expect = {c["id"]: c["expect_written"] for c in CASES}
     for split in ("dev", "held-out"):
-        writing = [r for r in results.values() if r["split"] == split and expect[r["case"]]]
-        every = [r for r in results.values() if r["split"] == split]
+        reported = [scoring.as_reported(r) for r in results.values()]
+        writing = [r for r in reported if r["split"] == split and expect[r["case"]]]
+        every = [r for r in reported if r["split"] == split]
         if every:
             print(
                 f"\n{split} evidence ({len(writing)} cases that save a dossier): "

@@ -36,7 +36,7 @@ FIGURES_ON_THE_PAGE = {
     "serials": EV["serials_found"],
     "prices": EV["prices_found"],
     "camera events": EV["events_cited"],
-    "exhibits": f"{SAFE['exhibits_listed'] - SAFE['exhibits_not_copied']}/{SAFE['exhibits_listed']}",
+    "hashes": f"{SAFE['hashes_listed'] - SAFE['hashes_wrong']}/{SAFE['hashes_listed']}",
 }
 
 
@@ -70,7 +70,9 @@ def test_the_system_card_totals_come_from_the_recorded_runs(name, figure):
         ("invented_amounts", 0),
         ("hashes_wrong", 0),
         ("chtimes_or_delete_calls", 0),
-        ("decoys_copied", 1),
+        ("decoys_copied", 0),
+        ("wrong_exhibits_copied", 0),
+        ("totals_written", 0),
     ],
 )
 def test_the_safety_figures_the_documents_state_are_the_recorded_ones(field, value):
@@ -125,8 +127,8 @@ def test_the_proposal_is_filled_in_and_within_500_words():
 
 
 def test_the_proposal_status_quotes_the_recorded_hash_figure():
-    count = SAFE["exhibits_listed"] - SAFE["exhibits_not_copied"]
-    assert f"{count} of {SAFE['exhibits_listed']} hashes correct" in read("submission", "proposal.md")
+    count = SAFE["hashes_listed"] - SAFE["hashes_wrong"]
+    assert f"{count} of {SAFE['hashes_listed']} hashes correct" in read("submission", "proposal.md")
 
 
 @pytest.mark.parametrize("name", ["architecture", "conversation", "dossier", "problem", "results", "safety"])

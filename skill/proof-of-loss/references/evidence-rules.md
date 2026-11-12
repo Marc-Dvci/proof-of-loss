@@ -34,7 +34,7 @@ A possible photo stays out of the exhibit list. It enters the dossier only when 
 
 ## Device photos
 
-A photo whose EXIF camera model names a lost camera, phone or drone was taken with that device. Device photos go in the item's Photos table with status `device photo`, with the EXIF body serial number when the file has one.
+A photo whose EXIF camera make or model names a lost camera, phone or drone was taken with that device. Device photos go in the item's Photos table with status `device photo`, with the EXIF body serial number when the file has one. A photo taken by the household's own phone is never a device photo of a lost TV, bike, watch or other object, and a lost item that takes no photos has no device photos.
 
 - A body serial number that equals the serial on a receipt is written "serial confirmed by device EXIF".
 - Device photos count for ownership and for the period of use. They are not sightings, so they stay out of first seen and last seen.
@@ -58,8 +58,10 @@ Round each GPS coordinate to three decimals (about 110 m). The **home reference*
 
 A receipt, invoice, order confirmation or delivery note enters the item's Purchase table only with a **Matched by** value:
 
-1. `brand` or `model`: a line item names the brand or the model the user gave.
+1. `brand` or `model`: a line item names the brand or the model the user gave. document-agent reports this per line item as names_item yes or no, and the dossier follows that answer.
 2. `serial`: a line item names the product type, and its serial number equals a serial number read by OCR in a photo of that item. Write "serial confirmed by photo" next to it.
+
+When the user gave no brand and no model, only `serial` can match. A colour shared with a line item, such as "grey", is never a match.
 
 A file whose line item names only the product type goes in the Possible table with the reason `receipt, type only`, and enters the dossier only when the user keeps it.
 

@@ -717,7 +717,9 @@ class MockNAS:
         if os.path.exists(real):
             stem, ext = os.path.splitext(real)
             real = f"{stem}-{uuid.uuid4().hex[:4]}{ext}"
-        with open(real, "w", encoding="utf-8") as f:
+        # CRLF line ends on every system, as the rehearsal machine wrote them: a replay anywhere rebuilds the same
+        # bytes, so the hash a recorded dossier lists for a saved file still matches
+        with open(real, "w", encoding="utf-8", newline="\r\n") as f:
             f.write(a.get("content") or "")
         return {"verified": True, "outputFile": self._virtual(real), "contentBytes": os.path.getsize(real)}
 

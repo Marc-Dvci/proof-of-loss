@@ -1209,3 +1209,9 @@ def test_save_text_keeps_a_climbing_file_name_inside_the_named_folder(make_nas, 
     args = {"path": "/home/claire/Documents", "content": "x", "filename-hint": "../../../../evil.md"}
     res = nas.invoke("knowledge-agent", "ug-knowledge", "save-text", args)
     assert res["ok"] and res["data"]["outputFile"] == "/home/claire/Documents/evil.md"
+
+
+def test_save_text_writes_crlf_line_ends_on_every_system(make_nas):
+    nas, _ = make_nas()
+    call(nas, "ug-knowledge", "save-text", {"path": f"{HOME}/Claim", "content": "a\nb\n", "filename-hint": "log.md"})
+    assert read_bytes(real(nas, f"{HOME}/Claim/log.md")) == b"a\r\nb\r\n"

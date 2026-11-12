@@ -2,7 +2,7 @@
 
 # Proof of Loss
 
-[![tests](https://github.com/Marc-Dvci/proof-of-loss/actions/workflows/tests.yml/badge.svg)](https://github.com/Marc-Dvci/proof-of-loss/actions/workflows/tests.yml) ![tests](https://img.shields.io/badge/tests-769%20passing-12a160) ![coverage](https://img.shields.io/badge/decision%20core%20coverage-97%25-12a160) ![checker](https://img.shields.io/badge/UGREEN%20checker-static--pass%2C%200%20warnings-12a160) ![hashes](https://img.shields.io/badge/listed%20hashes-34%2F34-12a160) ![look-alikes](https://img.shields.io/badge/look--alikes%20in%20a%20claim%20folder-0-12a160) ![writes](https://img.shields.io/badge/writes%20before%20the%20user's%20answer-0-12a160) ![license](https://img.shields.io/badge/license-MIT-17211c)
+[![tests](https://github.com/Marc-Dvci/proof-of-loss/actions/workflows/tests.yml/badge.svg)](https://github.com/Marc-Dvci/proof-of-loss/actions/workflows/tests.yml) ![tests](https://img.shields.io/badge/tests-770%20passing-12a160) ![coverage](https://img.shields.io/badge/decision%20core%20coverage-97%25-12a160) ![checker](https://img.shields.io/badge/UGREEN%20checker-static--pass%2C%200%20warnings-12a160) ![hashes](https://img.shields.io/badge/listed%20hashes-34%2F34-12a160) ![look-alikes](https://img.shields.io/badge/look--alikes%20in%20a%20claim%20folder-0-12a160) ![writes](https://img.shields.io/badge/writes%20before%20the%20user's%20answer-0-12a160) ![license](https://img.shields.io/badge/license-MIT-17211c)
 
 **Proof of Loss is an Uliya Skill for a household on the evening of a burglary, flood or fire: it turns the photos, receipts and camera events already on a UGREEN AI NAS into an insurer-ready claim file, with a SHA-256 hash for every exhibit.**
 
@@ -148,7 +148,7 @@ python tools/cloud_rehearsal.py --text-model qwen-plus-2025-04-28 --cases A1-bur
 python tools/rehearsal_queue.py --profile g26 --out runs/local --split all                              # Windows: llama.cpp and Gemma 4 26B-A4B
 ```
 
-769 tests (722 unit, 47 integration) run in random order in under a minute, with no network and no key. Decision core coverage is 97% (98% of lines, 96% of branches): the scorer, the stand-in with its approval gate, the agent loops, the case table and the replay. The model client and the two entry points that need a model server are outside that figure.
+770 tests (723 unit, 47 integration) run in random order in under a minute, with no network and no key. Decision core coverage is 97% (98% of lines, 96% of branches): the scorer, the stand-in with its approval gate, the agent loops, the case table and the replay. The model client and the two entry points that need a model server are outside that figure.
 
 ```bash
 pip install -r requirements-dev.txt && python -m pytest --cov

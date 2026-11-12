@@ -31,7 +31,7 @@ Six recorded rehearsal cases, all on the submitted Skill, scored against ground 
 | Serial numbers found | 8 of 8 |
 | Prices copied exactly | 10 of 10 |
 | Camera events of the incident window cited | 10 of 10 |
-| Listed hashes that match their files | 34 of 34 |
+| Items whose first and last sighting is right | 14 of 14 |
 | Look-alike photos or unrelated receipts in a claim folder, all six cases | 0 |
 | Totals or amounts that no document states | 0 |
 | Writes before the user's answer, all six cases | 0 |
@@ -53,5 +53,5 @@ The user removes an exhibit in the draft, or deletes the claim folder and runs t
 ## What the NAS test day validates
 
 - Photo recall on the NAS's own AI Album index and model, with the burglary of the [test plan](../skill/proof-of-loss/references/test-plan.md).
-- The yearly inventory run twice: a new dated folder, the first left as it was, the previous dossier's hash recorded.
+- The yearly inventory run twice: a new dated folder, the first left as it was.
 - What `event-evidence` returns for a snapshot export, so each snapshot can be copied next to the camera log.

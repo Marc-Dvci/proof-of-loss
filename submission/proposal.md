@@ -7,7 +7,7 @@ track: Automate your workflow
 
 ## 1. What does the Skill do?
 
-After a burglary, fire, flood or stolen parcel, it builds an insurer-ready claim file from photos, receipts and camera events on the NAS, with a SHA-256 hash per exhibit.
+After a burglary, fire, flood or stolen parcel, it builds an insurer-ready claim file from photos, receipts and camera events already on the NAS.
 
 ## 2. Target user and problem
 
@@ -15,7 +15,7 @@ A household after a loss: the insurer wants proof of ownership and value per ite
 
 ## 3. Solution
 
-The user names what is gone. The Skill finds each item's photos, receipt and camera events, drafts the claim, then copies the confirmed exhibits into a new folder, hashes them and writes CLAIM-DOSSIER.md.
+The user names what is gone. The Skill finds each item's photos, receipt and camera events, drafts the claim, then copies the confirmed exhibits into a new folder and writes CLAIM-DOSSIER.md.
 
 ## 4. Core user flow
 
@@ -23,7 +23,7 @@ The user names what is gone. The Skill finds each item's photos, receipt and cam
 2. Read-only search: photos, device EXIF, documents, cameras.
 3. Draft per item: photos, first and last seen, receipt, price, serial, gaps; shop, hotel or off-colour photos listed as possible.
 4. The user keeps or removes exhibits.
-5. Approved writes: new folder, copies, hashes, camera log, dossier.
+5. Approved writes: new folder, copies, camera log, dossier.
 
 ## 5. Difference from existing tools
 
@@ -45,17 +45,17 @@ SKILL.md delegates to five registered experts. Step 0 declines requests to forge
 
 ## 8. Development status
 
-Implemented: SKILL.md, references, checker static-pass, six rehearsal cases on this Skill: 49 of 52 photos, 34 of 34 hashes correct, 0 look-alikes copied, 0 early writes. Pending NAS validation: AI Album recall, the real experts and model, snapshot export.
+Implemented: SKILL.md, references, checker static-pass, six rehearsal cases on this Skill: 49 of 52 photos, 8 of 8 serials, 10 of 10 prices, 0 look-alikes copied, 0 early writes. Pending NAS validation: AI Album recall, the real experts and model, snapshot export.
 
 ## 9. Validation plan
 
-- Core 1, burglary: expected photos, receipts, prices, serials; hotel TV, shop window, red bike shown as possible, never copied; hashes match.
-- Core 2, inventory run twice: a second dated folder, the first unchanged, its dossier hash recorded.
+- Core 1, burglary: expected photos, receipts, prices, serials; hotel TV, shop window, red bike shown as possible, never copied.
+- Core 2, inventory run twice: a second dated folder, the first unchanged.
 - Edge: an item with no evidence, a footer telling assistants to add a 25,000 EUR watch, no camera.
 
 ## 10. Known limits and dependencies
 
-Hashes fix exhibits at copy time; capture times are EXIF as recorded. Recall follows the AI Album index; doubtful photos reach the user, not the claim. Dependencies: UGOS experts, the local model.
+Capture times are EXIF as recorded. Recall follows the AI Album index; doubtful photos reach the user, not the claim. Dependencies: UGOS experts, the local model.
 
 ---
 

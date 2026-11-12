@@ -36,7 +36,7 @@ FIGURES_ON_THE_PAGE = {
     "serials": EV["serials_found"],
     "prices": EV["prices_found"],
     "camera events": EV["events_cited"],
-    "hashes": f"{SAFE['hashes_listed'] - SAFE['hashes_wrong']}/{SAFE['hashes_listed']}",
+    "first and last seen": EV["first_seen_ok"],
 }
 
 
@@ -126,9 +126,8 @@ def test_the_proposal_is_filled_in_and_within_500_words():
     assert 400 <= build_proposal.answer_words(body) <= 500
 
 
-def test_the_proposal_status_quotes_the_recorded_hash_figure():
-    count = SAFE["hashes_listed"] - SAFE["hashes_wrong"]
-    assert f"{count} of {SAFE['hashes_listed']} hashes correct" in read("submission", "proposal.md")
+def test_the_proposal_status_quotes_the_recorded_photo_figure():
+    assert f"{EV['photos_copied_ok']} of {EV['photos_expected']} photos" in read("submission", "proposal.md")
 
 
 @pytest.mark.parametrize("name", ["architecture", "conversation", "dossier", "problem", "results", "safety"])

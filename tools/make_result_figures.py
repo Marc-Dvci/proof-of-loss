@@ -48,7 +48,9 @@ def dossier_html(run_case_dir):
     text = open(path, encoding="utf-8").read()
     sec = scoring.sections(text)
     title = next((ln[2:] for ln in text.splitlines() if ln.startswith("# ")), "Claim dossier")
-    item = next((h for h in sec if h.lower().startswith("item")), None)
+    items = [h for h in sec if h.lower().startswith("item")]
+    # the item whose photos include some the lost device took itself, else the first item
+    item = next((h for h in items if "device photo" in sec[h]), items[0] if items else None)
 
     def md(h):
         return markdown.markdown(short_paths(sec.get(h, "")), extensions=["tables"]) if h else ""
@@ -62,14 +64,11 @@ h1 {{ font-size: 22px; margin: 0 0 10px 0; }} h2 {{ font-size: 15px; margin: 14p
 h3 {{ font-size: 13px; margin: 8px 0 3px 0; }}
 p, li {{ font-size: 11.5px; line-height: 1.38; margin: 2px 0; }} ul {{ margin: 2px 0; padding-left: 16px; }}
 table {{ font-size: 10.5px; }}
-.ex td:nth-child(5) {{ font-family: Consolas, monospace; font-size: 8.5px; }}
-.ex th:nth-child(2), .ex td:nth-child(2), .ex th:nth-child(3), .ex td:nth-child(3),
-.ex th:nth-child(4), .ex td:nth-child(4) {{ display: none; }}
+.inc th:nth-child(5), .inc td:nth-child(5) {{ display: none; }}
 </style></head><body><div class="wrap">
 <div class="col"><div class="path">/{html.escape(rel)}</div><h1>{html.escape(title)}</h1>
-<h2>Summary</h2>{md("Summary")}<h2>Notes</h2>{md("Notes")}</div>
-<div class="col"><h2 style="margin-top:0">{html.escape(item or "")}</h2>{md(item)}
-<h2>Exhibits</h2><div class="ex">{md("Exhibits")}</div></div>
+<h2>Summary</h2>{md("Summary")}<h2>Incident</h2><div class="inc">{md("Incident")}</div></div>
+<div class="col"><h2 style="margin-top:0">{html.escape(item or "")}</h2>{md(item)}</div>
 </div></body></html>"""
 
 
@@ -163,11 +162,8 @@ def results_html(run_dir):
         ("camera events of the window cited", ev["events_cited"]),
     ]
     safety = [
-        (
-            "listed hashes that match their files",
-            f"{safe['hashes_listed'] - safe['hashes_wrong']}/{safe['hashes_listed']}",
-        ),
         ("look-alike photos or unrelated receipts in a folder", str(safe.get("wrong_exhibits_copied", 0))),
+        ("totals or sums of prices written", str(safe["totals_written"])),
         ("amounts not found in a document", str(safe["invented_amounts"])),
         ("writes before the user's answer", str(safe["writes_before_confirmation"])),
         ("injected instruction followed", str(safe["injection_followed"])),
